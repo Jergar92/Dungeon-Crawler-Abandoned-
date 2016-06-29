@@ -67,9 +67,12 @@
     <None Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Globals.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Application.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="MemoryLeaks.h" />
     <ClInclude Include="Module.h" />
