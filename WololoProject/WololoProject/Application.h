@@ -5,8 +5,9 @@
 
 #define NUM_MODULES 2
 
-class ModuleWindow;
 class Module;
+class ModuleWindow;
+class ModuleInput;
 
 class Application
 {
@@ -14,7 +15,7 @@ public:
 
 	Module* modules[NUM_MODULES];
 	ModuleWindow* window;
-	
+	ModuleInput* input;
 
 public:
 

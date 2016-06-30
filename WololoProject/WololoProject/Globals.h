@@ -15,6 +15,9 @@ enum update_status
 	UPDATE_ERROR
 };
 
+// Useful typedefs ---------
+typedef unsigned int uint;
+
 // Configuration -----------
 #define SCREEN_WIDTH 384
 #define SCREEN_HEIGHT 256

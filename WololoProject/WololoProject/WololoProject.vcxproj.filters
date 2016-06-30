@@ -38,6 +38,9 @@
     <ClInclude Include="MemoryLeaks.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleInput.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -48,6 +51,9 @@
     </ClCompile>
     <ClCompile Include="Globals.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInput.cpp">
+      <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
