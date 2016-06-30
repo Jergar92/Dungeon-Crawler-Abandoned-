@@ -1,12 +1,13 @@
 #include "Application.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
-
+#include "ModuleRender.h"
 Application::Application()
 {
 	int i = 0;
 	modules[i++] = window = new ModuleWindow();
 	modules[i++] = input = new ModuleInput();
+	modules[i++] = render = new ModuleRender();
 }
 
 Application::~Application()
