@@ -2,12 +2,15 @@
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
+#include "ModuleAudio.h"
+
 Application::Application()
 {
 	int i = 0;
 	modules[i++] = window = new ModuleWindow();
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = render = new ModuleRender();
+	modules[i++] = audio = new ModuleAudio();
 }
 
 Application::~Application()
