@@ -3,6 +3,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
+#include"ModuleTexture.h"
 
 Application::Application()
 {
@@ -11,6 +12,7 @@ Application::Application()
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = render = new ModuleRender();
 	modules[i++] = audio = new ModuleAudio();
+	modules[i++] = texture = new ModuleTextures();
 }
 
 Application::~Application()
