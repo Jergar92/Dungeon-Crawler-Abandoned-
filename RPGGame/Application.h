@@ -10,7 +10,8 @@ class ModuleWindow;
 class ModuleInput;
 class ModuleRender;
 class ModuleAudio;
-class ModuleTexture;
+class ModuleTextures;
+
 class Application
 {
 public:
