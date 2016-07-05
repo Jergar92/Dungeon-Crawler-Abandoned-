@@ -2,7 +2,6 @@
 #include "Application.h"
 #include "ModuleRender.h"
 #include "ModuleTexture.h"
-#include <string.h>
 
 #include "SDL/include/SDL.h"
 #include "SDL_image/include/SDL_image.h"
@@ -10,8 +9,11 @@
 
 ModuleTextures::ModuleTextures() : Module()
 {
-	for (uint i = 0; i < MAX_TEXTURES; ++i)
+
+	for (int i = 0; i < MAX_TEXTURES; i++)
+	{
 		textures[i] = nullptr;
+	}
 }
 
 // Destructor
@@ -26,9 +28,9 @@ bool ModuleTextures::Init()
 
 	// load support for the PNG image format
 	int flags = IMG_INIT_PNG;
-	int init = IMG_Init(flags);
+	int initted = IMG_Init(flags);
 
-	if ((init & flags) != flags)
+	if ((initted & flags) != flags)
 	{
 		LOG("Could not initialize Image lib. IMG_Init: %s", IMG_GetError());
 		ret = false;
@@ -37,17 +39,19 @@ bool ModuleTextures::Init()
 	return ret;
 }
 
-// Called before q	uitting
+// Called before quitting
 bool ModuleTextures::CleanUp()
 {
 	LOG("Freeing textures and Image library");
 
-	for (uint i = 0; i < MAX_TEXTURES; ++i)
+
+	for (int i = 0; i < MAX_TEXTURES; i++)
 	{
 		if (textures[i] != nullptr)
+		{
 			SDL_DestroyTexture(textures[i]);
+		}
 	}
-
 	IMG_Quit();
 	return true;
 }
@@ -55,42 +59,30 @@ bool ModuleTextures::CleanUp()
 // Load new texture from file path
 SDL_Texture* const ModuleTextures::Load(const char* path)
 {
-	SDL_Texture* texture = nullptr;
-
-	// It is a new texture, let's load it !
-	SDL_Surface* surface = IMG_Load(path);
-
-	if (surface == nullptr)
+	SDL_Texture* texture = NULL;
+	SDL_Surface *surface = IMG_Load(path);
+	if (surface == NULL)
 	{
-		LOG("Could not load surface with path: %s. IMG_Load: %s", path, IMG_GetError());
+		LOG("IMG_Load: %s\n", IMG_GetError());
 	}
+
 	else
 	{
 		texture = SDL_CreateTextureFromSurface(App->render->renderer, surface);
-
-		if (texture == nullptr)
+		if (texture == NULL)
 		{
-			LOG("Unable to create texture from surface! SDL Error: %s\n", SDL_GetError());
+			LOG("SDL_CreateTextureFromSurface: %s\n", IMG_GetError());
+			// handle error
 		}
 		else
 		{
-			for (uint i = 0; i < MAX_TEXTURES; ++i)
-			{
-				if (textures[i] == nullptr)
-				{
-					textures[i] = texture;
-					break;
-				}
-			}
+			textures[last_texture++] = texture;
 		}
-
 		SDL_FreeSurface(surface);
 	}
 
 	return texture;
 }
-
-// Load new texture from file path
 bool ModuleTextures::Unload(SDL_Texture* texture)
 {
 	bool ret = false;
@@ -105,11 +97,6 @@ bool ModuleTextures::Unload(SDL_Texture* texture)
 			break;
 		}
 	}
-
+	last_texture = 0;
 	return ret;
-}
-// Retrieve size of a texture
-void ModuleTextures::GetSize(const SDL_Texture* texture, uint& width, uint& height) const
-{
-	SDL_QueryTexture((SDL_Texture*)texture, NULL, NULL, (int*)&width, (int*)&height);
 }

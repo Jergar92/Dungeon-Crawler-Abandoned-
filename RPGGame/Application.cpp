@@ -4,15 +4,17 @@
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
 #include "ModuleTexture.h"
-
+#include "ModuleStartScreen.h"
 Application::Application()
 {
 	int i = 0;
 	modules[i++] = window = new ModuleWindow();
-	modules[i++] = input = new ModuleInput();
 	modules[i++] = render = new ModuleRender();
-	modules[i++] = audio = new ModuleAudio();
+	modules[i++] = input = new ModuleInput();
 	modules[i++] = texture = new ModuleTextures();
+	modules[i++] = audio = new ModuleAudio();
+	modules[i++] = menu_screen = new ModuleStartScreen();
+
 }
 
 Application::~Application()
