@@ -6,6 +6,8 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
+#include "ModuleLevel1.h"
+#include "ModuleFadeToBlack.h"
 
 ModuleStartScreen::ModuleStartScreen()
 {
@@ -18,7 +20,7 @@ ModuleStartScreen::~ModuleStartScreen()
 bool ModuleStartScreen::Start()
 {
 
-	graphics = App->texture->Load("Game/NicoProJPG.png");
+	graphics = App->texture->Load("NicoProJPG.png");
 
 	return true;
 
@@ -27,6 +29,11 @@ bool ModuleStartScreen::Start()
 update_status ModuleStartScreen::Update()
 {
 	App->render->Blit(graphics, 0, 0, &background);
+
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_UP)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->level1, 2.0f);
+	}
 	
 	return UPDATE_CONTINUE;
 }
@@ -34,7 +41,6 @@ update_status ModuleStartScreen::Update()
 bool ModuleStartScreen::CleanUp()
 {
 	App->texture->Unload(graphics);
-
 
 	return true;
 }

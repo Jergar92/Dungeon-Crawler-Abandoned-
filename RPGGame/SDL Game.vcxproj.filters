@@ -12,6 +12,9 @@
     <Filter Include="Levels">
       <UniqueIdentifier>{c55d7b84-777a-490a-bdd0-5bffa15d9bb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Player &amp; IA">
+      <UniqueIdentifier>{7f6a9ca7-2534-48d6-beb7-e043780e1494}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -40,6 +43,15 @@
     </ClCompile>
     <ClCompile Include="ModuleStartScreen.cpp">
       <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Player &amp; IA</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleLevel1.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFadeToBlack.cpp">
+      <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +84,18 @@
     </ClInclude>
     <ClInclude Include="ModuleStartScreen.h">
       <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePlayer.h">
+      <Filter>Player &amp; IA</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Point.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleLevel1.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFadeToBlack.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
