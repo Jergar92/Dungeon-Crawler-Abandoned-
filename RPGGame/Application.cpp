@@ -5,6 +5,10 @@
 #include "ModuleAudio.h"
 #include "ModuleTexture.h"
 #include "ModuleStartScreen.h"
+#include "ModuleLevel1.h"
+#include "ModulePlayer.h"
+#include "ModuleFadeToBlack.h"
+
 Application::Application()
 {
 	int i = 0;
@@ -14,7 +18,9 @@ Application::Application()
 	modules[i++] = texture = new ModuleTextures();
 	modules[i++] = audio = new ModuleAudio();
 	modules[i++] = menu_screen = new ModuleStartScreen();
-
+	modules[i++] = player = new ModulePlayer();
+	modules[i++] = level1 = new ModuleLevel1();
+	modules[i++] = fade = new ModuleFadeToBlack();
 }
 
 Application::~Application()
