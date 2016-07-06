@@ -8,6 +8,7 @@
 #include "ModuleLevel1.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleCollider.h"
 
 Application::Application()
 {
@@ -21,6 +22,7 @@ Application::Application()
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = level1 = new ModuleLevel1();
 	modules[i++] = fade = new ModuleFadeToBlack();
+	modules[i++] = collider = new ModuleCollider();
 }
 
 Application::~Application()
