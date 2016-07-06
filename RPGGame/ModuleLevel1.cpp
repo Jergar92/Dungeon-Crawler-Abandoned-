@@ -18,6 +18,8 @@ bool ModuleLevel1::Start()
 {
 	App->collider->AddCollider(SDL_Rect{ 224, 24, 20, 20 }, COLLIDER_WALL);	
 	bool ret = true;
+	App->player->Enable();
+	App->collider->Enable();
 	int tile[5][5] = {
 		/*      0  1  2  
 		/*0 */{ 0, 0, 0, 0, 0 },

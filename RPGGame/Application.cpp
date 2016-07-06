@@ -36,7 +36,9 @@ bool Application::Init()
 	bool ret = true;
 
 	// Deactivate modules here ----
-
+	player->Disable();
+	level1->Disable();
+	collider->Disable();
 
 
 	// ----------------------------

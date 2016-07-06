@@ -42,5 +42,6 @@ bool ModuleStartScreen::CleanUp()
 {
 	App->texture->Unload(graphics);
 
+
 	return true;
 }
