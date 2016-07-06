@@ -18,7 +18,7 @@ public:
 
 public:
 
-	int map[5][5];
+	int map[10][10];
 	bool islevel3;
 
 };
