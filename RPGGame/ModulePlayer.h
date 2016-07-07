@@ -24,8 +24,6 @@ public:
 	SDL_Texture* g_direciones = nullptr;
 	SDL_Texture* g_direcionesv1 = nullptr;
 	SDL_Texture* g_fondo1 = nullptr;
-	SDL_Texture* g_fondo2 = nullptr;
-	SDL_Texture* g_fondo3 = nullptr;
 	SDL_Texture* direct = nullptr;
 	iPoint position;
 	SDL_Rect pasillo;
@@ -33,8 +31,6 @@ public:
 	SDL_Rect direciones;
 	SDL_Rect direcionesv1;
 	SDL_Rect fondo1;
-	SDL_Rect fondo2;
-	SDL_Rect fondo3;
 	SDL_Rect test;
 	SDL_Rect brujula;
 	int direction;//1 North, 2 West, 3 South, 4 East

@@ -14,8 +14,6 @@ ModulePlayer::ModulePlayer()
 	direciones = { 0, 0, 384, 256 };
 	direcionesv1 = { 0, 0, 384, 256 };
 	fondo1 = { 0, 0, 384, 256 };
-	fondo2 = { 0, 0, 384, 256 };
-	fondo3 = { 0, 0, 384, 256 };
 	position.x = 1;
 	position.y = 1;
 	test = { 100, 200, 1, 1 };
@@ -37,8 +35,6 @@ bool ModulePlayer::Start()
 	g_direciones = App->texture->Load("Prube_sprite_movimiento.png");
 	g_direcionesv1 = App->texture->Load("Prube_sprite_movimientov1.png");
 	g_fondo1 = App->texture->Load("Prube_sprite_fondo.png");
-	g_fondo2 = App->texture->Load("Prube_sprite_fondo2.png");
-	g_fondo3 = App->texture->Load("Prube_sprite_fondo3.png");
 	direction = 3;
 	return ret;
 }
@@ -47,8 +43,6 @@ bool ModulePlayer::CleanUp()
 	App->texture->Unload(g_pasillo);
 	App->texture->Unload(g_direciones);
 	App->texture->Unload(g_fondo1);
-	App->texture->Unload(g_fondo2);
-	App->texture->Unload(g_fondo3);
 	return true;
 }
 // Update: draw background
@@ -214,14 +208,6 @@ update_status ModulePlayer::Update()
 		if (num == 3)
 		{
 			App->render->Blit(g_fondo1, 0, 0, &fondo1);
-		}
-		if (num == 4)
-		{
-			App->render->Blit(g_fondo2, 0, 0, &fondo2);
-		}
-		if (num == 5)
-		{
-			App->render->Blit(g_fondo3, 0, 0, &fondo3);
 		}
 		if (num == 6)
 		{
