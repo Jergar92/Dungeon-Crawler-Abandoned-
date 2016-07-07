@@ -64,19 +64,3 @@ update_status ModuleLevel1::Update()
 {
 	return UPDATE_CONTINUE;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

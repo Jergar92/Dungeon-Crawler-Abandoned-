@@ -56,6 +56,9 @@
     <ClCompile Include="ModuleCollider.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleCommonLevels.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -101,6 +104,9 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleCollider.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCommonLevels.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>

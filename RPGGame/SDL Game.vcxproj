@@ -16,6 +16,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollider.cpp" />
+    <ClCompile Include="ModuleCommonLevels.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleLevel1.cpp" />
@@ -32,6 +33,7 @@
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollider.h" />
+    <ClInclude Include="ModuleCommonLevels.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleLevel1.h" />

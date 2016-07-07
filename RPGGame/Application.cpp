@@ -9,6 +9,7 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleCollider.h"
+#include "ModuleCommonLevels.h"
 
 Application::Application()
 {
@@ -21,8 +22,9 @@ Application::Application()
 	modules[i++] = menu_screen = new ModuleStartScreen();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = level1 = new ModuleLevel1();
-	modules[i++] = fade = new ModuleFadeToBlack();
+	modules[i++] = commonlvls = new ModuleCommonLevels();
 	modules[i++] = collider = new ModuleCollider();
+	modules[i++] = fade = new ModuleFadeToBlack();
 }
 
 Application::~Application()
