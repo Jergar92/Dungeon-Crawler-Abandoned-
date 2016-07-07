@@ -18,6 +18,7 @@ ModulePlayer::ModulePlayer()
 	position.y = 1;
 	test = { 100, 200, 1, 1 };
 	brujula = { 3, 0, 30, 25 };
+	exit = { 0, 0, 384, 256 };
 }
 
 ModulePlayer::~ModulePlayer()
@@ -35,6 +36,7 @@ bool ModulePlayer::Start()
 	g_direciones = App->texture->Load("Prube_sprite_movimiento.png");
 	g_direcionesv1 = App->texture->Load("Prube_sprite_movimientov1.png");
 	g_fondo1 = App->texture->Load("Prube_sprite_fondo.png");
+	g_exit = App->texture->Load("Prube_sprite_exit.png");
 	direction = 3;
 	return ret;
 }
@@ -208,6 +210,10 @@ update_status ModulePlayer::Update()
 		if (num == 3)
 		{
 			App->render->Blit(g_fondo1, 0, 0, &fondo1);
+		}
+		if (num == 4)
+		{
+			App->render->Blit(g_exit, 0, 0, &exit);
 		}
 		if (num == 6)
 		{
