@@ -62,6 +62,7 @@ public:
 
 	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Module* callback = nullptr);
 	bool EraseCollider(Collider* collider);
+	bool CheckButton(const SDL_Rect* button, int x, int y) const;
 	void DebugDraw();
 
 private:

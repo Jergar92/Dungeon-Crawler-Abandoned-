@@ -7,7 +7,6 @@
 
 struct SDL_Texture;
 
-
 class ModuleStartScreen : public Module
 {
 public:
@@ -22,7 +21,6 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect background;
 	Mix_Music* level_music = nullptr;
-
 };
 
 

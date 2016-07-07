@@ -1,10 +1,10 @@
-#include "Globals.h"
 #include "Application.h"
 #include "ModuleTexture.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModuleLevel1.h"
+#include "ModuleCommonLevels.h"
 
 
 ModulePlayer::ModulePlayer()
@@ -54,7 +54,7 @@ update_status ModulePlayer::Update()
 	if (1)
 	{
 		//KEY W 
-		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP)
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP || App->commonlvls->click_W == true)
 		{
 			if (App->level1->map[position.y][position.x] == 1)
 			{
@@ -72,10 +72,11 @@ update_status ModulePlayer::Update()
 			{
 				changetile(1);
 			}
+			App->commonlvls->click_W = false;
 		}
 
 		//KEY A
-		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP)
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->commonlvls->click_A == true)
 		{
 			if (App->level1->map[position.y][position.x] == 2)
 			{
@@ -85,9 +86,10 @@ update_status ModulePlayer::Update()
 			{
 				changetile(2);
 			}
+			App->commonlvls->click_A = false;
 		}
 		//KEY S
-		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP)
+		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->commonlvls->click_S == true)
 		{
 			if (App->level1->map[position.y][position.x] == 1)
 			{
@@ -113,9 +115,10 @@ update_status ModulePlayer::Update()
 			{
 				changetile(3);
 			}
+			App->commonlvls->click_S = false;
 		}
 		//KEY D
-		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP)
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP || App->commonlvls->click_D == true)
 		{
 			if (App->level1->map[position.y][position.x] == 2)
 			{
@@ -125,6 +128,7 @@ update_status ModulePlayer::Update()
 			{
 				changetile(4);
 			}
+			App->commonlvls->click_D = false;
 		}
 
 		//Look new room

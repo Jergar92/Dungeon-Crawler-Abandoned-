@@ -19,10 +19,10 @@ Application::Application()
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = texture = new ModuleTextures();
 	modules[i++] = audio = new ModuleAudio();
-	modules[i++] = menu_screen = new ModuleStartScreen();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = level1 = new ModuleLevel1();
 	modules[i++] = commonlvls = new ModuleCommonLevels();
+	modules[i++] = menu_screen = new ModuleStartScreen();
 	modules[i++] = collider = new ModuleCollider();
 	modules[i++] = fade = new ModuleFadeToBlack();
 }
@@ -40,8 +40,6 @@ bool Application::Init()
 	// Deactivate modules here ----
 	player->Disable();
 	level1->Disable();
-	collider->Disable();
-
 
 	// ----------------------------
 
