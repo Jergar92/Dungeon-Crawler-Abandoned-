@@ -56,144 +56,74 @@ update_status ModulePlayer::Update()
 		//KEY W 
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP)
 		{
-			if (direction == 1)
+			if (App->level1->map[position.y][position.x] == 1)
 			{
-				if (App->level1->map[position.y - 1][position.x] != 0)
-				{
-					position.y -= 1;
-				}
+				changetile(1);
 			}
-			if (direction == 2)
+			else if (App->level1->map[position.y][position.x] == 6)
 			{
-				if (App->level1->map[position.y][position.x - 1] != 0)
-				{
-					position.x -= 1;
-				}
+				changetile(1);
 			}
-			if (direction == 3)
+			else if (App->level1->map[position.y][position.x] == 2)
 			{
-				if (App->level1->map[position.y + 1][position.x] != 0)
-				{
-					position.y += 1;
-				}
+				changetile(1);
 			}
-			if (direction == 4)
+			else if (App->level1->map[position.y][position.x] == 7)
 			{
-				if (App->level1->map[position.y][position.x + 1] != 0)
-				{
-					position.x += 1;
-				}
+				changetile(1);
 			}
-
 		}
+
 		//KEY A
 		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP)
 		{
-			if (direction == 1)
+			if (App->level1->map[position.y][position.x] == 2)
 			{
-				if (App->level1->map[position.y][position.x - 1] != 0)
-				{
-					direction = 2;
-					position.x -= 1;
-				}
+				changetile(2);
 			}
-			if (direction == 2)
+			else if (App->level1->map[position.y][position.x] == 7)
 			{
-				if (App->level1->map[position.y + 1][position.x] != 0)
-				{
-					direction = 3;
-					position.y += 1;
-				}
+				changetile(2);
 			}
-			if (direction == 3)
-			{
-				if (App->level1->map[position.y][position.x + 1] != 0)
-				{
-					direction = 4;
-					position.x += 1;
-				}
-			}
-			if (direction == 4)
-			{
-				if (App->level1->map[position.y - 1][position.x] != 0)
-				{
-					direction = 1;
-					position.y -= 1;
-				}
-			}
-
 		}
 		//KEY S
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP)
 		{
-			if (direction == 1)
+			if (App->level1->map[position.y][position.x] == 1)
 			{
-				if (App->level1->map[position.y + 1][position.x] != 0)
-				{
-					direction = 3;
-					position.y += 1;
-				}
+				changetile(3);
 			}
-			else if (direction == 2)
+			else if (App->level1->map[position.y][position.x] == 2)
 			{
-				if (App->level1->map[position.y][position.x + 1] != 0)
-				{
-					direction = 4;
-					position.x += 1;
-				}
+				changetile(3);
 			}
-			else if (direction == 3)
+			else if (App->level1->map[position.y][position.x] == 3)
 			{
-				if (App->level1->map[position.y - 1][position.x] != 0)
-				{
-					direction = 1;
-					position.y -= 1;
-				}
+				changetile(3);
 			}
-			else if (direction == 4)
+			else if (App->level1->map[position.y][position.x] == 4)
 			{
-				if (App->level1->map[position.y][position.x - 1] != 0)
-				{
-					direction = 2;
-					position.x -= 1;
-				}
+				changetile(3);
 			}
-
+			else if (App->level1->map[position.y][position.x] == 6)
+			{
+				changetile(3);
+			}
+			else if (App->level1->map[position.y][position.x] == 7)
+			{
+				changetile(3);
+			}
 		}
 		//KEY D
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP)
 		{
-			if (direction == 1)
+			if (App->level1->map[position.y][position.x] == 2)
 			{
-				if (App->level1->map[position.y][position.x + 1] != 0)
-				{
-					direction = 4;
-					position.x += 1;
-				}
+				changetile(4);
 			}
-			if (direction == 2)
+			else if (App->level1->map[position.y][position.x] == 7)
 			{
-				if (App->level1->map[position.y - 1][position.x] != 0)
-				{
-					direction = 1;
-					position.y -= 1;
-				}
-			}
-			if (direction == 3)
-			{
-				if (App->level1->map[position.y][position.x - 1] != 0)
-				{
-					direction = 2;
-					position.x -= 1;
-				}
-			}
-			if (direction == 4)
-			{
-				if (App->level1->map[position.y + 1][position.x] != 0)
-				{
-					direction = 3;
-					position.y += 1;
-				}
+				changetile(4);
 			}
 		}
 
@@ -256,4 +186,151 @@ update_status ModulePlayer::Update()
 
 
 	return UPDATE_CONTINUE;
+}
+
+
+
+void ModulePlayer::changetile(int key)
+{
+	if (key == 1)
+	{
+		if (direction == 1)
+		{
+			if (App->level1->map[position.y - 1][position.x] != 0)
+			{
+				position.y -= 1;
+			}
+		}
+		if (direction == 2)
+		{
+			if (App->level1->map[position.y][position.x - 1] != 0)
+			{
+				position.x -= 1;
+			}
+		}
+		if (direction == 3)
+		{
+			if (App->level1->map[position.y + 1][position.x] != 0)
+			{
+				position.y += 1;
+			}
+		}
+		if (direction == 4)
+		{
+			if (App->level1->map[position.y][position.x + 1] != 0)
+			{
+				position.x += 1;
+			}
+		}
+	}
+
+	if (key == 2)
+	{
+		if (direction == 1)
+		{
+			if (App->level1->map[position.y][position.x - 1] != 0)
+			{
+				direction = 2;
+				position.x -= 1;
+			}
+		}
+		if (direction == 2)
+		{
+			if (App->level1->map[position.y + 1][position.x] != 0)
+			{
+				direction = 3;
+				position.y += 1;
+			}
+		}
+		if (direction == 3)
+		{
+			if (App->level1->map[position.y][position.x + 1] != 0)
+			{
+				direction = 4;
+				position.x += 1;
+			}
+		}
+		if (direction == 4)
+		{
+			if (App->level1->map[position.y - 1][position.x] != 0)
+			{
+				direction = 1;
+				position.y -= 1;
+			}
+		}
+	}
+
+	if (key == 3)
+	{
+		if (direction == 1)
+		{
+			if (App->level1->map[position.y + 1][position.x] != 0)
+			{
+				direction = 3;
+				position.y += 1;
+			}
+		}
+		else if (direction == 2)
+		{
+			if (App->level1->map[position.y][position.x + 1] != 0)
+			{
+				direction = 4;
+				position.x += 1;
+			}
+		}
+		else if (direction == 3)
+		{
+			if (App->level1->map[position.y - 1][position.x] != 0)
+			{
+				direction = 1;
+				position.y -= 1;
+			}
+		}
+		else if (direction == 4)
+		{
+			if (App->level1->map[position.y][position.x - 1] != 0)
+			{
+				direction = 2;
+				position.x -= 1;
+			}
+		}
+	}
+
+	if (key == 4)
+	{
+
+		if (direction == 1)
+		{
+			if (App->level1->map[position.y][position.x + 1] != 0)
+			{
+				direction = 4;
+				position.x += 1;
+			}
+		}
+		if (direction == 2)
+		{
+			if (App->level1->map[position.y - 1][position.x] != 0)
+			{
+				direction = 1;
+				position.y -= 1;
+			}
+		}
+		if (direction == 3)
+		{
+			if (App->level1->map[position.y][position.x - 1] != 0)
+			{
+				direction = 2;
+				position.x -= 1;
+			}
+		}
+		if (direction == 4)
+		{
+			if (App->level1->map[position.y + 1][position.x] != 0)
+			{
+				direction = 3;
+				position.y += 1;
+			}
+		}
+	}
+
 }
