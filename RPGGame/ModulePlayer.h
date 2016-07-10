@@ -18,30 +18,28 @@ public:
 	bool CleanUp();
 
 public:
-
-	SDL_Texture* g_pasillo = nullptr;
-	SDL_Texture* g_pasillov1 = nullptr;
-	SDL_Texture* g_direciones = nullptr;
-	SDL_Texture* g_direcionesv1 = nullptr;
-	SDL_Texture* g_fondo1 = nullptr;
+	SDL_Texture* g_corridor = nullptr;
+	SDL_Texture* g_corridorv1 = nullptr;
+	SDL_Texture* g_directions = nullptr;
+	SDL_Texture* g_directionsv1 = nullptr;
+	SDL_Texture* g_background1 = nullptr;
 	SDL_Texture* direct = nullptr;
 	SDL_Texture* g_exit = nullptr;
 
 	iPoint position;
-	SDL_Rect pasillo;
-	SDL_Rect pasillov1;
-	SDL_Rect direciones;
-	SDL_Rect direcionesv1;
-	SDL_Rect fondo1;
+	SDL_Rect corridor;
+	SDL_Rect corridorv1;
+	SDL_Rect directions;
+	SDL_Rect directionsv1;
+	SDL_Rect background1;
 	SDL_Rect test;
 	SDL_Rect exit;
-	SDL_Rect brujula;
+	SDL_Rect compass;
 	int direction;//1 North, 2 West, 3 South, 4 East
 	int map_player[10][10];
 	int num;
 
 	void changetile(int );
-
 };
 
 #endif

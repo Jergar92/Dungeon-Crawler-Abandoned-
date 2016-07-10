@@ -154,11 +154,3 @@ bool ColliderRect::CheckCollision(const Collider* c) const
 		rect.y < c->rect.y + c->rect.h &&
 		rect.h + rect.y > c->rect.y);
 }
-
-bool ModuleCollider::CheckButton(const SDL_Rect* button, int x, int y) const
-{
-	/*return (x< button->x*SCREEN_SIZE + button->w*SCREEN_SIZE  && x >= button->x*SCREEN_SIZE &&
-		y < button->y*SCREEN_SIZE + button->h*SCREEN_SIZE  && y >= button->y*SCREEN_SIZE);*/
-	return (x< button->x*SCREEN_SIZE + button->w*SCREEN_SIZE  && x >= button->x*SCREEN_SIZE &&
-		y < button->y*SCREEN_SIZE + button->h*SCREEN_SIZE  && y >= button->y*SCREEN_SIZE);
-}

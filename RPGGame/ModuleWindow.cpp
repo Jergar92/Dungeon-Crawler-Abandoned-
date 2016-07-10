@@ -4,13 +4,11 @@
 #include "SDL/include/SDL.h"
 
 ModuleWindow::ModuleWindow() : Module()
-{
-}
+{}
 
 // Destructor
 ModuleWindow::~ModuleWindow()
-{
-}
+{}
 
 // Called before render is available
 bool ModuleWindow::Init()
@@ -43,8 +41,7 @@ bool ModuleWindow::Init()
 		if (WIN_FULLSCREEN_DESKTOP == true)
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 
-		window = SDL_CreateWindow("Puzzle Bobble v1.0 - Compilation Lords", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
-
+		window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 		if (window == NULL)
 		{
 			LOG("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -56,7 +53,6 @@ bool ModuleWindow::Init()
 			screen_surface = SDL_GetWindowSurface(window);
 		}
 	}
-
 	return ret;
 }
 
@@ -64,7 +60,6 @@ bool ModuleWindow::Init()
 bool ModuleWindow::CleanUp()
 {
 	LOG("Destroying SDL window and quitting all SDL systems");
-
 	//Destroy window
 	if (window != NULL)
 		SDL_DestroyWindow(window);

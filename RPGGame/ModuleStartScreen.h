@@ -23,5 +23,4 @@ public:
 	Mix_Music* level_music = nullptr;
 };
 
-
 #endif

@@ -19,18 +19,20 @@ public:
 
 public:
 
+	bool CheckButton(const SDL_Rect* button, int x, int y) const;
 
+	//sprites
 	SDL_Texture* Keys_wasd = nullptr;
-
 	SDL_Rect Key_w;
 	SDL_Rect Key_a;
 	SDL_Rect Key_s;
 	SDL_Rect Key_d;
 
-	SDL_Rect Coll_W;
-	SDL_Rect Coll_A;
-	SDL_Rect Coll_S;
-	SDL_Rect Coll_D;
+	//place in screen
+	SDL_Rect Rect_W;
+	SDL_Rect Rect_A;
+	SDL_Rect Rect_S;
+	SDL_Rect Rect_D;
 
 	bool click_W = false;
 	bool click_A = false;

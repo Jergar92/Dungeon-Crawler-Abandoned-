@@ -51,7 +51,6 @@ int main(int argc, char* argv[])
 				state = MAIN_UPDATE;
 				LOG("Application Update --------------");
 			}
-
 		}	break;
 
 		case MAIN_UPDATE:

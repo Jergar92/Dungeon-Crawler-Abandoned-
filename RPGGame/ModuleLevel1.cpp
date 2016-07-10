@@ -8,9 +8,7 @@
 #include "ModuleCollider.h"
 
 ModuleLevel1::ModuleLevel1()
-{
-
-}
+{}
 ModuleLevel1::~ModuleLevel1()
 {}
 

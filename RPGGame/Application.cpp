@@ -40,7 +40,6 @@ bool Application::Init()
 	// Deactivate modules here ----
 	player->Disable();
 	level1->Disable();
-
 	// ----------------------------
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)

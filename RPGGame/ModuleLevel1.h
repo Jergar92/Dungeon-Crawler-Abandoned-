@@ -17,10 +17,8 @@ public:
 	bool CleanUp();
 
 public:
-
 	int map[10][10];
 	bool islevel3;
-
 };
 
 #endif

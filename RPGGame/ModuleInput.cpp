@@ -11,8 +11,7 @@ ModuleInput::ModuleInput() : Module()
 
 // Destructor
 ModuleInput::~ModuleInput()
-{
-}
+{}
 
 // Called before render is available
 bool ModuleInput::Init()
@@ -26,7 +25,6 @@ bool ModuleInput::Init()
 		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-
 	return ret;
 }
 
@@ -34,7 +32,6 @@ bool ModuleInput::Init()
 update_status ModuleInput::PreUpdate()
 {
 	SDL_PumpEvents();
-
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
 
 	for (int i = 0; i < MAX_KEYS; ++i)

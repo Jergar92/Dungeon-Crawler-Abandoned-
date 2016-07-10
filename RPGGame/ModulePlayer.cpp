@@ -9,21 +9,20 @@
 
 ModulePlayer::ModulePlayer()
 {
-	pasillo = { 0, 0, 384, 256 };
-	pasillov1 = { 0, 0, 384, 256 };
-	direciones = { 0, 0, 384, 256 };
-	direcionesv1 = { 0, 0, 384, 256 };
-	fondo1 = { 0, 0, 384, 256 };
+	corridor = { 0, 0, 384, 256 };
+	corridorv1 = { 0, 0, 384, 256 };
+	directions = { 0, 0, 384, 256 };
+	directionsv1 = { 0, 0, 384, 256 };
+	background1 = { 0, 0, 384, 256 };
 	position.x = 1;
 	position.y = 1;
 	test = { 100, 200, 1, 1 };
-	brujula = { 3, 0, 30, 25 };
+	compass = { 3, 0, 30, 25 };
 	exit = { 0, 0, 384, 256 };
 }
 
 ModulePlayer::~ModulePlayer()
-{
-}
+{}
 
 // Load assets
 bool ModulePlayer::Start()
@@ -31,26 +30,26 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 	bool ret = true;
 	direct = App->texture->Load("Direcion.png");
-	g_pasillo = App->texture->Load("Prube_sprite_recto.png");
-	g_pasillov1 = App->texture->Load("Prube_sprite_rectov1.png");
-	g_direciones = App->texture->Load("Prube_sprite_movimiento.png");
-	g_direcionesv1 = App->texture->Load("Prube_sprite_movimientov1.png");
-	g_fondo1 = App->texture->Load("Prube_sprite_fondo.png");
+	g_corridor = App->texture->Load("Prube_sprite_recto.png");
+	g_corridorv1 = App->texture->Load("Prube_sprite_rectov1.png");
+	g_directions = App->texture->Load("Prube_sprite_movimiento.png");
+	g_directionsv1 = App->texture->Load("Prube_sprite_movimientov1.png");
+	g_background1 = App->texture->Load("Prube_sprite_fondo.png");
 	g_exit = App->texture->Load("Prube_sprite_exit.png");
 	direction = 3;
 	return ret;
 }
 bool ModulePlayer::CleanUp()
 {
-	App->texture->Unload(g_pasillo);
-	App->texture->Unload(g_direciones);
-	App->texture->Unload(g_fondo1);
+	App->texture->Unload(g_corridor);
+	App->texture->Unload(g_directions);
+	App->texture->Unload(g_background1);
 	return true;
 }
+
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-
 	if (1)
 	{
 		//KEY W 
@@ -88,6 +87,7 @@ update_status ModulePlayer::Update()
 			}
 			App->commonlvls->click_A = false;
 		}
+
 		//KEY S
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->commonlvls->click_S == true)
 		{
@@ -117,6 +117,7 @@ update_status ModulePlayer::Update()
 			}
 			App->commonlvls->click_S = false;
 		}
+
 		//KEY D
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP || App->commonlvls->click_D == true)
 		{
@@ -135,15 +136,15 @@ update_status ModulePlayer::Update()
 		num = App->level1->map[position.y][position.x];
 		if (num == 1)
 		{
-			App->render->Blit(g_pasillo, 0, 0, &pasillo);
+			App->render->Blit(g_corridor, 0, 0, &corridor);
 		}
 		if (num == 2)
 		{
-			App->render->Blit(g_direciones, 0, 0, &direciones);
+			App->render->Blit(g_directions, 0, 0, &directions);
 		}
 		if (num == 3)
 		{
-			App->render->Blit(g_fondo1, 0, 0, &fondo1);
+			App->render->Blit(g_background1, 0, 0, &background1);
 		}
 		if (num == 4)
 		{
@@ -151,48 +152,44 @@ update_status ModulePlayer::Update()
 		}
 		if (num == 6)
 		{
-			App->render->Blit(g_pasillov1, 0, 0, &pasillov1);
+			App->render->Blit(g_corridorv1, 0, 0, &corridorv1);
 		}
 		if (num == 7)
 		{
-			App->render->Blit(g_direcionesv1, 0, 0, &direcionesv1);
+			App->render->Blit(g_directionsv1, 0, 0, &directionsv1);
 		}
 		
 		//Look in screen the new direction
 		//Look NORTH
 		if (direction == 1)
 		{
-			brujula = { 8, 0, 18, 25 };
-			App->render->Blit(direct, 0, 0, &brujula);
+			compass = { 8, 0, 18, 25 };
+			App->render->Blit(direct, 0, 0, &compass);
 		}
 		//Look WEST
 		if (direction == 2)
 		{
-			brujula = { 28, 0, 30, 25 };
-			App->render->Blit(direct, 0, 0, &brujula);
+			compass = { 28, 0, 30, 25 };
+			App->render->Blit(direct, 0, 0, &compass);
 		}
 		//Look SOUTH
 		if (direction == 3)
 		{
-			brujula = { 60, 0, 16, 25 };
-			App->render->Blit(direct, 10, 10, &brujula);
+			compass = { 60, 0, 16, 25 };
+			App->render->Blit(direct, 10, 10, &compass);
 		}
 		//Look EAST
 		if (direction == 4)
 		{
-			brujula = { 78, 0, 15, 25 };
-			App->render->Blit(direct, 0, 0, &brujula);
+			compass = { 78, 0, 15, 25 };
+			App->render->Blit(direct, 0, 0, &compass);
 		}
 
 		//Look Test Point TILE
-		App->render->Blit(g_pasillo, position.x + 6, position.y + 6, &test);
+		App->render->Blit(g_corridor, position.x + 6, position.y + 6, &test);
 	}
-
-
 	return UPDATE_CONTINUE;
 }
-
-
 
 void ModulePlayer::changetile(int key)
 {
@@ -336,5 +333,4 @@ void ModulePlayer::changetile(int key)
 			}
 		}
 	}
-
 }

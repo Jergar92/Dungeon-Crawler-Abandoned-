@@ -26,7 +26,6 @@ public:
 
 	Mix_Music* const Load(const char* path);
 	Mix_Chunk* const Load_chunk(const char* path);
-
 };
 
 #endif // __ModuleAudio_H__

@@ -18,11 +18,8 @@ ModuleStartScreen::~ModuleStartScreen()
 
 bool ModuleStartScreen::Start()
 {
-
 	graphics = App->texture->Load("NicoProJPG.png");
-
 	return true;
-
 }
 
 update_status ModuleStartScreen::Update()
@@ -33,15 +30,11 @@ update_status ModuleStartScreen::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->level1, 2.0f);
 	}
-	
-
-
 	return UPDATE_CONTINUE;
 }
 
 bool ModuleStartScreen::CleanUp()
 {
 	App->texture->Unload(graphics);
-
 	return true;
 }

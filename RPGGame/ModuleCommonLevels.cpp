@@ -18,17 +18,12 @@ ModuleCommonLevels::~ModuleCommonLevels()
 
 bool ModuleCommonLevels::Start()
 {	
-	Coll_W = { 35, 200, 25, 26 };
-	Coll_A = { 10, 225, 26, 25 };
-	Coll_S = { 35, 225, 25, 25 };
-	Coll_D = { 60, 225, 26, 25 };
-
-	App->collider->AddCollider(Coll_W, COLLIDER_WALL);
-	App->collider->AddCollider(Coll_A, COLLIDER_WALL);
-	App->collider->AddCollider(Coll_S, COLLIDER_WALL);
-	App->collider->AddCollider(Coll_D, COLLIDER_WALL);
-
 	Keys_wasd = App->texture->Load("WASD.png");
+
+	Rect_W = { 35, 200, 25, 26 };
+	Rect_A = { 10, 225, 26, 25 };
+	Rect_S = { 35, 225, 25, 25 };
+	Rect_D = { 60, 225, 26, 25 };
 
 	bool ret = true;	
 	LOG("Loading frontground assets");
@@ -48,6 +43,7 @@ update_status ModuleCommonLevels::Update()
 	App->render->Blit(Keys_wasd, 10 * SCREEN_SIZE, 225 * SCREEN_SIZE, &Key_a);
 	App->render->Blit(Keys_wasd, 35 * SCREEN_SIZE, 225 * SCREEN_SIZE, &Key_s);
 	App->render->Blit(Keys_wasd, 60 * SCREEN_SIZE, 225 * SCREEN_SIZE, &Key_d);
+	
 	SDL_Event Event;
 	bool running = true;
 	while (SDL_PollEvent(&Event))
@@ -61,23 +57,28 @@ update_status ModuleCommonLevels::Update()
 	}
 	if (Event.type == SDL_MOUSEBUTTONDOWN) // if the user clicked a mousebutton
 	{
-		if (App->collider->CheckButton(&App->commonlvls->Coll_W, Event.button.x, Event.button.y))
+		if (App->commonlvls->CheckButton(&App->commonlvls->Rect_W, Event.button.x, Event.button.y))
 		{
 			App->commonlvls->click_W = true;
 		}
-		else if (App->collider->CheckButton(&App->commonlvls->Coll_A, Event.button.x, Event.button.y))
+		else if (App->commonlvls->CheckButton(&App->commonlvls->Rect_A, Event.button.x, Event.button.y))
 		{
 			App->commonlvls->click_A = true;
 		}
-		else if (App->collider->CheckButton(&App->commonlvls->Coll_S, Event.button.x, Event.button.y))
+		else if (App->commonlvls->CheckButton(&App->commonlvls->Rect_S, Event.button.x, Event.button.y))
 		{
 			App->commonlvls->click_S = true;
 		}
-		else if (App->collider->CheckButton(&App->commonlvls->Coll_D, Event.button.x, Event.button.y))
+		else if (App->commonlvls->CheckButton(&App->commonlvls->Rect_D, Event.button.x, Event.button.y))
 		{
 			App->commonlvls->click_D = true;
 		}
 	}
-
 	return UPDATE_CONTINUE;
+}
+
+bool ModuleCommonLevels::CheckButton(const SDL_Rect* button, int x, int y) const
+{
+	return (x< button->x*SCREEN_SIZE + button->w*SCREEN_SIZE  && x >= button->x*SCREEN_SIZE &&
+		y < button->y*SCREEN_SIZE + button->h*SCREEN_SIZE  && y >= button->y*SCREEN_SIZE);
 }

@@ -9,7 +9,6 @@
 
 ModuleTextures::ModuleTextures() : Module()
 {
-
 	for (int i = 0; i < MAX_TEXTURES; i++)
 	{
 		textures[i] = nullptr;
@@ -35,7 +34,6 @@ bool ModuleTextures::Init()
 		LOG("Could not initialize Image lib. IMG_Init: %s", IMG_GetError());
 		ret = false;
 	}
-
 	return ret;
 }
 
@@ -43,8 +41,6 @@ bool ModuleTextures::Init()
 bool ModuleTextures::CleanUp()
 {
 	LOG("Freeing textures and Image library");
-
-
 	for (int i = 0; i < MAX_TEXTURES; i++)
 	{
 		if (textures[i] != nullptr)
@@ -65,7 +61,6 @@ SDL_Texture* const ModuleTextures::Load(const char* path)
 	{
 		LOG("IMG_Load: %s\n", IMG_GetError());
 	}
-
 	else
 	{
 		texture = SDL_CreateTextureFromSurface(App->render->renderer, surface);
@@ -80,13 +75,11 @@ SDL_Texture* const ModuleTextures::Load(const char* path)
 		}
 		SDL_FreeSurface(surface);
 	}
-
 	return texture;
 }
 bool ModuleTextures::Unload(SDL_Texture* texture)
 {
 	bool ret = false;
-
 	for (uint i = 0; i < MAX_TEXTURES; ++i)
 	{
 		if (texture == textures[i])
