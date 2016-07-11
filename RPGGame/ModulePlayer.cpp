@@ -54,95 +54,193 @@ update_status ModulePlayer::Update()
 {
 	if (1)
 	{
-		//NORTH
-		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP || App->commonlvls->click_W == true)
-		{
-			if (App->level1->map[position.y - 1][position.x] != 0)
-			{
-				dir = NORTH;
-				ChangeTile(dir);
-			}
-			else
-			{
-				//TODO Message "you can't go that way"
-			}
-			App->commonlvls->click_W = false;
-		}
-
-		//SOUTH
-		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->commonlvls->click_S == true)
-		{
-			if (App->level1->map[position.y + 1][position.x] != 0)
-			{
-				dir = SOUTH;
-				ChangeTile(dir);
-			}
-			else
-			{
-				//TODO Message "you can't go that way"
-			}
-			App->commonlvls->click_S = false;
-		}
-
-		//EAST
-		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP || App->commonlvls->click_D == true)
-		{
-			if (App->level1->map[position.y][position.x + 1] != 0)
-			{
-				dir = EAST;
-				ChangeTile(dir);
-			}
-			else
-			{
-				//TODO Message "you can't go that way"
-			}
-			App->commonlvls->click_D = false;
-		}
-
-		//WEST
-		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->commonlvls->click_A == true)
-		{
-			if (App->level1->map[position.y][position.x - 1] != 0)
-			{
-				dir = WEST;
-				ChangeTile(dir);
-			}
-			else
-			{
-				//TODO Message "you can't go that way"
-			}
-			App->commonlvls->click_A = false;
-		}
+		PlayerInput();
 
 		room_tile = App->level1->map[position.y][position.x];
-		switch (room_tile)
-		{
-		case 1:			
-			App->render->Blit(g_corridor, 0, 0, &corridor);
-			break;
-		case 2:			
-			App->render->Blit(g_directions, 0, 0, &directions);
-			break;
-		case 3:			
-			App->render->Blit(g_background1, 0, 0, &background1);
-			break;
-		case 4:
-			App->render->Blit(g_exit, 0, 0, &exit);
-			break;
-		case 6:	
-			App->render->Blit(g_corridorv1, 0, 0, &corridorv1);
-			break;
-		case 7:
-			App->render->Blit(g_directionsv1, 0, 0, &directionsv1);
-			break;
-		default: 
-			LOG("ERROR printing image tile");
-			break;
-		}
+		PlayerMovement(room_tile);
 
 		CompassPrint(dir);
 	}
 	return UPDATE_CONTINUE;
+}
+
+void ModulePlayer::PlayerInput()
+{
+	//FRONT
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP || App->commonlvls->click_W == true)
+	{
+		if (dir == NORTH)
+		{
+			if (App->level1->map[position.y - 1][position.x] != 0)
+			{
+				position.y -= 1;
+			}
+			else{ cant_cross = true; }
+		}
+		else if (dir == SOUTH)
+		{
+			if (App->level1->map[position.y + 1][position.x] != 0)
+			{
+				position.y += 1;
+			}
+			else{ cant_cross = true; }
+		}
+		else if (dir == EAST)
+		{
+			if (App->level1->map[position.y][position.x + 1] != 0)
+			{
+				position.x += 1;
+			}
+			else{ cant_cross = true; }
+		}
+		else if (dir == WEST)
+		{
+			if (App->level1->map[position.y][position.x - 1] != 0)
+			{
+				position.x -= 1;
+			}
+			else{ cant_cross = true; }
+		}
+		App->commonlvls->click_W = false;
+	}
+
+	//BACK
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->commonlvls->click_S == true)
+	{
+		if (dir == NORTH)
+		{
+			if (App->level1->map[position.y + 1][position.x] != 0)
+			{
+				position.y += 1;
+				dir = SOUTH; 
+			}
+			else{ cant_cross = true; }
+		}
+		else if (dir == SOUTH)
+		{
+			if (App->level1->map[position.y - 1][position.x] != 0)
+			{
+				position.y -= 1;
+				dir = NORTH;
+			}
+			else{ cant_cross = true; }
+		}
+		else if (dir == EAST)
+		{
+			if (App->level1->map[position.y][position.x - 1] != 0)
+			{
+				position.x -= 1;
+				dir = WEST;
+			}
+			else{ cant_cross = true; }
+		}
+		else if (dir == WEST)
+		{
+			if (App->level1->map[position.y][position.x + 1] != 0)
+			{
+				position.x += 1;
+				dir = EAST;
+			}
+			else{ cant_cross = true; }
+		}		
+		App->commonlvls->click_S = false;
+	}
+
+	//RIGHT
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP || App->commonlvls->click_D == true)
+	{
+		if (dir == NORTH)
+		{
+			if (App->level1->map[position.y][position.x + 1] != 0)
+			{
+				position.x += 1;
+				dir = EAST; 
+			}
+			else{ cant_cross = true; }
+		}
+		else if (dir == SOUTH)
+		{
+			if (App->level1->map[position.y][position.x - 1] != 0)
+			{
+				position.x -= 1;
+				dir = WEST;
+			}
+			else{ cant_cross = true; }
+		}
+		else if (dir == EAST)
+		{
+			if (App->level1->map[position.y + 1][position.x] != 0)
+			{
+				position.y += 1;
+				dir = SOUTH;
+			}
+			else{ cant_cross = true; }
+		}
+		else if (dir == WEST)
+		{
+			if (App->level1->map[position.y - 1][position.x] != 0)
+			{
+				position.y -= 1;
+				dir = NORTH;
+			}
+			else{ cant_cross = true; }
+		}
+		App->commonlvls->click_D = false;
+	}
+
+	//LEFT
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->commonlvls->click_A == true)
+	{
+		if (dir == NORTH)
+		{
+			if (App->level1->map[position.y][position.x - 1] != 0)
+			{
+				position.x -= 1;
+				dir = WEST; 
+			}
+			else{ cant_cross = true; }
+		}
+		else if (dir == SOUTH)
+		{
+			if (App->level1->map[position.y][position.x + 1] != 0)
+			{
+				position.x += 1;
+				dir = EAST;
+			}
+			else{ cant_cross = true; }
+		}
+		else if (dir == EAST)
+		{
+			if (App->level1->map[position.y - 1][position.x] != 0)
+			{
+				position.y -= 1;
+				dir = NORTH;
+			}
+			else{ cant_cross = true; }
+		}
+		else if (dir == WEST)
+		{
+			if (App->level1->map[position.y + 1][position.x] != 0)
+			{
+				position.y += 1;
+				dir = SOUTH;
+			}
+			else{ cant_cross = true; }
+		}
+		App->commonlvls->click_A = false;
+	}
+
+	if (cant_cross == true)
+	{
+		//TODO Message "you can't go that way"
+		cant_cross = false;
+	}
+
+	//ROTATION
+	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_UP) //TODO: MOUSE CLICK
+	{
+		
+	}
 }
 
 void ModulePlayer::ChangeTile(int direction)
@@ -165,6 +263,35 @@ void ModulePlayer::ChangeTile(int direction)
 		break;
 	}
 }
+
+void ModulePlayer::PlayerMovement(int room_tile)
+{
+	switch (room_tile)
+	{
+	case 1:
+		App->render->Blit(g_corridor, 0, 0, &corridor);
+		break;
+	case 2:
+		App->render->Blit(g_directions, 0, 0, &directions);
+		break;
+	case 3:
+		App->render->Blit(g_background1, 0, 0, &background1);
+		break;
+	case 4:
+		App->render->Blit(g_exit, 0, 0, &exit);
+		break;
+	case 6:
+		App->render->Blit(g_corridorv1, 0, 0, &corridorv1);
+		break;
+	case 7:
+		App->render->Blit(g_directionsv1, 0, 0, &directionsv1);
+		break;
+	default:
+		LOG("ERROR printing image tile");
+		break;
+	}
+}
+
 
 void ModulePlayer::CompassPrint(int direction)
 {

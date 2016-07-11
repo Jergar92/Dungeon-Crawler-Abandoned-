@@ -45,7 +45,10 @@ public:
 
 	direction dir;
 	int room_tile;
+	bool cant_cross = false;
 
+	void PlayerInput();
+	void PlayerMovement(int);
 	void ChangeTile(int);
 	void CompassPrint(int);
 };
