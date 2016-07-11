@@ -7,6 +7,13 @@
 
 struct SDL_Texture;
 
+enum direction{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+};
+
 class ModulePlayer : public Module
 {
 public:
@@ -35,11 +42,13 @@ public:
 	SDL_Rect test;
 	SDL_Rect exit;
 	SDL_Rect compass;
-	int direction;//1 North, 2 West, 3 South, 4 East
-	int map_player[10][10];
-	int num;
 
-	void changetile(int );
+//	int direction;//1 North, 2 West, 3 South, 4 East
+	direction dir;
+//?	int map_player[10][10];
+	int room_tile;
+
+	void ChangeTile(int);
 };
 
 #endif

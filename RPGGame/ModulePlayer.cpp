@@ -14,11 +14,13 @@ ModulePlayer::ModulePlayer()
 	directions = { 0, 0, 384, 256 };
 	directionsv1 = { 0, 0, 384, 256 };
 	background1 = { 0, 0, 384, 256 };
-	position.x = 1;
-	position.y = 1;
 	test = { 100, 200, 1, 1 };
 	compass = { 3, 0, 30, 25 };
 	exit = { 0, 0, 384, 256 };
+
+	//Player position
+	position.x = 1;
+	position.y = 1;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -36,7 +38,7 @@ bool ModulePlayer::Start()
 	g_directionsv1 = App->texture->Load("Prube_sprite_movimientov1.png");
 	g_background1 = App->texture->Load("Prube_sprite_fondo.png");
 	g_exit = App->texture->Load("Prube_sprite_exit.png");
-	direction = 3;
+	dir = EAST;
 	return ret;
 }
 bool ModulePlayer::CleanUp()
@@ -52,113 +54,92 @@ update_status ModulePlayer::Update()
 {
 	if (1)
 	{
-		//KEY W 
+		//NORTH
 		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP || App->commonlvls->click_W == true)
 		{
-			if (App->level1->map[position.y][position.x] == 1)
+			if (App->level1->map[position.y - 1][position.x] != 0)
 			{
-				changetile(1);
+				dir = NORTH;
+				ChangeTile(dir);
 			}
-			else if (App->level1->map[position.y][position.x] == 6)
+			else
 			{
-				changetile(1);
-			}
-			else if (App->level1->map[position.y][position.x] == 2)
-			{
-				changetile(1);
-			}
-			else if (App->level1->map[position.y][position.x] == 7)
-			{
-				changetile(1);
+				//TODO Message "you can't go that way"
 			}
 			App->commonlvls->click_W = false;
 		}
 
-		//KEY A
-		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->commonlvls->click_A == true)
-		{
-			if (App->level1->map[position.y][position.x] == 2)
-			{
-				changetile(2);
-			}
-			else if (App->level1->map[position.y][position.x] == 7)
-			{
-				changetile(2);
-			}
-			App->commonlvls->click_A = false;
-		}
-
-		//KEY S
+		//SOUTH
 		if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->commonlvls->click_S == true)
 		{
-			if (App->level1->map[position.y][position.x] == 1)
+			if (App->level1->map[position.y + 1][position.x] != 0)
 			{
-				changetile(3);
+				dir = SOUTH;
+				ChangeTile(dir);
 			}
-			else if (App->level1->map[position.y][position.x] == 2)
+			else
 			{
-				changetile(3);
-			}
-			else if (App->level1->map[position.y][position.x] == 3)
-			{
-				changetile(3);
-			}
-			else if (App->level1->map[position.y][position.x] == 4)
-			{
-				changetile(3);
-			}
-			else if (App->level1->map[position.y][position.x] == 6)
-			{
-				changetile(3);
-			}
-			else if (App->level1->map[position.y][position.x] == 7)
-			{
-				changetile(3);
+				//TODO Message "you can't go that way"
 			}
 			App->commonlvls->click_S = false;
 		}
 
-		//KEY D
+		//EAST
 		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP || App->commonlvls->click_D == true)
 		{
-			if (App->level1->map[position.y][position.x] == 2)
+			if (App->level1->map[position.y][position.x + 1] != 0)
 			{
-				changetile(4);
+				dir = EAST;
+				ChangeTile(dir);
 			}
-			else if (App->level1->map[position.y][position.x] == 7)
+			else
 			{
-				changetile(4);
+				//TODO Message "you can't go that way"
 			}
 			App->commonlvls->click_D = false;
 		}
 
-		//Look new room
-		num = App->level1->map[position.y][position.x];
-		if (num == 1)
+		//WEST
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->commonlvls->click_A == true)
 		{
+			if (App->level1->map[position.y][position.x - 1] != 0)
+			{
+				dir = WEST;
+				ChangeTile(dir);
+			}
+			else
+			{
+				//TODO Message "you can't go that way"
+			}
+			App->commonlvls->click_A = false;
+		}
+
+		room_tile = App->level1->map[position.y][position.x];
+		switch (room_tile)
+		{
+		case 1:			
 			App->render->Blit(g_corridor, 0, 0, &corridor);
-		}
-		if (num == 2)
-		{
+			break;
+		case 2:			
 			App->render->Blit(g_directions, 0, 0, &directions);
-		}
-		if (num == 3)
-		{
+			break;
+		case 3:			
 			App->render->Blit(g_background1, 0, 0, &background1);
-		}
-		if (num == 4)
-		{
+			break;
+		case 4:
 			App->render->Blit(g_exit, 0, 0, &exit);
-		}
-		if (num == 6)
-		{
+			break;
+		case 6:	
 			App->render->Blit(g_corridorv1, 0, 0, &corridorv1);
-		}
-		if (num == 7)
-		{
+			break;
+		case 7:
 			App->render->Blit(g_directionsv1, 0, 0, &directionsv1);
+			break;
+		default: 
+			LOG("ERROR printing image tile");
+			break;
 		}
-		
+		/*		
 		//Look in screen the new direction
 		//Look NORTH
 		if (direction == 1)
@@ -186,151 +167,29 @@ update_status ModulePlayer::Update()
 		}
 
 		//Look Test Point TILE
-		App->render->Blit(g_corridor, position.x + 6, position.y + 6, &test);
+//?		App->render->Blit(g_corridor, position.x + 6, position.y + 6, &test);
+		*/
 	}
 	return UPDATE_CONTINUE;
 }
 
-void ModulePlayer::changetile(int key)
+void ModulePlayer::ChangeTile(int direction)
 {
-	if (key == 1)
+	switch (direction)
 	{
-		if (direction == 1)
-		{
-			if (App->level1->map[position.y - 1][position.x] != 0)
-			{
-				position.y -= 1;
-			}
-		}
-		if (direction == 2)
-		{
-			if (App->level1->map[position.y][position.x - 1] != 0)
-			{
-				position.x -= 1;
-			}
-		}
-		if (direction == 3)
-		{
-			if (App->level1->map[position.y + 1][position.x] != 0)
-			{
-				position.y += 1;
-			}
-		}
-		if (direction == 4)
-		{
-			if (App->level1->map[position.y][position.x + 1] != 0)
-			{
-				position.x += 1;
-			}
-		}
-	}
-
-	if (key == 2)
-	{
-		if (direction == 1)
-		{
-			if (App->level1->map[position.y][position.x - 1] != 0)
-			{
-				direction = 2;
-				position.x -= 1;
-			}
-		}
-		if (direction == 2)
-		{
-			if (App->level1->map[position.y + 1][position.x] != 0)
-			{
-				direction = 3;
-				position.y += 1;
-			}
-		}
-		if (direction == 3)
-		{
-			if (App->level1->map[position.y][position.x + 1] != 0)
-			{
-				direction = 4;
-				position.x += 1;
-			}
-		}
-		if (direction == 4)
-		{
-			if (App->level1->map[position.y - 1][position.x] != 0)
-			{
-				direction = 1;
-				position.y -= 1;
-			}
-		}
-	}
-
-	if (key == 3)
-	{
-		if (direction == 1)
-		{
-			if (App->level1->map[position.y + 1][position.x] != 0)
-			{
-				direction = 3;
-				position.y += 1;
-			}
-		}
-		else if (direction == 2)
-		{
-			if (App->level1->map[position.y][position.x + 1] != 0)
-			{
-				direction = 4;
-				position.x += 1;
-			}
-		}
-		else if (direction == 3)
-		{
-			if (App->level1->map[position.y - 1][position.x] != 0)
-			{
-				direction = 1;
-				position.y -= 1;
-			}
-		}
-		else if (direction == 4)
-		{
-			if (App->level1->map[position.y][position.x - 1] != 0)
-			{
-				direction = 2;
-				position.x -= 1;
-			}
-		}
-	}
-
-	if (key == 4)
-	{
-
-		if (direction == 1)
-		{
-			if (App->level1->map[position.y][position.x + 1] != 0)
-			{
-				direction = 4;
-				position.x += 1;
-			}
-		}
-		if (direction == 2)
-		{
-			if (App->level1->map[position.y - 1][position.x] != 0)
-			{
-				direction = 1;
-				position.y -= 1;
-			}
-		}
-		if (direction == 3)
-		{
-			if (App->level1->map[position.y][position.x - 1] != 0)
-			{
-				direction = 2;
-				position.x -= 1;
-			}
-		}
-		if (direction == 4)
-		{
-			if (App->level1->map[position.y + 1][position.x] != 0)
-			{
-				direction = 3;
-				position.y += 1;
-			}
-		}
+	case NORTH:
+		position.y -= 1;
+		break;
+	case SOUTH:
+		position.y += 1;
+		break;
+	case WEST:
+		position.x -= 1;
+		break;
+	case EAST:
+		position.x += 1;
+		break;
+	default:
+		break;
 	}
 }
