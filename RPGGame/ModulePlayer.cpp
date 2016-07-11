@@ -139,36 +139,8 @@ update_status ModulePlayer::Update()
 			LOG("ERROR printing image tile");
 			break;
 		}
-		/*		
-		//Look in screen the new direction
-		//Look NORTH
-		if (direction == 1)
-		{
-			compass = { 8, 0, 18, 25 };
-			App->render->Blit(direct, 0, 0, &compass);
-		}
-		//Look WEST
-		if (direction == 2)
-		{
-			compass = { 28, 0, 30, 25 };
-			App->render->Blit(direct, 0, 0, &compass);
-		}
-		//Look SOUTH
-		if (direction == 3)
-		{
-			compass = { 60, 0, 16, 25 };
-			App->render->Blit(direct, 10, 10, &compass);
-		}
-		//Look EAST
-		if (direction == 4)
-		{
-			compass = { 78, 0, 15, 25 };
-			App->render->Blit(direct, 0, 0, &compass);
-		}
 
-		//Look Test Point TILE
-//?		App->render->Blit(g_corridor, position.x + 6, position.y + 6, &test);
-		*/
+		CompassPrint(dir);
 	}
 	return UPDATE_CONTINUE;
 }
@@ -190,6 +162,35 @@ void ModulePlayer::ChangeTile(int direction)
 		position.x += 1;
 		break;
 	default:
+		break;
+	}
+}
+
+void ModulePlayer::CompassPrint(int direction)
+{
+	switch (direction)
+	{
+	case NORTH:
+		compass = { 8, 0, 18, 25 };
+		App->render->Blit(direct, 0, 0, &compass);
+		break;
+
+	case SOUTH:
+		compass = { 60, 0, 16, 25 };
+		App->render->Blit(direct, 10, 10, &compass);
+		break;
+
+	case EAST:
+		compass = { 78, 0, 15, 25 };
+		App->render->Blit(direct, 0, 0, &compass);
+		break;
+
+	case WEST:
+		compass = { 28, 0, 30, 25 };
+		App->render->Blit(direct, 0, 0, &compass);
+		break;
+
+	default: LOG("ERROR printing compass");
 		break;
 	}
 }

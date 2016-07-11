@@ -43,12 +43,11 @@ public:
 	SDL_Rect exit;
 	SDL_Rect compass;
 
-//	int direction;//1 North, 2 West, 3 South, 4 East
 	direction dir;
-//?	int map_player[10][10];
 	int room_tile;
 
 	void ChangeTile(int);
+	void CompassPrint(int);
 };
 
 #endif

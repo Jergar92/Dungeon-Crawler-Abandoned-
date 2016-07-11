@@ -18,8 +18,10 @@ bool ModuleLevel1::Start()
 	App->player->Enable();
 
 	int tile[10][10] = {
+
+		//NOTICE: NEEDED THE FIRST && LAST LINE AND COLUMN TO BE 0 OR YOU CAN EXIT THE MAP
 		/*      0  1  2  3  4  5  6  7  8  9
-		/*0 */{ 0, 0, 0, 0, 4, 0, 0, 0, 0, 0 },
+		/*0 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		/*1 */{ 0, 1, 6, 1, 7, 4, 0, 0, 0, 0 },
 		/*2 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
 		/*3 */{ 0, 0, 0, 4, 7, 4, 0, 0, 0, 0 },
