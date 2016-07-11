@@ -57,7 +57,7 @@ update_status ModulePlayer::Update()
 		PlayerInput();
 
 		room_tile = App->level1->map[position.y][position.x];
-		PlayerMovement(room_tile);
+		PlayerMovementImage(room_tile);
 
 		CompassPrint(dir);
 	}
@@ -73,7 +73,7 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y - 1][position.x] != 0)
 			{
-				position.y -= 1;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -81,7 +81,7 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y + 1][position.x] != 0)
 			{
-				position.y += 1;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -89,7 +89,7 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y][position.x + 1] != 0)
 			{
-				position.x += 1;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -97,7 +97,7 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y][position.x - 1] != 0)
 			{
-				position.x -= 1;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -111,8 +111,8 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y + 1][position.x] != 0)
 			{
-				position.y += 1;
 				dir = SOUTH; 
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -120,8 +120,8 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y - 1][position.x] != 0)
 			{
-				position.y -= 1;
 				dir = NORTH;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -129,8 +129,8 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y][position.x - 1] != 0)
 			{
-				position.x -= 1;
 				dir = WEST;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -138,8 +138,8 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y][position.x + 1] != 0)
 			{
-				position.x += 1;
 				dir = EAST;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}		
@@ -153,8 +153,8 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y][position.x + 1] != 0)
 			{
-				position.x += 1;
 				dir = EAST; 
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -162,8 +162,8 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y][position.x - 1] != 0)
 			{
-				position.x -= 1;
 				dir = WEST;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -171,8 +171,8 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y + 1][position.x] != 0)
 			{
-				position.y += 1;
 				dir = SOUTH;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -180,8 +180,8 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y - 1][position.x] != 0)
 			{
-				position.y -= 1;
 				dir = NORTH;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -195,8 +195,8 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y][position.x - 1] != 0)
 			{
-				position.x -= 1;
 				dir = WEST; 
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -204,8 +204,8 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y][position.x + 1] != 0)
 			{
-				position.x += 1;
 				dir = EAST;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -213,8 +213,8 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y - 1][position.x] != 0)
 			{
-				position.y -= 1;
 				dir = NORTH;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -222,8 +222,8 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y + 1][position.x] != 0)
 			{
-				position.y += 1;
 				dir = SOUTH;
+				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
 		}
@@ -237,9 +237,16 @@ void ModulePlayer::PlayerInput()
 	}
 
 	//ROTATION
+		//RIGHT
 	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_UP) //TODO: MOUSE CLICK
 	{
-		
+		PlayerRotation(dir, RIGHT);
+	}
+
+		//LEFT
+	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_UP) //TODO: MOUSE CLICK
+	{
+		PlayerRotation(dir, LEFT);
 	}
 }
 
@@ -260,11 +267,58 @@ void ModulePlayer::ChangeTile(int direction)
 		position.x += 1;
 		break;
 	default:
+		LOG("ERROR moving player");
 		break;
 	}
 }
 
-void ModulePlayer::PlayerMovement(int room_tile)
+void ModulePlayer::PlayerRotation(int direction, rotation rot)
+{
+	if (rot == RIGHT)
+	{
+		switch (direction)
+		{
+		case NORTH:
+			dir = EAST;
+			break;
+		case SOUTH:
+			dir = WEST;
+			break;
+		case EAST:
+			dir = SOUTH;
+			break;
+		case WEST:
+			dir = NORTH;
+			break;
+		default:
+			LOG("ERROR rotating player");
+			break;
+		}
+	}
+	else if (rot == LEFT)
+	{
+		switch (direction)
+		{
+		case NORTH:
+			dir = WEST;
+			break;
+		case SOUTH:
+			dir = EAST;
+			break;
+		case EAST:
+			dir = NORTH;
+			break;
+		case WEST:
+			dir = SOUTH;
+			break;
+		default:
+			LOG("ERROR rotating player");
+			break;
+		}
+	}
+}
+
+void ModulePlayer::PlayerMovementImage(int room_tile)
 {
 	switch (room_tile)
 	{

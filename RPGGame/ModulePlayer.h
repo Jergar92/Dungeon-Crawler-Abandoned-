@@ -14,6 +14,11 @@ enum direction{
 	WEST
 };
 
+enum rotation{
+	RIGHT,
+	LEFT
+};
+
 class ModulePlayer : public Module
 {
 public:
@@ -48,7 +53,8 @@ public:
 	bool cant_cross = false;
 
 	void PlayerInput();
-	void PlayerMovement(int);
+	void PlayerRotation(int, rotation);
+	void PlayerMovementImage(int);
 	void ChangeTile(int);
 	void CompassPrint(int);
 };
