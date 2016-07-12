@@ -5,7 +5,7 @@
 #include "ModulePlayer.h"
 #include "ModuleLevel1.h"
 #include "ModuleCommonLevels.h"
-
+#include "ModuleUI.h"
 
 ModulePlayer::ModulePlayer()
 {
@@ -67,7 +67,7 @@ update_status ModulePlayer::Update()
 void ModulePlayer::PlayerInput()
 {
 	//FRONT
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP || App->commonlvls->click_W == true)
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP || App->ui->click_W == true)
 	{
 		if (dir == NORTH)
 		{
@@ -101,11 +101,11 @@ void ModulePlayer::PlayerInput()
 			}
 			else{ cant_cross = true; }
 		}
-		App->commonlvls->click_W = false;
+		App->ui->click_W = false;
 	}
 
 	//BACK
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->commonlvls->click_S == true)
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->ui->click_S == true)
 	{
 		if (dir == NORTH)
 		{
@@ -143,11 +143,11 @@ void ModulePlayer::PlayerInput()
 			}
 			else{ cant_cross = true; }
 		}		
-		App->commonlvls->click_S = false;
+		App->ui->click_S = false;
 	}
 
 	//RIGHT
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP || App->commonlvls->click_D == true)
+	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_UP || App->ui->click_D == true)
 	{
 		if (dir == NORTH)
 		{
@@ -185,11 +185,11 @@ void ModulePlayer::PlayerInput()
 			}
 			else{ cant_cross = true; }
 		}
-		App->commonlvls->click_D = false;
+		App->ui->click_D = false;
 	}
 
 	//LEFT
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->commonlvls->click_A == true)
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_UP || App->ui->click_A == true)
 	{
 		if (dir == NORTH)
 		{
@@ -227,7 +227,7 @@ void ModulePlayer::PlayerInput()
 			}
 			else{ cant_cross = true; }
 		}
-		App->commonlvls->click_A = false;
+		App->ui->click_A = false;
 	}
 
 	if (cant_cross == true)
@@ -238,15 +238,19 @@ void ModulePlayer::PlayerInput()
 
 	//ROTATION
 		//RIGHT
-	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_UP) //TODO: MOUSE CLICK
+	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_UP || App->ui->click_E == true) //TODO: MOUSE CLICK
 	{
 		PlayerRotation(dir, RIGHT);
+		App->ui->click_E = false;
+
 	}
 
 		//LEFT
-	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_UP) //TODO: MOUSE CLICK
+	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_UP || App->ui->click_Q == true) //TODO: MOUSE CLICK
 	{
 		PlayerRotation(dir, LEFT);
+		App->ui->click_Q= false;
+
 	}
 }
 

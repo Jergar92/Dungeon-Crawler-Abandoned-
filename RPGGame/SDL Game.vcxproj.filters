@@ -15,6 +15,9 @@
     <Filter Include="Player &amp; IA">
       <UniqueIdentifier>{7f6a9ca7-2534-48d6-beb7-e043780e1494}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{1c411a8a-bbc6-442c-83d5-5745624f852b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -56,8 +59,8 @@
     <ClCompile Include="ModuleCollider.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleCommonLevels.cpp">
-      <Filter>Modules</Filter>
+    <ClCompile Include="ModuleUI.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,8 +109,8 @@
     <ClInclude Include="ModuleCollider.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleCommonLevels.h">
-      <Filter>Modules</Filter>
+    <ClInclude Include="ModuleUI.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

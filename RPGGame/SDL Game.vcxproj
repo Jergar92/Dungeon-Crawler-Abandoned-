@@ -16,7 +16,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollider.cpp" />
-    <ClCompile Include="ModuleCommonLevels.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleLevel1.cpp" />
@@ -24,6 +23,7 @@
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleStartScreen.cpp" />
     <ClCompile Include="ModuleTexture.cpp" />
+    <ClCompile Include="ModuleUI.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -33,7 +33,6 @@
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollider.h" />
-    <ClInclude Include="ModuleCommonLevels.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleLevel1.h" />
@@ -41,6 +40,7 @@
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleStartScreen.h" />
     <ClInclude Include="ModuleTexture.h" />
+    <ClInclude Include="ModuleUI.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="p2Point.h" />
   </ItemGroup>

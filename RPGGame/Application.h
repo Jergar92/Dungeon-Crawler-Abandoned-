@@ -16,8 +16,7 @@ class ModuleLevel1;
 class ModulePlayer;
 class ModuleFadeToBlack;
 class ModuleCollider;
-class ModuleCommonLevels;
-
+class ModuleUI;
 class Application
 {
 public:
@@ -33,7 +32,7 @@ public:
 	ModuleLevel1* level1;
 	ModuleFadeToBlack* fade;
 	ModuleCollider* collider;
-	ModuleCommonLevels* commonlvls;
+	ModuleUI* ui;
 
 public:
 
