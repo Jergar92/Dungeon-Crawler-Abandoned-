@@ -4,8 +4,11 @@
 #include "Module.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "Vector.h"
+#include "String.h"
 
 struct SDL_Texture;
+#define NUM_PLAYERS 4
 
 enum direction{
 	NORTH,
@@ -19,6 +22,14 @@ enum rotation{
 	LEFT
 };
 
+class Player{
+public:
+	Player(String name, int hp, int mp, int attack, int defense) :name(name), hp(hp), mp(mp), attack(attack), defense(defense) {}
+	~Player(){}
+	String name;
+	int hp, mp, attack, defense;
+};
+
 class ModulePlayer : public Module
 {
 public:
@@ -30,6 +41,10 @@ public:
 	bool CleanUp();
 
 public:
+	void CreatePlayers();
+	void DeletePlayers();
+	Vector<Player*> vector;
+
 	SDL_Texture* g_corridor = nullptr;
 	SDL_Texture* g_corridorv1 = nullptr;
 	SDL_Texture* g_directions = nullptr;

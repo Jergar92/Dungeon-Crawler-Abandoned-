@@ -38,8 +38,11 @@ bool ModulePlayer::Start()
 	g_background1 = App->texture->Load("Prube_sprite_fondo.png");
 	g_exit = App->texture->Load("Prube_sprite_exit.png");
 	dir = EAST;
+
+	CreatePlayers();
 	return ret;
 }
+
 bool ModulePlayer::CleanUp()
 {
 	App->texture->Unload(g_corridor);
@@ -60,6 +63,26 @@ update_status ModulePlayer::Update()
 		CompassPrint(dir);
 	}
 	return UPDATE_CONTINUE;
+}
+
+void ModulePlayer::CreatePlayers()
+{
+	Player* Warrior;
+	Player* Rogue;
+	Player* Archer;
+	Player* Mage;
+	vector.PushBack(Warrior = new Player("Warrior", 2000, 250, 150, 200));
+	vector.PushBack(Rogue = new Player("Rogue", 1250, 500, 200, 100));
+	vector.PushBack(Archer = new Player("Archer", 1000, 500, 250, 50));
+	vector.PushBack(Mage = new Player("Mage", 750, 1000, 250, 50));
+}
+
+void ModulePlayer::DeletePlayers()
+{
+	for (int i = 0; i < NUM_PLAYERS; i++)
+	{
+		delete vector[i];
+	}
 }
 
 void ModulePlayer::PlayerInput()
@@ -101,7 +124,7 @@ void ModulePlayer::PlayerInput()
 		}
 		App->ui->click_W = false;
 	}
-
+	
 	//BACK
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->ui->click_S == true)
 	{
