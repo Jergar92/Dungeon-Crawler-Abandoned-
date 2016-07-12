@@ -111,6 +111,7 @@ void ModulePlayer::PlayerInput()
 			{
 				dir = SOUTH; 
 				ChangeTile(dir);
+				dir = NORTH;
 			}
 			else{ cant_cross = true; }
 		}
@@ -120,6 +121,7 @@ void ModulePlayer::PlayerInput()
 			{
 				dir = NORTH;
 				ChangeTile(dir);
+				dir = SOUTH;
 			}
 			else{ cant_cross = true; }
 		}
@@ -129,6 +131,7 @@ void ModulePlayer::PlayerInput()
 			{
 				dir = WEST;
 				ChangeTile(dir);
+				dir = EAST;
 			}
 			else{ cant_cross = true; }
 		}
@@ -138,6 +141,7 @@ void ModulePlayer::PlayerInput()
 			{
 				dir = EAST;
 				ChangeTile(dir);
+				dir = WEST;
 			}
 			else{ cant_cross = true; }
 		}		

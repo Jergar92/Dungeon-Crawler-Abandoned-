@@ -97,9 +97,7 @@ update_status ModuleLevel1::Update()
 	{
 		App->player->room_tile[1] = App->level1->map[App->player->position.y][App->player->position.x - 1];
 		App->player->room_tile[2] = App->level1->map[App->player->position.y][App->player->position.x - 2];
-
 	}
-
 
 	if (App->player->room_tile[1] == 0 && App->player->room_tile[0] != 4)
 	{
