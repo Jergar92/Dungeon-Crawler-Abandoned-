@@ -49,12 +49,11 @@ public:
 	SDL_Rect compass;
 
 	direction dir;
-	int room_tile;
+	int room_tile[3];
 	bool cant_cross = false;
 
 	void PlayerInput();
 	void PlayerRotation(int, rotation);
-	void PlayerMovementImage(int);
 	void ChangeTile(int);
 	void CompassPrint(int);
 };

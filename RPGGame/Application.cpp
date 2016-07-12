@@ -18,8 +18,8 @@ Application::Application()
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = texture = new ModuleTextures();
 	modules[i++] = audio = new ModuleAudio();
-	modules[i++] = player = new ModulePlayer();
 	modules[i++] = level1 = new ModuleLevel1();
+	modules[i++] = player = new ModulePlayer();
 	modules[i++] = ui = new ModuleUI();
 	modules[i++] = menu_screen = new ModuleStartScreen();
 	modules[i++] = collider = new ModuleCollider();

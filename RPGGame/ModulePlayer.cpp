@@ -55,8 +55,7 @@ update_status ModulePlayer::Update()
 	{
 		PlayerInput();
 
-		room_tile = App->level1->map[position.y][position.x];
-		PlayerMovementImage(room_tile);
+		room_tile[0] = App->level1->map[position.y][position.x];
 
 		CompassPrint(dir);
 	}
@@ -318,34 +317,6 @@ void ModulePlayer::PlayerRotation(int direction, rotation rot)
 			LOG("ERROR rotating player");
 			break;
 		}
-	}
-}
-
-void ModulePlayer::PlayerMovementImage(int room_tile)
-{
-	switch (room_tile)
-	{
-	case 1:
-		App->render->Blit(g_corridor, 0, 0, &corridor);
-		break;
-	case 2:
-		App->render->Blit(g_directions, 0, 0, &directions);
-		break;
-	case 3:
-		App->render->Blit(g_background1, 0, 0, &background1);
-		break;
-	case 4:
-		App->render->Blit(g_exit, 0, 0, &exit);
-		break;
-	case 6:
-		App->render->Blit(g_corridorv1, 0, 0, &corridorv1);
-		break;
-	case 7:
-		App->render->Blit(g_directionsv1, 0, 0, &directionsv1);
-		break;
-	default:
-		LOG("ERROR printing image tile");
-		break;
 	}
 }
 
