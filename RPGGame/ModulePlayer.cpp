@@ -5,6 +5,8 @@
 #include "ModulePlayer.h"
 #include "ModuleLevel1.h"
 #include "ModuleUI.h"
+#include <stdlib.h>
+#include <time.h>
 
 ModulePlayer::ModulePlayer()
 {
@@ -71,22 +73,190 @@ void ModulePlayer::CreatePlayers()
 	Player* Rogue;
 	Player* Archer;
 	Player* Mage;
-	vector.PushBack(Warrior = new Player("Warrior", 2000, 250, 150, 200));
-	vector.PushBack(Rogue = new Player("Rogue", 1250, 500, 200, 100));
-	vector.PushBack(Archer = new Player("Archer", 1000, 500, 250, 50));
-	vector.PushBack(Mage = new Player("Mage", 750, 1000, 250, 50));
+	formation.PushBack(Warrior = new Player("Warrior", 2000, 250, 150, 200));
+	formation.PushBack(Rogue = new Player("Rogue", 1250, 500, 200, 100));
+	formation.PushBack(Archer = new Player("Archer", 1100, 500, 250, 50));
+	formation.PushBack(Mage = new Player("Mage", 1100, 1000, 250, 50));
 }
 
 void ModulePlayer::DeletePlayers()
 {
 	for (int i = 0; i < NUM_PLAYERS; i++)
 	{
-		delete vector[i];
+		delete formation[i];
 	}
 }
 
 void ModulePlayer::PlayerInput()
 {
+	//ATTACK TEST
+	//F1 - ENEMY NORTH FROM PLAYER
+	//F2 - ENEMY SOUTH FROM PLAYER
+	//F3 - ENEMY EAST FROM PLAYER
+	//F4 - ENEMY WEST FROM PLAYER
+
+	if (App->input->keyboard[SDL_SCANCODE_F1] == KEY_STATE::KEY_UP)
+	{
+		srand(time(NULL));
+		int i = 0;
+		switch (dir)
+		{
+		case NORTH:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			else if (i == 1)	{ formation[1]->hp -= 1000; }
+			break;
+		case SOUTH:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[2]->hp -= 1000; }
+			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			break;
+		case EAST:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			else if (i == 1)	{ formation[2]->hp -= 1000; }
+			break;
+		case WEST:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[1]->hp -= 1000; }
+			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			break;
+		default:
+			LOG("ERROR player direction.");
+			break;
+		}
+		for (int j = 0; j < NUM_PLAYERS; j++)
+		{
+			if (formation[j]->hp <= 0)
+			{
+				formation[j]->PlayerDead = true;
+			}
+		}
+		CheckDeads();
+	}
+
+	else if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_UP)
+	{
+		srand(time(NULL));
+		int i = 0;
+		switch (dir)
+		{
+		case NORTH:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[2]->hp -= 1000; }
+			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			break;
+		case SOUTH:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			else if (i == 1)	{ formation[1]->hp -= 1000; }
+			break;
+		case EAST:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[1]->hp -= 1000; }
+			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			break;
+		case WEST:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			else if (i == 1)	{ formation[2]->hp -= 1000; }
+			break;
+		default:
+			LOG("ERROR player direction.");
+			break;
+		}
+		for (int j = 0; j < NUM_PLAYERS; j++)
+		{
+			if (formation[j]->hp <= 0)
+			{
+				formation[j]->PlayerDead = true;
+			}
+		}
+		CheckDeads();
+	}
+
+	else if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_UP)
+	{
+		srand(time(NULL));
+		int i = 0;
+		switch (dir)
+		{
+		case NORTH:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[1]->hp -= 1000; }
+			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			break;
+		case SOUTH:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			else if (i == 1)	{ formation[2]->hp -= 1000; }
+			break;
+		case EAST:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			else if (i == 0)	{ formation[1]->hp -= 1000; }
+			break;
+		case WEST:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[2]->hp -= 1000; }
+			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			break;
+		default:
+			LOG("ERROR player direction.");
+			break;
+		}
+		for (int j = 0; j < NUM_PLAYERS; j++)
+		{
+			if (formation[j]->hp <= 0)
+			{
+				formation[j]->PlayerDead = true;
+			}
+		}
+		CheckDeads();
+	}
+
+	else if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_UP)
+	{
+		srand(time(NULL));
+		int i = 0;
+		switch (dir)
+		{
+		case NORTH:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			else if (i == 1)	{ formation[2]->hp -= 1000; }
+			break;
+		case SOUTH:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[1]->hp -= 1000; }
+			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			break;
+		case EAST:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[2]->hp -= 1000; }
+			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			break;
+		case WEST:
+			i = rand() % 2;
+			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			else if (i == 1)	{ formation[1]->hp -= 1000; }
+			break;
+		default:
+			LOG("ERROR player direction.");
+			break;
+		}
+		for (int j = 0; j < NUM_PLAYERS; j++)
+		{
+			if (formation[j]->hp <= 0)
+			{
+				formation[j]->PlayerDead = true;
+			}
+		}
+		CheckDeads();
+	}
+	//--
+
+
 	//FRONT
 	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_UP || App->ui->click_W == true)
 	{
@@ -267,7 +437,6 @@ void ModulePlayer::PlayerInput()
 	{
 		PlayerRotation(dir, RIGHT);
 		App->ui->click_E = false;
-
 	}
 
 		//LEFT
@@ -275,7 +444,6 @@ void ModulePlayer::PlayerInput()
 	{
 		PlayerRotation(dir, LEFT);
 		App->ui->click_Q= false;
-
 	}
 }
 
@@ -375,4 +543,12 @@ void ModulePlayer::CompassPrint(int direction)
 	default: LOG("ERROR printing compass");
 		break;
 	}
+}
+
+void ModulePlayer::CheckDeads()
+{
+	if (formation[0]->PlayerDead == true)	{ LOG("WARRIOR DEAD"); }
+	if (formation[1]->PlayerDead == true)	{ LOG("ROGUE DEAD"); }
+	if (formation[2]->PlayerDead == true)	{ LOG("ARCHER DEAD"); }
+	if (formation[3]->PlayerDead == true)	{ LOG("MAGE DEAD"); }
 }

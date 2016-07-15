@@ -28,6 +28,7 @@ public:
 	~Player(){}
 	String name;
 	int hp, mp, attack, defense;
+	bool PlayerDead = false;
 };
 
 class ModulePlayer : public Module
@@ -43,7 +44,7 @@ public:
 public:
 	void CreatePlayers();
 	void DeletePlayers();
-	Vector<Player*> vector;
+	Vector<Player*> formation;
 
 	SDL_Texture* g_corridor = nullptr;
 	SDL_Texture* g_corridorv1 = nullptr;
@@ -71,6 +72,10 @@ public:
 	void PlayerRotation(int, rotation);
 	void ChangeTile(int);
 	void CompassPrint(int);
+
+	//This function won't have any utility, just to test if the player was dead quickly
+	void CheckDeads();
+	//--
 };
 
 #endif
