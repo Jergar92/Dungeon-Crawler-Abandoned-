@@ -4,9 +4,46 @@
 #include "Module.h"
 #include "Globals.h"
 #include "Application.h"
+#define MAX_BUTTON 10
 
 struct SDL_Texture;
 enum movementState { NONE, PRES_Q,PRES_W,PRES_E,PRES_A,PRES_S,PRES_D };
+/*
+enum ButtonType{ MOVEMENT_BUTTON};
+
+struct Button{
+private:
+	SDL_Rect* sprite;
+	ButtonType type;
+	Module* callback = nullptr;
+public:
+	SDL_Rect rect;
+
+	Button(ButtonType type, Module* callback = nullptr) : type(type),callback(callback)
+	{}
+	virtual bool CheckCollision(const Button* c) const = 0;
+	virtual void SetPos(int x, int y) = 0;
+};
+
+
+struct ButtonRect : public Button
+{
+	ButtonRect(SDL_Rect rectangle, ButtonType type, Module* callback = nullptr) : Button(type, callback)
+	{
+		rect = rectangle;
+	}
+
+	void SetPos(int x, int y)
+	{
+		rect.x = x;
+		rect.y = y;
+	}
+
+	bool CheckCollision(const Button* c) const;
+};
+
+*/
+
 class ModuleUI : public Module
 {
 public:
@@ -16,7 +53,7 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
-
+	void Retexture();
 public:
 
 	bool CheckButton(const SDL_Rect* button, int x, int y) const;
@@ -29,6 +66,7 @@ public:
 	SDL_Rect Key_e_dwn;
 	SDL_Rect Key_s_dwn;
 	SDL_Rect Key_d_dwn;
+
 	SDL_Rect Key_w_up;
 	SDL_Rect Key_q_up;
 	SDL_Rect Key_a_up;
@@ -50,6 +88,9 @@ public:
 	bool click_S = false;
 	bool click_D = false;
 	bool movement = false;
+	//Button* button[MAX_BUTTON];
+
 };
+
 
 #endif //__MODULEUI_H__

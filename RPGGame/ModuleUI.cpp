@@ -35,6 +35,7 @@ bool ModuleUI::Start()
 	Rect_S = { 35, 225, 25, 25 };
 	Rect_D = { 60, 225, 26, 25 };
 
+
 	bool ret = true;
 	LOG("Loading frontground assets");
 	return ret;
@@ -46,9 +47,7 @@ bool ModuleUI::CleanUp()
 	LOG("Unloading Common Levels stuff");
 	return true;
 }
-
-update_status ModuleUI::Update()
-{
+void ModuleUI::Retexture(){
 	if (myMovementState == PRES_Q)
 		App->render->Blit(Keys_wasd, 10 * SCREEN_SIZE, 200 * SCREEN_SIZE, &Key_q_dwn);
 	else
@@ -73,10 +72,15 @@ update_status ModuleUI::Update()
 		App->render->Blit(Keys_wasd, 60 * SCREEN_SIZE, 225 * SCREEN_SIZE, &Key_d_dwn);
 	else
 		App->render->Blit(Keys_wasd, 60 * SCREEN_SIZE, 225 * SCREEN_SIZE, &Key_d_up);
+}
+update_status ModuleUI::Update()
+{
 
 
+	
 	SDL_Event Event;
 	bool running = true;
+	Retexture();
 	while (SDL_PollEvent(&Event))
 	{
 		switch (Event.type)
@@ -88,18 +92,30 @@ update_status ModuleUI::Update()
 	}
 	if (Event.type == SDL_MOUSEBUTTONDOWN) // if the user clicked a mousebutton
 	{
-		if (App->ui->CheckButton(&App->ui->Rect_W, Event.button.x, Event.button.y))
+		if (App->ui->CheckButton(&App->ui->Rect_W, Event.button.x, Event.button.y)){
 			myMovementState = PRES_W;
-		else if (App->ui->CheckButton(&App->ui->Rect_Q, Event.button.x, Event.button.y))
+			Retexture();
+		}
+		else if (App->ui->CheckButton(&App->ui->Rect_Q, Event.button.x, Event.button.y)){
 			myMovementState = PRES_Q;
-		else if (App->ui->CheckButton(&App->ui->Rect_E, Event.button.x, Event.button.y))
+			Retexture();
+		}
+		else if (App->ui->CheckButton(&App->ui->Rect_E, Event.button.x, Event.button.y)){
 			myMovementState = PRES_E;
-		else if (App->ui->CheckButton(&App->ui->Rect_A, Event.button.x, Event.button.y))
+			Retexture();
+		}
+		else if (App->ui->CheckButton(&App->ui->Rect_A, Event.button.x, Event.button.y)){
 			myMovementState = PRES_A;
-		else if (App->ui->CheckButton(&App->ui->Rect_S, Event.button.x, Event.button.y))
+			Retexture();
+		}
+		else if (App->ui->CheckButton(&App->ui->Rect_S, Event.button.x, Event.button.y)){
 			myMovementState = PRES_S;
-		else if (App->ui->CheckButton(&App->ui->Rect_D, Event.button.x, Event.button.y))
-			myMovementState = PRES_D;
+			Retexture();
+		}
+		else if (App->ui->CheckButton(&App->ui->Rect_D, Event.button.x, Event.button.y)){
+			myMovementState = PRES_D;}
+			Retexture();
+
 	}
 	else if (Event.type == SDL_MOUSEBUTTONUP) // if the user clicked a mousebutton
 	{
@@ -117,6 +133,7 @@ update_status ModuleUI::Update()
 			click_D = true;
 
 		myMovementState = NONE;
+		Retexture();
 
 	}
 	return UPDATE_CONTINUE;
