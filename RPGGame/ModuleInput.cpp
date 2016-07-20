@@ -55,6 +55,10 @@ update_status ModuleInput::PreUpdate()
 
 	if (keyboard[SDL_SCANCODE_ESCAPE])
 	{
+		if (App->player->formation[0]->PlayerDead == true)	{ LOG("WARRIOR DEAD"); }
+		if (App->player->formation[1]->PlayerDead == true)	{ LOG("ROGUE DEAD"); }
+		if (App->player->formation[2]->PlayerDead == true)	{ LOG("ARCHER DEAD"); }
+		if (App->player->formation[3]->PlayerDead == true)	{ LOG("MAGE DEAD"); }
 		App->player->DeletePlayers();
 		return update_status::UPDATE_STOP;
 	}

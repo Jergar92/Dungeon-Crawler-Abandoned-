@@ -103,37 +103,56 @@ void ModulePlayer::PlayerInput()
 		{
 		case NORTH:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[0]->hp -= 1000; }
-			else if (i == 1)	{ formation[1]->hp -= 1000; }
-			break;
+			if (i == 0)
+			{
+				if (formation[0]->PlayerDead == true)
+				{
+					if (formation[2]->PlayerDead == true){ i = 1; }
+					else{ formation[2]->hp -= 1000; }
+				}
+				else{ formation[0]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[1]->PlayerDead == true)
+				{
+					if (formation[3]->PlayerDead == true)
+					{
+						if (formation[1]->PlayerDead == true){ formation[3]->hp -= 1000; }
+						else { formation[1]->hp -= 1000; }
+					}
+					else{ formation[3]->hp -= 1000; }
+				}
+				else{ formation[1]->hp -= 1000; }
+				break;
+			}
 		case SOUTH:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[2]->hp -= 1000; }
+			if (i == 0)	{ formation[2]->hp -= 1000; }
 			else if (i == 1)	{ formation[3]->hp -= 1000; }
 			break;
 		case EAST:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			if (i == 0)	{ formation[0]->hp -= 1000; }
 			else if (i == 1)	{ formation[2]->hp -= 1000; }
 			break;
 		case WEST:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[1]->hp -= 1000; }
+			if (i == 0)	{ formation[1]->hp -= 1000; }
 			else if (i == 1)	{ formation[3]->hp -= 1000; }
 			break;
 		default:
 			LOG("ERROR player direction.");
 			break;
-		}
-		for (int j = 0; j < NUM_PLAYERS; j++)
-		{
-			if (formation[j]->hp <= 0)
+			}
+			for (int j = 0; j < NUM_PLAYERS; j++)
 			{
-				formation[j]->PlayerDead = true;
+				if (formation[j]->hp <= 0)
+				{
+					formation[j]->PlayerDead = true;
+				}
 			}
 		}
-		CheckDeads();
-	}
 
 	else if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_UP)
 	{
@@ -143,22 +162,22 @@ void ModulePlayer::PlayerInput()
 		{
 		case NORTH:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[2]->hp -= 1000; }
+			if (i == 0)	{ formation[2]->hp -= 1000; }
 			else if (i == 1)	{ formation[3]->hp -= 1000; }
 			break;
 		case SOUTH:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			if (i == 0)	{ formation[0]->hp -= 1000; }
 			else if (i == 1)	{ formation[1]->hp -= 1000; }
 			break;
 		case EAST:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[1]->hp -= 1000; }
+			if (i == 0)	{ formation[1]->hp -= 1000; }
 			else if (i == 1)	{ formation[3]->hp -= 1000; }
 			break;
 		case WEST:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			if (i == 0)	{ formation[0]->hp -= 1000; }
 			else if (i == 1)	{ formation[2]->hp -= 1000; }
 			break;
 		default:
@@ -172,7 +191,6 @@ void ModulePlayer::PlayerInput()
 				formation[j]->PlayerDead = true;
 			}
 		}
-		CheckDeads();
 	}
 
 	else if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_UP)
@@ -183,22 +201,22 @@ void ModulePlayer::PlayerInput()
 		{
 		case NORTH:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[1]->hp -= 1000; }
+			if (i == 0)	{ formation[1]->hp -= 1000; }
 			else if (i == 1)	{ formation[3]->hp -= 1000; }
 			break;
 		case SOUTH:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			if (i == 0)	{ formation[0]->hp -= 1000; }
 			else if (i == 1)	{ formation[2]->hp -= 1000; }
 			break;
 		case EAST:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			if (i == 0)	{ formation[0]->hp -= 1000; }
 			else if (i == 0)	{ formation[1]->hp -= 1000; }
 			break;
 		case WEST:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[2]->hp -= 1000; }
+			if (i == 0)	{ formation[2]->hp -= 1000; }
 			else if (i == 1)	{ formation[3]->hp -= 1000; }
 			break;
 		default:
@@ -212,7 +230,6 @@ void ModulePlayer::PlayerInput()
 				formation[j]->PlayerDead = true;
 			}
 		}
-		CheckDeads();
 	}
 
 	else if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_UP)
@@ -223,22 +240,22 @@ void ModulePlayer::PlayerInput()
 		{
 		case NORTH:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			if (i == 0)	{ formation[0]->hp -= 1000; }
 			else if (i == 1)	{ formation[2]->hp -= 1000; }
 			break;
 		case SOUTH:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[1]->hp -= 1000; }
+			if (i == 0)	{ formation[1]->hp -= 1000; }
 			else if (i == 1)	{ formation[3]->hp -= 1000; }
 			break;
 		case EAST:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[2]->hp -= 1000; }
+			if (i == 0)	{ formation[2]->hp -= 1000; }
 			else if (i == 1)	{ formation[3]->hp -= 1000; }
 			break;
 		case WEST:
 			i = rand() % 2;
-			if		(i == 0)	{ formation[0]->hp -= 1000; }
+			if (i == 0)	{ formation[0]->hp -= 1000; }
 			else if (i == 1)	{ formation[1]->hp -= 1000; }
 			break;
 		default:
@@ -252,7 +269,6 @@ void ModulePlayer::PlayerInput()
 				formation[j]->PlayerDead = true;
 			}
 		}
-		CheckDeads();
 	}
 	//--
 
@@ -294,7 +310,7 @@ void ModulePlayer::PlayerInput()
 		}
 		App->ui->click_W = false;
 	}
-	
+
 	//BACK
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_UP || App->ui->click_S == true)
 	{
@@ -302,7 +318,7 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y + 1][position.x] != 0)
 			{
-				dir = SOUTH; 
+				dir = SOUTH;
 				ChangeTile(dir);
 				dir = NORTH;
 			}
@@ -337,7 +353,7 @@ void ModulePlayer::PlayerInput()
 				dir = WEST;
 			}
 			else{ cant_cross = true; }
-		}		
+		}
 		App->ui->click_S = false;
 	}
 
@@ -348,7 +364,7 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y][position.x + 1] != 0)
 			{
-				dir = EAST; 
+				dir = EAST;
 				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
@@ -390,7 +406,7 @@ void ModulePlayer::PlayerInput()
 		{
 			if (App->level1->map[position.y][position.x - 1] != 0)
 			{
-				dir = WEST; 
+				dir = WEST;
 				ChangeTile(dir);
 			}
 			else{ cant_cross = true; }
@@ -432,18 +448,18 @@ void ModulePlayer::PlayerInput()
 	}
 
 	//ROTATION
-		//RIGHT
+	//RIGHT
 	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_UP || App->ui->click_E == true) //TODO: MOUSE CLICK
 	{
 		PlayerRotation(dir, RIGHT);
 		App->ui->click_E = false;
 	}
 
-		//LEFT
+	//LEFT
 	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_UP || App->ui->click_Q == true) //TODO: MOUSE CLICK
 	{
 		PlayerRotation(dir, LEFT);
-		App->ui->click_Q= false;
+		App->ui->click_Q = false;
 	}
 }
 
@@ -543,12 +559,4 @@ void ModulePlayer::CompassPrint(int direction)
 	default: LOG("ERROR printing compass");
 		break;
 	}
-}
-
-void ModulePlayer::CheckDeads()
-{
-	if (formation[0]->PlayerDead == true)	{ LOG("WARRIOR DEAD"); }
-	if (formation[1]->PlayerDead == true)	{ LOG("ROGUE DEAD"); }
-	if (formation[2]->PlayerDead == true)	{ LOG("ARCHER DEAD"); }
-	if (formation[3]->PlayerDead == true)	{ LOG("MAGE DEAD"); }
 }

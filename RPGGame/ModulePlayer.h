@@ -72,10 +72,6 @@ public:
 	void PlayerRotation(int, rotation);
 	void ChangeTile(int);
 	void CompassPrint(int);
-
-	//This function won't have any utility, just to test if the player was dead quickly
-	void CheckDeads();
-	//--
 };
 
 #endif
