@@ -20,15 +20,9 @@ public:
 	int map[10][10];
 	bool islevel3;
 
-	SDL_Texture* g_corridor = nullptr;
-	SDL_Texture* g_corridorv1 = nullptr;
-	SDL_Texture* g_directions = nullptr;
-	SDL_Texture* g_directionsv1 = nullptr;
-	SDL_Texture* g_background1 = nullptr;
-	SDL_Texture* g_wall = nullptr;
-	SDL_Texture* g_exit = nullptr;
+	SDL_Texture* graphics = nullptr;
 
-	SDL_Rect corridor;
+	SDL_Rect lvl1_wall;
 	SDL_Rect corridorv1;
 	SDL_Rect directions;
 	SDL_Rect directionsv1;

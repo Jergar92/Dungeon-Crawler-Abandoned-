@@ -25,13 +25,8 @@ bool ModuleLevel1::Start()
 {
 	bool ret = true;
 	App->player->Enable();
-	g_corridor = App->texture->Load("Pasillo_primero.png");
-	g_corridorv1 = App->texture->Load("Pasillo_segundo.png");
-	g_directions = App->texture->Load("Pasillo_tercero.png");
-	g_directionsv1 = App->texture->Load("Prube_sprite_movimientov1.png");
-	g_background1 = App->texture->Load("Prube_sprite_fondo.png");
-	g_exit = App->texture->Load("Prube_sprite_exit.png");
-	g_wall = App->texture->Load("Pared.png");
+	graphics = App->texture->Load("spritesheet.png");
+
 	int tile[10][10] = {
 
 		//NOTICE: NEEDED THE FIRST && LAST LINE AND COLUMN TO BE 0 OR YOU CAN EXIT THE MAP
