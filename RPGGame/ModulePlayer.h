@@ -65,7 +65,7 @@ public:
 	SDL_Rect compass;
 
 	direction dir;
-	int room_tile[3];
+	int room_tile[4];
 	bool cant_cross = false;
 
 	void PlayerInput();
@@ -75,3 +75,23 @@ public:
 };
 
 #endif
+
+
+
+
+/*	
+
+	background_wall = { 0, 0, 600, 600 };
+	lvl1_front_wall = { 0, 0, 600, 600 };
+	lvl2_front_wall = { 600, 0, 600, 600 };
+	lvl1_parallel_wall = { 1200, 0, 600, 600 };
+	lvl2_large_front_wall = { 0, 600, 360, 360 };
+	lvl2_parallel_wall = { 360, 600, 360, 360 };
+	lvl3_front_wall = { 720, 600, 360, 360 };
+	lvl3_large_front_wall = { 0, 960, 215, 215 };
+	lvl3_parallel_wall = { 215, 960, 215, 215 };
+	lvl4_front_wall = { 430, 960, 215, 215 };
+	lvl4_large_front_wall = { 0, 1175, 135, 135 };
+	lvl4_parallel_wall = { 135, 1175, 135, 135 };
+	
+	*/

@@ -9,13 +9,18 @@
 
 ModuleLevel1::ModuleLevel1()
 {
-	corridor = { 0, 0, 384, 256 };
-	corridorv1 = { 0, 0, 384, 256 };
-	directions = { 0, 0, 384, 256 };
-	directionsv1 = { 0, 0, 384, 256 };
-	background1 = { 0, 0, 384, 256 };
-	exit = { 0, 0, 384, 256 };
-	wall = { 0, 0, 384, 256 };
+	background_wall = { 0, 0, 600, 600 };
+	lvl1_front_wall = { 0, 0, 600, 600 };
+	lvl2_front_wall = { 600, 0, 600, 600 };
+	lvl1_parallel_wall = { 1200, 0, 600, 600 };
+	lvl2_large_front_wall = { 0, 600, 360, 360 };
+	lvl2_parallel_wall = { 360, 600, 360, 360 };
+	lvl3_front_wall = { 720, 600, 360, 360 };
+	lvl3_large_front_wall = { 0, 960, 215, 215 };
+	lvl3_parallel_wall = { 215, 960, 215, 215 };
+	lvl4_front_wall = { 430, 960, 215, 215 };
+	lvl4_large_front_wall = { 0, 1175, 135, 135 };
+	lvl4_parallel_wall = { 135, 1175, 135, 135 };
 
 }
 ModuleLevel1::~ModuleLevel1()
@@ -32,11 +37,11 @@ bool ModuleLevel1::Start()
 		//NOTICE: NEEDED THE FIRST && LAST LINE AND COLUMN TO BE 0 OR YOU CAN EXIT THE MAP
 		/*      0  1  2  3  4  5  6  7  8  9
 		/*0 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		/*1 */{ 4, 1, 6, 2, 7, 4, 0, 0, 0, 0 },
-		/*2 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
-		/*3 */{ 0, 0, 0, 4, 7, 4, 0, 0, 0, 0 },
-		/*4 */{ 0, 0, 0, 0, 4, 0, 0, 0, 0, 0 },
-		/*5 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+		/*1 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
+		/*2 */{ 0, 1, 1, 1, 2, 1, 0, 0, 0, 0 },
+		/*3 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
+		/*4 */{ 0, 0, 0, 1, 2, 1, 0, 0, 0, 0 },
+		/*5 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
 		/*6 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		/*7 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		/*8 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -45,10 +50,7 @@ bool ModuleLevel1::Start()
 	/*
 	1-Pasillo recto
 	2-Pasillo 4 esquinas
-	3-fondo
-	4-Exit
-	6-Pasillo recto v2
-	7-Pasillo 4 esquinas v2
+	3-Exit
 	*/
 
 	for (int i = 0; i < 10; i++)
@@ -71,63 +73,96 @@ bool ModuleLevel1::CleanUp()
 
 update_status ModuleLevel1::Update()
 {
-
 	App->player->room_tile[0] = App->level1->map[App->player->position.y][App->player->position.x];
 	if (App->player->dir == NORTH)
 	{
 		App->player->room_tile[1] = App->level1->map[App->player->position.y - 1][App->player->position.x];
 		App->player->room_tile[2] = App->level1->map[App->player->position.y - 2][App->player->position.x];
+		App->player->room_tile[3] = App->level1->map[App->player->position.y - 3][App->player->position.x];
 	}
 	else if (App->player->dir == EAST)
 	{
 		App->player->room_tile[1] = App->level1->map[App->player->position.y][App->player->position.x + 1];
 		App->player->room_tile[2] = App->level1->map[App->player->position.y][App->player->position.x + 2];
+		App->player->room_tile[3] = App->level1->map[App->player->position.y][App->player->position.x + 3];
 	}
 	else if(App->player->dir == SOUTH)
 	{
 		App->player->room_tile[1] = App->level1->map[App->player->position.y + 1][App->player->position.x];
 		App->player->room_tile[2] = App->level1->map[App->player->position.y + 2][App->player->position.x];
+		App->player->room_tile[3] = App->level1->map[App->player->position.y + 3][App->player->position.x];
 	}
 	else if(App->player->dir == WEST)
 	{
 		App->player->room_tile[1] = App->level1->map[App->player->position.y][App->player->position.x - 1];
 		App->player->room_tile[2] = App->level1->map[App->player->position.y][App->player->position.x - 2];
+		App->player->room_tile[3] = App->level1->map[App->player->position.y][App->player->position.x - 3];
 	}
 
 	if (App->player->room_tile[1] == 0 && App->player->room_tile[0] != 4)
 	{
-		App->render->Blit(g_wall, 0, 0, &wall);
+		App->render->Blit(graphics, 0, 0, &background_wall);
 	}
 	else
 	{
-		int i = 2;
-		while (i >= 0)
+		App->render->Blit(graphics, 0, 0, &background_wall);
+
+		if (App->player->room_tile[3] != 0)
 		{
-			switch (App->player->room_tile[i])
-			{
-			case 1:
-				App->render->Blit(g_corridor, 0, 0, &corridor);
-				break;
-			case 2:
-				App->render->Blit(g_directions, 0, 0, &directions);
-				break;
-			case 3:
-				App->render->Blit(g_background1, 0, 0, &background1);
-				break;
-			case 4:
-				App->render->Blit(g_exit, 0, 0, &exit);
-				break;
-			case 6:
-				App->render->Blit(g_corridorv1, 0, 0, &corridorv1);
-				break;
-			case 7:
-				App->render->Blit(g_directionsv1, 0, 0, &directionsv1);
-				break;
-			default:
-				LOG("ERROR printing image tile");
-				break;
-			}
-			i--;
+			App->render->Blit(graphics, 234, 232, &lvl4_parallel_wall);
+		}
+		else
+		{
+			App->render->Blit(graphics, 234, 232, &lvl4_large_front_wall);
+		}
+		//level 3 render
+		switch (App->player->room_tile[2])
+		{
+		case 1:
+			App->render->Blit(graphics, 191, 192, &lvl3_parallel_wall);
+			break;
+		case 2:
+			App->render->Blit(graphics, 191, 192, &lvl4_front_wall);
+			break;
+		case 0:
+			App->render->Blit(graphics, 191, 192, &lvl3_large_front_wall);
+			break;
+		default:
+			LOG("ERROR printing image tile");
+			break;
+		}
+		//Level 2 render
+		switch (App->player->room_tile[1])
+		{
+		case 1:
+			App->render->Blit(graphics, 121, 120, &lvl2_parallel_wall);
+			break;
+		case 2:
+			App->render->Blit(graphics, 121, 120, &lvl3_front_wall);
+			break;
+		case 0:
+			App->render->Blit(graphics, 121, 120, &lvl2_large_front_wall);
+			break;
+		default:
+			LOG("ERROR printing image tile");
+			break;
+		}
+
+		//Level 1 render
+		switch (App->player->room_tile[0])
+		{
+		case 1:
+			App->render->Blit(graphics, 0, 0, &lvl1_parallel_wall);
+			break;
+		case 2:
+			App->render->Blit(graphics, 0, 0, &lvl2_front_wall);
+			break;
+		case 0:
+			App->render->Blit(graphics, 0, 0, &lvl1_front_wall);
+			break;
+		default:
+			LOG("ERROR printing image tile");
+			break;
 		}
 	}
 

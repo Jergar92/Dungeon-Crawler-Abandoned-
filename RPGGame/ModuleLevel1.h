@@ -29,6 +29,7 @@ public:
 	SDL_Rect lvl4_parallel_wall;
 
 	//Front Walls
+	SDL_Rect lvl1_front_wall;
 	SDL_Rect lvl2_front_wall;
 	SDL_Rect lvl3_front_wall;
 	SDL_Rect lvl4_front_wall;
@@ -39,7 +40,7 @@ public:
 	SDL_Rect lvl4_large_front_wall;
 
 	//Close Wall
-	SDL_Rect lvl1_close_wall;
+	SDL_Rect background_wall;
 };
 
 #endif

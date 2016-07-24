@@ -21,7 +21,7 @@ ModulePlayer::ModulePlayer()
 
 	//Player position
 	position.x = 1;
-	position.y = 1;
+	position.y = 2;
 }
 
 ModulePlayer::~ModulePlayer()
