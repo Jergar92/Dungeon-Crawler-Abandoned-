@@ -22,14 +22,24 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 
-	SDL_Rect lvl1_wall;
-	SDL_Rect corridorv1;
-	SDL_Rect directions;
-	SDL_Rect directionsv1;
-	SDL_Rect background1;
-	SDL_Rect exit;
-	SDL_Rect wall;
+	//Parallel Walls
+	SDL_Rect lvl1_parallel_wall;
+	SDL_Rect lvl2_parallel_wall;
+	SDL_Rect lvl3_parallel_wall;
+	SDL_Rect lvl4_parallel_wall;
 
+	//Front Walls
+	SDL_Rect lvl2_front_wall;
+	SDL_Rect lvl3_front_wall;
+	SDL_Rect lvl4_front_wall;
+
+	//Large Front Walls
+	SDL_Rect lvl2_large_front_wall;
+	SDL_Rect lvl3_large_front_wall;
+	SDL_Rect lvl4_large_front_wall;
+
+	//Close Wall
+	SDL_Rect lvl1_close_wall;
 };
 
 #endif
