@@ -10,6 +10,9 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleCollider.h"
 #include "ModuleUI.h"
+#include "ModuleEnemies.h"
+#include "ModulePArticles.h"
+
 Application::Application()
 {
 	int i = 0;
@@ -19,7 +22,9 @@ Application::Application()
 	modules[i++] = texture = new ModuleTextures();
 	modules[i++] = audio = new ModuleAudio();
 	modules[i++] = level1 = new ModuleLevel1();
+	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
+	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = ui = new ModuleUI();
 	modules[i++] = menu_screen = new ModuleStartScreen();
 	modules[i++] = collider = new ModuleCollider();

@@ -1,21 +1,15 @@
-#ifndef _MODULEAUDIO_H_
-#define _MODULEAUDIO_H_
+#ifndef __ModuleAudio_H__
+#define __ModuleAudio_H__
 
+#include "Globals.h"
 #include "Module.h"
-#include "SDL_mixer\include\SDL_mixer.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
-#define MAX_AUDIOS 50
+#define DEFAULT_MUSIC_FADE_TIME 2.0f
 #define MAX_FX 200
 
 class ModuleAudio : public Module
 {
-public:
-
-	Mix_Music* audios[MAX_AUDIOS];
-	Mix_Chunk* efects[MAX_FX];
-	uint last_audio = 0;
-	uint last_efect = 0;
-
 public:
 
 	ModuleAudio();
@@ -24,8 +18,21 @@ public:
 	bool Init();
 	bool CleanUp();
 
-	Mix_Music* const Load(const char* path);
-	Mix_Chunk* const Load_chunk(const char* path);
+	// Play a music file
+	bool PlayMusic(const char* path, float fade_time = DEFAULT_MUSIC_FADE_TIME);
+
+	// Load a WAV in memory
+	uint LoadFx(const char* path);
+	bool UnLoadFx(uint id);
+
+	// Play a previously loaded WAV
+	bool PlayFx(unsigned int fx, int repeat = 0);
+
+private:
+
+	Mix_Music*	music = nullptr;
+	Mix_Chunk*	fx[MAX_FX];
+	uint			last_fx = 1;
 };
 
 #endif // __ModuleAudio_H__
