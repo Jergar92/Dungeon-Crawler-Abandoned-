@@ -10,6 +10,13 @@
 struct SDL_Texture;
 #define NUM_PLAYERS 4
 
+enum player_class{
+	WARRIOR,
+	ROGUE,
+	ARCHER,
+	MAGE
+};
+
 enum direction{
 	NORTH,
 	SOUTH,

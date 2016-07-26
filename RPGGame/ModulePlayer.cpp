@@ -105,54 +105,119 @@ void ModulePlayer::PlayerInput()
 			i = rand() % 2;
 			if (i == 0)
 			{
-				if (formation[0]->PlayerDead == true)
+				if (formation[WARRIOR]->PlayerDead == true)
 				{
-					if (formation[2]->PlayerDead == true){ i = 1; }
-					else{ formation[2]->hp -= 1000; }
+					if (formation[ARCHER]->PlayerDead == true){ i = 1; }
+					else{ formation[ARCHER]->hp -= 1000; }
 				}
-				else{ formation[0]->hp -= 1000; }
+				else{ formation[WARRIOR]->hp -= 1000; }
 			}
 			else if (i == 1)
 			{
-				if (formation[1]->PlayerDead == true)
+				if (formation[ROGUE]->PlayerDead == true)
 				{
-					if (formation[3]->PlayerDead == true)
+					if (formation[MAGE]->PlayerDead == true)
 					{
-						if (formation[1]->PlayerDead == true){ formation[3]->hp -= 1000; }
-						else { formation[1]->hp -= 1000; }
+						if (formation[ROGUE]->PlayerDead == true){ formation[MAGE]->hp -= 1000; }
+						else { formation[ROGUE]->hp -= 1000; }
 					}
-					else{ formation[3]->hp -= 1000; }
+					else{ formation[MAGE]->hp -= 1000; }
 				}
-				else{ formation[1]->hp -= 1000; }
-				break;
+				else{ formation[ROGUE]->hp -= 1000; }
 			}
+			break;
+
 		case SOUTH:
 			i = rand() % 2;
-			if (i == 0)	{ formation[2]->hp -= 1000; }
-			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[ARCHER]->PlayerDead == true)
+				{
+					if (formation[WARRIOR]->PlayerDead == true){ i = 1; }
+					else{ formation[WARRIOR]->hp -= 1000; }
+				}
+				else{ formation[ARCHER]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[MAGE]->PlayerDead == true)
+				{
+					if (formation[ROGUE]->PlayerDead == true)
+					{
+						if (formation[ARCHER]->PlayerDead == true){ formation[WARRIOR]->hp -= 1000; }
+						else { formation[ARCHER]->hp -= 1000; }
+					}
+					else{ formation[ROGUE]->hp -= 1000; }
+				}
+				else{ formation[MAGE]->hp -= 1000; }
+			}
 			break;
+
 		case EAST:
 			i = rand() % 2;
-			if (i == 0)	{ formation[0]->hp -= 1000; }
-			else if (i == 1)	{ formation[2]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[WARRIOR]->PlayerDead == true)
+				{
+					if (formation[ROGUE]->PlayerDead == true){ i = 1; }
+					else{ formation[ROGUE]->hp -= 1000; }
+				}
+				else{ formation[WARRIOR]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[ARCHER]->PlayerDead == true)
+				{
+					if (formation[MAGE]->PlayerDead == true)
+					{
+						if (formation[WARRIOR]->PlayerDead == true){ formation[ROGUE]->hp -= 1000; }
+						else { formation[WARRIOR]->hp -= 1000; }
+					}
+					else{ formation[MAGE]->hp -= 1000; }
+				}
+				else{ formation[ARCHER]->hp -= 1000; }
+			}
 			break;
+
 		case WEST:
 			i = rand() % 2;
-			if (i == 0)	{ formation[1]->hp -= 1000; }
-			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[ROGUE]->PlayerDead == true)
+				{
+					if (formation[WARRIOR]->PlayerDead == true){ i = 1; }
+					else{ formation[WARRIOR]->hp -= 1000; }
+				}
+				else{ formation[ROGUE]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[MAGE]->PlayerDead == true)
+				{
+					if (formation[ARCHER]->PlayerDead == true)
+					{
+						if (formation[ROGUE]->PlayerDead == true){ formation[WARRIOR]->hp -= 1000; }
+						else { formation[ROGUE]->hp -= 1000; }
+					}
+					else{ formation[ARCHER]->hp -= 1000; }
+				}
+				else{ formation[MAGE]->hp -= 1000; }
+			}
 			break;
+
 		default:
 			LOG("ERROR player direction.");
 			break;
-			}
-			for (int j = 0; j < NUM_PLAYERS; j++)
+		}
+
+		for (int j = 0; j < NUM_PLAYERS; j++)
+		{
+			if (formation[j]->hp <= 0)
 			{
-				if (formation[j]->hp <= 0)
-				{
-					formation[j]->PlayerDead = true;
-				}
+				formation[j]->PlayerDead = true;
 			}
 		}
+	}
 
 	else if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_UP)
 	{
@@ -162,28 +227,113 @@ void ModulePlayer::PlayerInput()
 		{
 		case NORTH:
 			i = rand() % 2;
-			if (i == 0)	{ formation[2]->hp -= 1000; }
-			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[ARCHER]->PlayerDead == true)
+				{
+					if (formation[WARRIOR]->PlayerDead == true){ i = 1; }
+					else{ formation[WARRIOR]->hp -= 1000; }
+				}
+				else{ formation[ARCHER]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[MAGE]->PlayerDead == true)
+				{
+					if (formation[ROGUE]->PlayerDead == true)
+					{
+						if (formation[ARCHER]->PlayerDead == true){ formation[WARRIOR]->hp -= 1000; }
+						else { formation[ARCHER]->hp -= 1000; }
+					}
+					else{ formation[ROGUE]->hp -= 1000; }
+				}
+				else{ formation[MAGE]->hp -= 1000; }
+			}
 			break;
+
 		case SOUTH:
 			i = rand() % 2;
-			if (i == 0)	{ formation[0]->hp -= 1000; }
-			else if (i == 1)	{ formation[1]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[WARRIOR]->PlayerDead == true)
+				{
+					if (formation[ARCHER]->PlayerDead == true){ i = 1; }
+					else{ formation[ARCHER]->hp -= 1000; }
+				}
+				else{ formation[WARRIOR]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[ROGUE]->PlayerDead == true)
+				{
+					if (formation[MAGE]->PlayerDead == true)
+					{
+						if (formation[WARRIOR]->PlayerDead == true){ formation[ARCHER]->hp -= 1000; }
+						else { formation[WARRIOR]->hp -= 1000; }
+					}
+					else{ formation[MAGE]->hp -= 1000; }
+				}
+				else{ formation[ROGUE]->hp -= 1000; }
+			}
 			break;
+
 		case EAST:
 			i = rand() % 2;
-			if (i == 0)	{ formation[1]->hp -= 1000; }
-			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[ROGUE]->PlayerDead == true)
+				{
+					if (formation[WARRIOR]->PlayerDead == true){ i = 1; }
+					else{ formation[WARRIOR]->hp -= 1000; }
+				}
+				else{ formation[ROGUE]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[MAGE]->PlayerDead == true)
+				{
+					if (formation[ARCHER]->PlayerDead == true)
+					{
+						if (formation[ROGUE]->PlayerDead == true){ formation[WARRIOR]->hp -= 1000; }
+						else { formation[ROGUE]->hp -= 1000; }
+					}
+					else{ formation[ARCHER]->hp -= 1000; }
+				}
+				else{ formation[MAGE]->hp -= 1000; }
+			}
 			break;
+
 		case WEST:
 			i = rand() % 2;
-			if (i == 0)	{ formation[0]->hp -= 1000; }
-			else if (i == 1)	{ formation[2]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[WARRIOR]->PlayerDead == true)
+				{
+					if (formation[ROGUE]->PlayerDead == true){ i = 1; }
+					else{ formation[ROGUE]->hp -= 1000; }
+				}
+				else{ formation[WARRIOR]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[ARCHER]->PlayerDead == true)
+				{
+					if (formation[MAGE]->PlayerDead == true)
+					{
+						if (formation[WARRIOR]->PlayerDead == true){ formation[ROGUE]->hp -= 1000; }
+						else { formation[WARRIOR]->hp -= 1000; }
+					}
+					else{ formation[MAGE]->hp -= 1000; }
+				}
+				else{ formation[ARCHER]->hp -= 1000; }
+			}
 			break;
+
 		default:
 			LOG("ERROR player direction.");
 			break;
 		}
+
 		for (int j = 0; j < NUM_PLAYERS; j++)
 		{
 			if (formation[j]->hp <= 0)
@@ -201,28 +351,113 @@ void ModulePlayer::PlayerInput()
 		{
 		case NORTH:
 			i = rand() % 2;
-			if (i == 0)	{ formation[1]->hp -= 1000; }
-			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[ROGUE]->PlayerDead == true)
+				{
+					if (formation[WARRIOR]->PlayerDead == true){ i = 1; }
+					else{ formation[WARRIOR]->hp -= 1000; }
+				}
+				else{ formation[ROGUE]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[MAGE]->PlayerDead == true)
+				{
+					if (formation[ARCHER]->PlayerDead == true)
+					{
+						if (formation[ROGUE]->PlayerDead == true){ formation[WARRIOR]->hp -= 1000; }
+						else { formation[ROGUE]->hp -= 1000; }
+					}
+					else{ formation[ARCHER]->hp -= 1000; }
+				}
+				else{ formation[MAGE]->hp -= 1000; }
+			}
 			break;
+
 		case SOUTH:
 			i = rand() % 2;
-			if (i == 0)	{ formation[0]->hp -= 1000; }
-			else if (i == 1)	{ formation[2]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[WARRIOR]->PlayerDead == true)
+				{
+					if (formation[ROGUE]->PlayerDead == true){ i = 1; }
+					else{ formation[ROGUE]->hp -= 1000; }
+				}
+				else{ formation[WARRIOR]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[ARCHER]->PlayerDead == true)
+				{
+					if (formation[MAGE]->PlayerDead == true)
+					{
+						if (formation[WARRIOR]->PlayerDead == true){ formation[ROGUE]->hp -= 1000; }
+						else { formation[WARRIOR]->hp -= 1000; }
+					}
+					else{ formation[MAGE]->hp -= 1000; }
+				}
+				else{ formation[ARCHER]->hp -= 1000; }
+			}
 			break;
+
 		case EAST:
 			i = rand() % 2;
-			if (i == 0)	{ formation[0]->hp -= 1000; }
-			else if (i == 0)	{ formation[1]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[WARRIOR]->PlayerDead == true)
+				{
+					if (formation[ARCHER]->PlayerDead == true){ i = 1; }
+					else{ formation[ARCHER]->hp -= 1000; }
+				}
+				else{ formation[WARRIOR]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[ROGUE]->PlayerDead == true)
+				{
+					if (formation[MAGE]->PlayerDead == true)
+					{
+						if (formation[WARRIOR]->PlayerDead == true){ formation[ARCHER]->hp -= 1000; }
+						else { formation[WARRIOR]->hp -= 1000; }
+					}
+					else{ formation[MAGE]->hp -= 1000; }
+				}
+				else{ formation[ROGUE]->hp -= 1000; }
+			}
 			break;
+
 		case WEST:
 			i = rand() % 2;
-			if (i == 0)	{ formation[2]->hp -= 1000; }
-			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[ARCHER]->PlayerDead == true)
+				{
+					if (formation[WARRIOR]->PlayerDead == true){ i = 1; }
+					else{ formation[WARRIOR]->hp -= 1000; }
+				}
+				else{ formation[ARCHER]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[MAGE]->PlayerDead == true)
+				{
+					if (formation[ROGUE]->PlayerDead == true)
+					{
+						if (formation[ARCHER]->PlayerDead == true){ formation[WARRIOR]->hp -= 1000; }
+						else { formation[ARCHER]->hp -= 1000; }
+					}
+					else{ formation[ROGUE]->hp -= 1000; }
+				}
+				else{ formation[MAGE]->hp -= 1000; }
+			}
 			break;
+
 		default:
 			LOG("ERROR player direction.");
 			break;
 		}
+
 		for (int j = 0; j < NUM_PLAYERS; j++)
 		{
 			if (formation[j]->hp <= 0)
@@ -240,28 +475,113 @@ void ModulePlayer::PlayerInput()
 		{
 		case NORTH:
 			i = rand() % 2;
-			if (i == 0)	{ formation[0]->hp -= 1000; }
-			else if (i == 1)	{ formation[2]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[WARRIOR]->PlayerDead == true)
+				{
+					if (formation[ROGUE]->PlayerDead == true){ i = 1; }
+					else{ formation[ROGUE]->hp -= 1000; }
+				}
+				else{ formation[WARRIOR]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[ARCHER]->PlayerDead == true)
+				{
+					if (formation[MAGE]->PlayerDead == true)
+					{
+						if (formation[WARRIOR]->PlayerDead == true){ formation[ROGUE]->hp -= 1000; }
+						else { formation[WARRIOR]->hp -= 1000; }
+					}
+					else{ formation[MAGE]->hp -= 1000; }
+				}
+				else{ formation[ARCHER]->hp -= 1000; }
+			}
 			break;
+
 		case SOUTH:
 			i = rand() % 2;
-			if (i == 0)	{ formation[1]->hp -= 1000; }
-			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[ROGUE]->PlayerDead == true)
+				{
+					if (formation[WARRIOR]->PlayerDead == true){ i = 1; }
+					else{ formation[WARRIOR]->hp -= 1000; }
+				}
+				else{ formation[ROGUE]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[MAGE]->PlayerDead == true)
+				{
+					if (formation[ARCHER]->PlayerDead == true)
+					{
+						if (formation[ROGUE]->PlayerDead == true){ formation[WARRIOR]->hp -= 1000; }
+						else { formation[ROGUE]->hp -= 1000; }
+					}
+					else{ formation[ARCHER]->hp -= 1000; }
+				}
+				else{ formation[MAGE]->hp -= 1000; }
+			}
 			break;
+
 		case EAST:
 			i = rand() % 2;
-			if (i == 0)	{ formation[2]->hp -= 1000; }
-			else if (i == 1)	{ formation[3]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[ARCHER]->PlayerDead == true)
+				{
+					if (formation[WARRIOR]->PlayerDead == true){ i = 1; }
+					else{ formation[WARRIOR]->hp -= 1000; }
+				}
+				else{ formation[ARCHER]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[MAGE]->PlayerDead == true)
+				{
+					if (formation[ROGUE]->PlayerDead == true)
+					{
+						if (formation[ARCHER]->PlayerDead == true){ formation[WARRIOR]->hp -= 1000; }
+						else { formation[ARCHER]->hp -= 1000; }
+					}
+					else{ formation[ROGUE]->hp -= 1000; }
+				}
+				else{ formation[MAGE]->hp -= 1000; }
+			}
 			break;
+
 		case WEST:
 			i = rand() % 2;
-			if (i == 0)	{ formation[0]->hp -= 1000; }
-			else if (i == 1)	{ formation[1]->hp -= 1000; }
+			if (i == 0)
+			{
+				if (formation[WARRIOR]->PlayerDead == true)
+				{
+					if (formation[ARCHER]->PlayerDead == true){ i = 1; }
+					else{ formation[ARCHER]->hp -= 1000; }
+				}
+				else{ formation[WARRIOR]->hp -= 1000; }
+			}
+			else if (i == 1)
+			{
+				if (formation[ROGUE]->PlayerDead == true)
+				{
+					if (formation[MAGE]->PlayerDead == true)
+					{
+						if (formation[WARRIOR]->PlayerDead == true){ formation[ARCHER]->hp -= 1000; }
+						else { formation[WARRIOR]->hp -= 1000; }
+					}
+					else{ formation[MAGE]->hp -= 1000; }
+				}
+				else{ formation[ROGUE]->hp -= 1000; }
+			}
 			break;
+
 		default:
 			LOG("ERROR player direction.");
 			break;
 		}
+
 		for (int j = 0; j < NUM_PLAYERS; j++)
 		{
 			if (formation[j]->hp <= 0)
