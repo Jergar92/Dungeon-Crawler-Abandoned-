@@ -1,5 +1,5 @@
-#ifndef __MODULEUI_H__
-#define __MODULEUI_H__
+#ifndef _GUI_MOVEMENT_
+#define _GUI_MOVEMENT_
 
 #include "Module.h"
 #include "Globals.h"
@@ -44,11 +44,11 @@ struct ButtonRect : public Button
 
 */
 
-class ModuleUI : public Module
+class GUI_Movement : public Module
 {
 public:
-	ModuleUI();
-	~ModuleUI();
+	GUI_Movement();
+	~GUI_Movement();
 
 	bool Start();
 	update_status Update();

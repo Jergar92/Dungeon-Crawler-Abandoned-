@@ -9,7 +9,9 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleCollider.h"
-#include "ModuleUI.h"
+#include "GUI.h"
+#include "GUI_Characters.h"
+#include "GUI_Movement.h"
 #include "ModuleEnemies.h"
 #include "ModulePArticles.h"
 
@@ -25,7 +27,10 @@ Application::Application()
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = particles = new ModuleParticles();
-	modules[i++] = ui = new ModuleUI();
+	modules[i++] = gui = new ModuleGui();
+	modules[i++] = gui_character= new GUI_Character();
+
+	modules[i++] = gui_movement = new GUI_Movement();
 	modules[i++] = menu_screen = new ModuleStartScreen();
 	modules[i++] = collider = new ModuleCollider();
 	modules[i++] = fade = new ModuleFadeToBlack();

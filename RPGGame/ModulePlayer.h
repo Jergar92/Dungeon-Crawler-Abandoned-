@@ -31,10 +31,10 @@ enum rotation{
 
 class Player{
 public:
-	Player(String name, int hp, int mp, int attack, int defense) :name(name), hp(hp), mp(mp), attack(attack), defense(defense) {}
+	Player(String name, int max_hp, int hp, int mp, int attack, int defense) :name(name), max_hp(max_hp), hp(hp), mp(mp), attack(attack), defense(defense) {}
 	~Player(){}
 	String name;
-	int hp, mp, attack, defense;
+	int max_hp, hp, mp, attack, defense;
 	bool PlayerDead = false;
 };
 

@@ -14,6 +14,8 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="GUI_Characters.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollider.cpp" />
@@ -26,7 +28,7 @@
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleStartScreen.cpp" />
     <ClCompile Include="ModuleTexture.cpp" />
-    <ClCompile Include="ModuleUI.cpp" />
+    <ClCompile Include="GUI_Movement.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="String.cpp" />
   </ItemGroup>
@@ -35,6 +37,8 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="GUI.h" />
+    <ClInclude Include="GUI_Characters.h" />
     <ClInclude Include="MemoryLeaks.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
@@ -48,7 +52,7 @@
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleStartScreen.h" />
     <ClInclude Include="ModuleTexture.h" />
-    <ClInclude Include="ModuleUI.h" />
+    <ClInclude Include="GUI_Movement.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="p2Point.h" />
     <ClInclude Include="String.h" />

@@ -62,9 +62,6 @@
     <ClCompile Include="ModuleCollider.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleUI.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleParticles.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -76,6 +73,15 @@
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Player &amp; IA</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_Movement.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI_Characters.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +127,6 @@
     <ClInclude Include="ModuleCollider.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleUI.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleParticles.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -144,6 +147,15 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Player &amp; IA</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI_Movement.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI_Characters.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
