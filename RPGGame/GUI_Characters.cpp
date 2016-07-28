@@ -102,7 +102,16 @@ bool GUI_Character::Start()
 
 bool GUI_Character::CleanUp()
 {
+
 	App->texture->Unload(Characters_sprites);
+	for (uint i = 0; i < MAX_CHARACTERS; ++i)
+	{
+		if (character[i] != nullptr)
+		{
+			delete character[i];
+			character[i] = nullptr;
+		}
+	}
 	LOG("Unloading Common Levels stuff");
 	return true;
 }
@@ -110,22 +119,22 @@ void GUI_Character::Retexture(){
 	for (int i = 0; i < MAX_CHARACTERS; i++){
 		//Character Icon
 		if (character[i]->CurrentState == ALIVE){
-			App->render->Blit(Characters_sprites, 606 * SCREEN_SIZE, (14 + (98 * i)) * SCREEN_SIZE, &character[i]->Character_alive);
+			App->render->Blit(Characters_sprites, 606 * SCREEN_SIZE, (14 + (102 * i)) * SCREEN_SIZE, &character[i]->Character_alive);
 		}
 		else if (character[i]->CurrentState == INJURED){
-			App->render->Blit(Characters_sprites, 606 * SCREEN_SIZE, (14 + (98 * i)) * SCREEN_SIZE, &character[i]->Character_injured);
+			App->render->Blit(Characters_sprites, 606 * SCREEN_SIZE, (14 + (102 * i)) * SCREEN_SIZE, &character[i]->Character_injured);
 
 		}
 		else{
-			App->render->Blit(Characters_sprites, 606 * SCREEN_SIZE, (14 + (98 * i)) * SCREEN_SIZE, &character[i]->Character_dead);
+			App->render->Blit(Characters_sprites, 606 * SCREEN_SIZE, (14 + (102 * i)) * SCREEN_SIZE, &character[i]->Character_dead);
 		}
 		//Life/Mana Bar
-		App->render->Blit(Characters_sprites, 708 * SCREEN_SIZE, (14 + (98 * i)) * SCREEN_SIZE, &character[i]->Character_life);
-		App->render->Blit(Characters_sprites, 708 * SCREEN_SIZE, (37 + (98 * i)) * SCREEN_SIZE, &character[i]->Character_mana);
+		App->render->Blit(Characters_sprites, 708 * SCREEN_SIZE, (14 + (102 * i)) * SCREEN_SIZE, &character[i]->Character_life);
+		App->render->Blit(Characters_sprites, 708 * SCREEN_SIZE, (37 + (102 * i)) * SCREEN_SIZE, &character[i]->Character_mana);
 		//Atack//Special Atack
 
-		App->render->Blit(Characters_sprites, 708 * SCREEN_SIZE, (60 + (98 * i)) * SCREEN_SIZE, &character[i]->Character_life);
-		App->render->Blit(Characters_sprites, 754 * SCREEN_SIZE, (60 + (98 * i)) * SCREEN_SIZE, &character[i]->Character_mana);
+		App->render->Blit(Characters_sprites, 708 * SCREEN_SIZE, (60 + (102 * i)) * SCREEN_SIZE, &character[i]->Atack);
+		App->render->Blit(Characters_sprites, 754 * SCREEN_SIZE, (60 + (102 * i)) * SCREEN_SIZE, &character[i]->Special_Atack);
 	}
 
 
@@ -134,42 +143,24 @@ update_status GUI_Character::Update()
 {
 	if (App->player->IsEnabled()==true){
 		for (int i = 0; i < MAX_CHARACTERS; i++){
-			if (App->player->formation[i]->hp > (App->player->formation[i]->max_hp) / 2){
-				character[i]->CurrentState = ALIVE;
-			}
-			else if ((App->player->formation[i]->hp < (App->player->formation[i]->max_hp) / 2) && (App->player->formation[i]->hp > 0)){
+			if (App->player->formation[i]->hp < (App->player->formation[i]->max_hp) / 2 && (App->player->formation[i]->hp > 0)){
 				character[i]->CurrentState = INJURED;
 			}
-			else{
+			else if (App->player->formation[i]->hp <=0){
 				character[i]->CurrentState = DEAD;
+			}
+			else{
+				character[i]->CurrentState = ALIVE;
 			}
 		}
 		for (int i = 0; i < MAX_CHARACTERS; i++){
-			character[i]->Character_life = { 408, 10, (App->player->formation[i]->hp * 88) / App->player->formation[i]->max_hp, 19 };
-			character[i]->Character_mana = { 408, 33, (App->player->formation[i]->mp * 88) / App->player->formation[i]->max_hp, 19 };
+			character[i]->Character_life = { 408, (10+(98*i)), (App->player->formation[i]->hp * 88) / App->player->formation[i]->max_hp, 19 };
+			character[i]->Character_mana = { 408, (33 + (98 * i)), (App->player->formation[i]->mp * 88) / App->player->formation[i]->max_hp, 19 };
 		}
 		SDL_Event Event;
 		bool running = true;
 		Retexture();
-		while (SDL_PollEvent(&Event))
-		{
-			switch (Event.type)
-			{
-			case SDL_QUIT:
-				running = false;
-				break;
-			}
-		}
-		if (Event.type == SDL_MOUSEBUTTONDOWN) // if the user clicked a mousebutton
-		{
-			Retexture();
-
-		}
-		else if (Event.type == SDL_MOUSEBUTTONUP) // if the user clicked a mousebutton
-		{
-			Retexture();
-
-		}
+		
 	}
 	return UPDATE_CONTINUE;
 }
