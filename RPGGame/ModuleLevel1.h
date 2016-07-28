@@ -16,11 +16,13 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	void open_close_door();
+
 public:
 	int map[10][10];
-	bool islevel3;
 
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* test_graphics = nullptr;
 
 	//Parallel Walls
 	SDL_Rect lvl1_parallel_wall;
@@ -41,6 +43,19 @@ public:
 
 	//Close Wall
 	SDL_Rect background_wall;
+
+	//Doors
+	SDL_Rect lvl1_door;
+	SDL_Rect lvl2_door;
+	SDL_Rect lvl3_door;
+	SDL_Rect lvl4_door;
+
+	//Opened Doors
+	SDL_Rect lvl1_opened_door;
+	SDL_Rect lvl2_opened_door;
+	SDL_Rect lvl3_opened_door;
+	SDL_Rect lvl4_opened_door;
+
 };
 
 #endif

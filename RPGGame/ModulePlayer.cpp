@@ -94,7 +94,7 @@ void ModulePlayer::PlayerInput()
 	//F2 - ENEMY SOUTH FROM PLAYER
 	//F3 - ENEMY EAST FROM PLAYER
 	//F4 - ENEMY WEST FROM PLAYER
-
+	if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_UP)App->level1->open_close_door();
 	if (App->input->keyboard[SDL_SCANCODE_F1] == KEY_STATE::KEY_UP)
 	{
 		srand(time(NULL));
@@ -598,7 +598,7 @@ void ModulePlayer::PlayerInput()
 	{
 		if (dir == NORTH)
 		{
-			if (App->level1->map[position.y - 1][position.x] != 0)
+			if (App->level1->map[position.y - 1][position.x] != 0 && App->level1->map[position.y - 1][position.x] != 3)
 			{
 				ChangeTile(dir);
 			}
@@ -606,7 +606,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == SOUTH)
 		{
-			if (App->level1->map[position.y + 1][position.x] != 0)
+			if (App->level1->map[position.y + 1][position.x] != 0 && App->level1->map[position.y + 1][position.x] != 3)
 			{
 				ChangeTile(dir);
 			}
@@ -614,7 +614,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == EAST)
 		{
-			if (App->level1->map[position.y][position.x + 1] != 0)
+			if (App->level1->map[position.y][position.x + 1] != 0 && App->level1->map[position.y][position.x + 1] != 3)
 			{
 				ChangeTile(dir);
 			}
@@ -622,7 +622,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == WEST)
 		{
-			if (App->level1->map[position.y][position.x - 1] != 0)
+			if (App->level1->map[position.y][position.x - 1] != 0 && App->level1->map[position.y][position.x - 1] != 3)
 			{
 				ChangeTile(dir);
 			}
@@ -636,7 +636,7 @@ void ModulePlayer::PlayerInput()
 	{
 		if (dir == NORTH)
 		{
-			if (App->level1->map[position.y + 1][position.x] != 0)
+			if (App->level1->map[position.y + 1][position.x] != 0 && App->level1->map[position.y + 1][position.x] != 3)
 			{
 				dir = SOUTH;
 				ChangeTile(dir);
@@ -646,7 +646,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == SOUTH)
 		{
-			if (App->level1->map[position.y - 1][position.x] != 0)
+			if (App->level1->map[position.y - 1][position.x] != 0 && App->level1->map[position.y - 1][position.x] != 3)
 			{
 				dir = NORTH;
 				ChangeTile(dir);
@@ -656,7 +656,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == EAST)
 		{
-			if (App->level1->map[position.y][position.x - 1] != 0)
+			if (App->level1->map[position.y][position.x - 1] != 0 && App->level1->map[position.y][position.x - 1] != 3)
 			{
 				dir = WEST;
 				ChangeTile(dir);
@@ -666,7 +666,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == WEST)
 		{
-			if (App->level1->map[position.y][position.x + 1] != 0)
+			if (App->level1->map[position.y][position.x + 1] != 0 && App->level1->map[position.y][position.x + 1] != 3)
 			{
 				dir = EAST;
 				ChangeTile(dir);
@@ -682,7 +682,7 @@ void ModulePlayer::PlayerInput()
 	{
 		if (dir == NORTH)
 		{
-			if (App->level1->map[position.y][position.x + 1] != 0)
+			if (App->level1->map[position.y][position.x + 1] != 0 && App->level1->map[position.y][position.x + 1] != 3)
 			{
 				dir = EAST;
 				ChangeTile(dir);
@@ -691,7 +691,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == SOUTH)
 		{
-			if (App->level1->map[position.y][position.x - 1] != 0)
+			if (App->level1->map[position.y][position.x - 1] != 0 && App->level1->map[position.y][position.x - 1] != 3)
 			{
 				dir = WEST;
 				ChangeTile(dir);
@@ -700,7 +700,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == EAST)
 		{
-			if (App->level1->map[position.y + 1][position.x] != 0)
+			if (App->level1->map[position.y + 1][position.x] != 0 && App->level1->map[position.y + 1][position.x] != 3)
 			{
 				dir = SOUTH;
 				ChangeTile(dir);
@@ -709,7 +709,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == WEST)
 		{
-			if (App->level1->map[position.y - 1][position.x] != 0)
+			if (App->level1->map[position.y - 1][position.x] != 0 && App->level1->map[position.y - 1][position.x] != 3)
 			{
 				dir = NORTH;
 				ChangeTile(dir);
@@ -724,7 +724,7 @@ void ModulePlayer::PlayerInput()
 	{
 		if (dir == NORTH)
 		{
-			if (App->level1->map[position.y][position.x - 1] != 0)
+			if (App->level1->map[position.y][position.x - 1] != 0 && App->level1->map[position.y][position.x - 1] != 3)
 			{
 				dir = WEST;
 				ChangeTile(dir);
@@ -733,7 +733,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == SOUTH)
 		{
-			if (App->level1->map[position.y][position.x + 1] != 0)
+			if (App->level1->map[position.y][position.x + 1] != 0 && App->level1->map[position.y][position.x + 1] != 3)
 			{
 				dir = EAST;
 				ChangeTile(dir);
@@ -742,7 +742,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == EAST)
 		{
-			if (App->level1->map[position.y - 1][position.x] != 0)
+			if (App->level1->map[position.y - 1][position.x] != 0 && App->level1->map[position.y - 1][position.x] != 3)
 			{
 				dir = NORTH;
 				ChangeTile(dir);
@@ -751,7 +751,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == WEST)
 		{
-			if (App->level1->map[position.y + 1][position.x] != 0)
+			if (App->level1->map[position.y + 1][position.x] != 0 && App->level1->map[position.y + 1][position.x] != 3)
 			{
 				dir = SOUTH;
 				ChangeTile(dir);
