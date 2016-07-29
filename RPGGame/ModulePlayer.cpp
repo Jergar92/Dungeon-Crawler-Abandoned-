@@ -52,7 +52,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	direct = App->texture->Load("Direcion.png");
+	direct = App->texture->Load("directions.png");
 	g_corridor = App->texture->Load("Prube_sprite_recto.png");
 	g_corridorv1 = App->texture->Load("Prube_sprite_rectov1.png");
 	g_directions = App->texture->Load("Prube_sprite_movimiento.png");
@@ -864,23 +864,23 @@ void ModulePlayer::CompassPrint(int direction)
 	switch (direction)
 	{
 	case NORTH:
-		compass = { 8, 0, 18, 25 };
-		App->render->Blit(direct, 0, 0, &compass);
+		compass = { 0, 0, 200, 40 };
+		App->render->Blit(direct, 200, 0, &compass);
 		break;
 
 	case SOUTH:
-		compass = { 60, 0, 16, 25 };
-		App->render->Blit(direct, 10, 10, &compass);
+		compass = { 0, 80, 200, 40 };
+		App->render->Blit(direct, 200, 0, &compass);
 		break;
 
 	case EAST:
-		compass = { 78, 0, 15, 25 };
-		App->render->Blit(direct, 0, 0, &compass);
+		compass = { 0, 40, 200, 40 };
+		App->render->Blit(direct, 200, 0, &compass);
 		break;
 
 	case WEST:
-		compass = { 28, 0, 30, 25 };
-		App->render->Blit(direct, 0, 0, &compass);
+		compass = { 0, 120, 200, 40 };
+		App->render->Blit(direct, 200, 0, &compass);
 		break;
 
 	default: LOG("ERROR printing compass");
