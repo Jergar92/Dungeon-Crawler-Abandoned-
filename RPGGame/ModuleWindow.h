@@ -26,6 +26,11 @@ public:
 
 	//The surface contained by the window
 	SDL_Surface* screen_surface = nullptr;
+
+	bool full_screen = false;
+	void ChangeWindowSize();
+	SDL_Event event;
+
 };
 
 #endif // __ModuleWindow_H__

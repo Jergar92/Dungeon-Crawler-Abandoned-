@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleWindow.h"
+#include "ModuleRender.h"
 #include "SDL/include/SDL.h"
 
 ModuleWindow::ModuleWindow() : Module()
@@ -32,6 +33,10 @@ bool ModuleWindow::Init()
 		if (WIN_FULLSCREEN == true)
 			flags |= SDL_WINDOW_FULLSCREEN;
 
+		if (full_screen == true)
+			flags |= SDL_WINDOW_FULLSCREEN;
+
+
 		if (WIN_BORDERLESS == true)
 			flags |= SDL_WINDOW_BORDERLESS;
 
@@ -54,6 +59,31 @@ bool ModuleWindow::Init()
 		}
 	}
 	return ret;
+}
+
+void ModuleWindow::ChangeWindowSize()
+{
+	
+	int width = SCREEN_WIDTH * SCREEN_SIZE;
+	int height = SCREEN_HEIGHT * SCREEN_SIZE;
+
+	if (full_screen == true)
+	{
+		SDL_DisplayMode DM;
+		SDL_GetCurrentDisplayMode(0, &DM);
+		width = DM.w;
+		height = DM.h;
+	}
+
+	SDL_SetWindowSize(window, width, height);
+	
+
+	/*int width = SCREEN_WIDTH * SCREEN_SIZE;
+	int height = SCREEN_HEIGHT * SCREEN_SIZE;
+	Uint32 flags = SDL_WINDOW_SHOWN;
+
+	if (full_screen == true)
+		SDL_BlitSurface()*/
 }
 
 // Called before quitting

@@ -5,6 +5,7 @@
 #include "ModulePlayer.h"
 #include "ModuleLevel1.h"
 #include "GUI_Movement.h"
+#include "ModuleWindow.h"
 #include <stdlib.h>
 #include <time.h>
 
@@ -769,17 +770,25 @@ void ModulePlayer::PlayerInput()
 
 	//ROTATION
 	//RIGHT
-	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_UP || App->gui_movement->click_E == true) //TODO: MOUSE CLICK
+	if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_UP || App->gui_movement->click_E == true)
 	{
 		PlayerRotation(dir, RIGHT);
 		App->gui_movement->click_E = false;
 	}
 
 	//LEFT
-	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_UP || App->gui_movement->click_Q == true) //TODO: MOUSE CLICK
+	if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_UP || App->gui_movement->click_Q == true)
 	{
 		PlayerRotation(dir, LEFT);
 		App->gui_movement->click_Q = false;
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_LALT] == KEY_STATE::KEY_REPEAT && App->input->keyboard[SDL_SCANCODE_RETURN] == KEY_STATE::KEY_REPEAT)
+	{
+		if (App->window->full_screen == false)		{ App->window->full_screen = true; }
+		else if (App->window->full_screen == true)	{ App->window->full_screen = false; }
+
+		App->window->ChangeWindowSize();
 	}
 }
 
