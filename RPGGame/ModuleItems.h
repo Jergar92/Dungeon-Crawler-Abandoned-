@@ -6,8 +6,6 @@
 #include "String.h"
 #include "DoubleList.h"
 
-#define NUM_ITEMS 1
-
 enum item_type{
 	WEAPON,
 	SHIELD,
@@ -37,6 +35,7 @@ public:
 
 public:
 	DoubleList<Item*> inventory;
+	Item* Key; //MagneticCard(?)
 };
 
 #endif //__ModuleItems_H__

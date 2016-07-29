@@ -3,16 +3,12 @@
 
 ModuleItems::ModuleItems()
 {
-	Item* Key; //MagneticCard(?)
 	inventory.push_back(Key = new Item("Key", "opens doors", 0, KEYS));
 }
 
 ModuleItems::~ModuleItems()
 {
-	for (int i = 0; i < NUM_ITEMS; i++)
-	{
-		//TODO: Remove memory leaks from list
-	}
+	delete Key;
 	inventory.clear();
 }
 
