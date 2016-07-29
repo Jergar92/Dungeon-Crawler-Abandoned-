@@ -6,7 +6,6 @@
 #include "p2Point.h"
 #include "Vector.h"
 #include "String.h"
-#include "DoubleList.h"
 
 struct SDL_Texture;
 #define NUM_PLAYERS 4
@@ -39,23 +38,6 @@ public:
 	bool PlayerDead = false;
 };
 
-enum item_type{
-	WEAPON,
-	SHIELD,
-	ARMOUR,
-	CONSUMABLE,		//Potions or more dmg/def temporary (?)
-	KEYS
-};
-
-class Items{
-	Items(String name, String description, int value, item_type type) : name(name), description(description), value(value), type(type){}
-	~Items(){}
-	String name;
-	String description;
-	int value;
-	item_type type;
-};
-
 class ModulePlayer : public Module
 {
 public:
@@ -68,8 +50,6 @@ public:
 
 public:
 	Vector<Player*> formation;
-	DoubleList<Items*> inventory;
-
 
 	SDL_Texture* g_corridor = nullptr;
 	SDL_Texture* g_corridorv1 = nullptr;

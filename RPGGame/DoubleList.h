@@ -113,10 +113,14 @@ public:
 	{
 		if (first_node != nullptr)
 		{
-			nodeD* temp = first_node;
-			first_node = first_node->next;
-			first_node->previous = nullptr;
-			delete temp;
+			nodeD* del = first_node;
+			if (first_node->next != nullptr)
+			{
+				first_node = first_node->next;
+				first_node->previous = nullptr;
+			}
+			else{ first_node = nullptr; }
+			delete del;
 			return true;
 		}
 		return false;

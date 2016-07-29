@@ -14,6 +14,7 @@
 #include "GUI_Movement.h"
 #include "ModuleEnemies.h"
 #include "ModulePArticles.h"
+#include "ModuleItems.h"
 
 Application::Application()
 {
@@ -34,7 +35,7 @@ Application::Application()
 	modules[i++] = menu_screen = new ModuleStartScreen();
 	modules[i++] = collider = new ModuleCollider();
 	modules[i++] = fade = new ModuleFadeToBlack();
-
+	modules[i++] = items = new ModuleItems();
 }
 
 Application::~Application()

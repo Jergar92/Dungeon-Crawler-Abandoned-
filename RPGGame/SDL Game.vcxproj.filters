@@ -83,6 +83,9 @@
     <ClCompile Include="GUI_Characters.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleItems.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -159,6 +162,9 @@
     </ClInclude>
     <ClInclude Include="DoubleList.h">
       <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleItems.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
