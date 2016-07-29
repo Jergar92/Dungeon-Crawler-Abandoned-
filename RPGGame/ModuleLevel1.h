@@ -45,17 +45,20 @@ public:
 	SDL_Rect background_wall;
 
 	//Doors
-	SDL_Rect lvl1_door;
-	SDL_Rect lvl2_door;
-	SDL_Rect lvl3_door;
-	SDL_Rect lvl4_door;
+	SDL_Rect lvl1_right_opened_door;
+	SDL_Rect lvl2_right_opened_door;
+	SDL_Rect lvl3_right_opened_door;
+	SDL_Rect lvl4_right_opened_door;
 
-	//Opened Doors
-	SDL_Rect lvl1_opened_door;
-	SDL_Rect lvl2_opened_door;
-	SDL_Rect lvl3_opened_door;
-	SDL_Rect lvl4_opened_door;
+	SDL_Rect lvl1_left_opened_door;
+	SDL_Rect lvl2_left_opened_door;
+	SDL_Rect lvl3_left_opened_door;
+	SDL_Rect lvl4_left_opened_door;
 
+	SDL_Rect lvl1_closed_door;
+	SDL_Rect lvl2_closed_door;
+	SDL_Rect lvl3_closed_door;
+	SDL_Rect lvl4_closed_door;
 };
 
 #endif
