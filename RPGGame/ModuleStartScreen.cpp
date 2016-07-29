@@ -17,7 +17,7 @@ ModuleStartScreen::~ModuleStartScreen()
 
 bool ModuleStartScreen::Start()
 {
-	graphics = App->texture->Load("NicoProJPG.png");
+	graphics = App->texture->Load("Intro.png");
 	return true;
 }
 
