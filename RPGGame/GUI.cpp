@@ -5,7 +5,7 @@
 
 ModuleGui::ModuleGui()
 {
-	background = { 0, 0, 200, 600 };
+	background = { 0, 0, 800, 600 };
 }
 
 ModuleGui::~ModuleGui()
@@ -20,7 +20,7 @@ bool ModuleGui::Start()
 
 update_status ModuleGui::Update()
 {
-	App->render->Blit(graphics, 600, 0, &background);
+	App->render->Blit(graphics, 0, 0, &background);
 
 	
 	return UPDATE_CONTINUE;
