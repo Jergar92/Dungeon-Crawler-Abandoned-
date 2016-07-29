@@ -23,10 +23,29 @@ ModulePlayer::ModulePlayer()
 	//Player position
 	position.x = 1;
 	position.y = 2;
+
+	Player* Warrior;
+	Player* Rogue;
+	Player* Archer;
+	Player* Mage;
+	formation.PushBack(Warrior = new Player("Warrior", 2000, 2000, 250, 150, 200));
+	formation.PushBack(Rogue = new Player("Rogue", 1250, 1250, 500, 200, 100));
+	formation.PushBack(Archer = new Player("Archer", 1100, 1100, 500, 250, 50));
+	formation.PushBack(Mage = new Player("Mage", 1100, 1100, 1000, 250, 50));
 }
 
 ModulePlayer::~ModulePlayer()
-{}
+{
+	if (App->player->formation[0]->PlayerDead == true)	{ LOG("WARRIOR DEAD"); }
+	if (App->player->formation[1]->PlayerDead == true)	{ LOG("ROGUE DEAD"); }
+	if (App->player->formation[2]->PlayerDead == true)	{ LOG("ARCHER DEAD"); }
+	if (App->player->formation[3]->PlayerDead == true)	{ LOG("MAGE DEAD"); }
+	
+	for (int i = 0; i < NUM_PLAYERS; i++)
+	{
+		delete formation[i];
+	}
+}
 
 // Load assets
 bool ModulePlayer::Start()
@@ -42,7 +61,6 @@ bool ModulePlayer::Start()
 	g_exit = App->texture->Load("Prube_sprite_exit.png");
 	dir = EAST;
 
-	CreatePlayers();
 	return ret;
 }
 
@@ -66,26 +84,6 @@ update_status ModulePlayer::Update()
 		CompassPrint(dir);
 	}
 	return UPDATE_CONTINUE;
-}
-
-void ModulePlayer::CreatePlayers()
-{
-	Player* Warrior;
-	Player* Rogue;
-	Player* Archer;
-	Player* Mage;
-	formation.PushBack(Warrior = new Player("Warrior", 2000, 2000, 250, 150, 200));
-	formation.PushBack(Rogue = new Player("Rogue", 1250, 1250, 500, 200, 100));
-	formation.PushBack(Archer = new Player("Archer", 1100, 1100, 500, 250, 50));
-	formation.PushBack(Mage = new Player("Mage", 1100, 1100, 1000, 250, 50));
-}
-
-void ModulePlayer::DeletePlayers()
-{
-	for (int i = 0; i < NUM_PLAYERS; i++)
-	{
-		delete formation[i];
-	}
 }
 
 void ModulePlayer::PlayerInput()

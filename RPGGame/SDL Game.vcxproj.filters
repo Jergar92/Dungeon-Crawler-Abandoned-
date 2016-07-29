@@ -157,5 +157,8 @@
     <ClInclude Include="GUI_Characters.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="DoubleList.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
