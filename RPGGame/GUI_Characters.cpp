@@ -70,7 +70,7 @@ GUI_Character::~GUI_Character()
 
 bool GUI_Character::Start()
 {
-	//Characters_sprites = App->texture->Load("CharacterSprites.png");
+	Characters_sprites = App->texture->Load("CharacterSprites.png");
 	
 	Character_one_place = { 606, 14, 88, 88 };
 	Character_one_life_place = { 708, 14, 88, 16 };
