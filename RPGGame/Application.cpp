@@ -12,6 +12,7 @@
 #include "GUI.h"
 #include "GUI_Characters.h"
 #include "GUI_Movement.h"
+#include "GUI_Inventory.h"
 #include "ModuleEnemies.h"
 #include "ModulePArticles.h"
 #include "ModuleItems.h"
@@ -20,8 +21,9 @@ Application::Application()
 {
 	int i = 0;
 	modules[i++] = window = new ModuleWindow();
-	modules[i++] = render = new ModuleRender();
 	modules[i++] = input = new ModuleInput();
+
+	modules[i++] = render = new ModuleRender();
 	modules[i++] = texture = new ModuleTextures();
 	modules[i++] = audio = new ModuleAudio();
 	modules[i++] = level1 = new ModuleLevel1();
@@ -30,8 +32,8 @@ Application::Application()
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = gui = new ModuleGui();
 	modules[i++] = gui_character= new GUI_Character();
-
 	modules[i++] = gui_movement = new GUI_Movement();
+	modules[i++] = gui_inventory = new GUI_Inventory();
 	modules[i++] = menu_screen = new ModuleStartScreen();
 	modules[i++] = collider = new ModuleCollider();
 	modules[i++] = fade = new ModuleFadeToBlack();

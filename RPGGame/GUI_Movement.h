@@ -55,9 +55,6 @@ public:
 	bool CleanUp();
 	void Retexture();
 public:
-
-	bool CheckButton(const SDL_Rect* button, int x, int y) const;
-
 	//sprites
 	SDL_Texture* Keys_wasd = nullptr;
 	SDL_Rect Key_w_dwn;
@@ -82,6 +79,7 @@ public:
 	bool click_D = false;
 	bool movement = false;
 	//Button* button[MAX_BUTTON];
+	bool CheckButton(const SDL_Rect* button, int x, int y) const;
 
 };
 

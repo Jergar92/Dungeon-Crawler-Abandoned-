@@ -61,44 +61,44 @@ update_status GUI_Movement::Update()
 	Retexture();
 	if (App->input->mouse_buttons[SDL_BUTTON_LEFT] == KEY_STATE::KEY_DOWN) // if the user clicked a mousebutton
 	{
-		if (App->gui_movement->CheckButton(&App->gui_movement->Rect_W, App->input->mouse_x, App->input->mouse_y)){
+		if (CheckButton(&App->gui_movement->Rect_W, App->input->mouse_x, App->input->mouse_y)){
 			myMovementState = PRES_W;
 			Retexture();
 		}
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_Q, App->input->mouse_x, App->input->mouse_y)){
+		else if (CheckButton(&App->gui_movement->Rect_Q, App->input->mouse_x, App->input->mouse_y)){
 			myMovementState = PRES_Q;
 			Retexture();
 		}
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_E, App->input->mouse_x, App->input->mouse_y)){
+		else if (CheckButton(&App->gui_movement->Rect_E, App->input->mouse_x, App->input->mouse_y)){
 			myMovementState = PRES_E;
 			Retexture();
 		}
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_A, App->input->mouse_x, App->input->mouse_y)){
+		else if (CheckButton(&App->gui_movement->Rect_A, App->input->mouse_x, App->input->mouse_y)){
 			myMovementState = PRES_A;
 			Retexture();
 		}
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_S, App->input->mouse_x, App->input->mouse_y)){
+		else if (CheckButton(&App->gui_movement->Rect_S, App->input->mouse_x, App->input->mouse_y)){
 			myMovementState = PRES_S;
 			Retexture();
 		}
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_D, App->input->mouse_x, App->input->mouse_y)){
+		else if (CheckButton(&App->gui_movement->Rect_D, App->input->mouse_x, App->input->mouse_y)){
 			myMovementState = PRES_D;}
 			Retexture();
 
 	}
 	else if (App->input->mouse_buttons[SDL_BUTTON_LEFT] == KEY_STATE::KEY_UP) // if the user clicked a mousebutton
 	{
-		if (App->gui_movement->CheckButton(&App->gui_movement->Rect_W, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_W)
+		if (CheckButton(&App->gui_movement->Rect_W, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_W)
 			click_W = true;
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_Q, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_Q)
+		else if (CheckButton(&App->gui_movement->Rect_Q, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_Q)
 			click_Q = true;
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_E, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_E)
+		else if (CheckButton(&App->gui_movement->Rect_E, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_E)
 			click_E = true;
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_A, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_A)
+		else if (CheckButton(&App->gui_movement->Rect_A, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_A)
 			click_A = true;
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_S, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_S)
+		else if (CheckButton(&App->gui_movement->Rect_S, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_S)
 			click_S = true;
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_D, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_D)
+		else if (CheckButton(&App->gui_movement->Rect_D, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_D)
 			click_D = true;
 
 		myMovementState = NONE;

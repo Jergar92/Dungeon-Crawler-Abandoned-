@@ -3,7 +3,6 @@
 #include "ModuleTexture.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
-#include "ModuleInput.h"
 #include "ModuleCollider.h"
 
 GUI_Character::GUI_Character()
@@ -71,31 +70,6 @@ GUI_Character::~GUI_Character()
 bool GUI_Character::Start()
 {
 	Characters_sprites = App->texture->Load("CharacterSprites.png");
-	/*
-	Character_one_place = { 606, 14, 88, 88 };
-	Character_one_life_place = { 708, 14, 88, 16 };
-	Character_one_mana_place = { 708, 37, 88, 16 };
-	Atack_one_place = { 708, 60, 42, 42 };
-	Special_Atack_one_place = { 754, 60, 42, 42 };
-
-	Character_two_place = { 606, 116, 88, 88 };
-	Character_two_life_place = { 708, 116, 88, 16 };
-	Character_two_mana_place = { 708, 139, 88, 16 };
-	Atack_two_place = { 708, 162, 42, 42 };
-	Special_Atack_two_place = { 754, 162, 42, 42 };
-
-	Character_three_place = { 606, 218, 88, 88 };
-	Character_three_life_place = { 708, 218, 88, 16 };
-	Character_three_mana_place = { 708, 241, 88, 16 };
-	Atack_three_place = { 708, 264, 42, 42 };
-	Special_Atack_three_place = { 754, 264, 42, 42 };
-
-	Character_four_place = { 606, 320, 88, 88 };
-	Character_four_life_place = { 708, 320, 88, 16 };
-	Character_four_mana_place = { 708, 343, 88, 16 };
-	Atack_four_place = { 708, 366, 42, 42 };
-	Special_Atack_four_place = { 754, 366, 42, 42 };
-	*/
 	bool ret = true;
 	LOG("Loading frontground assets");
 	return ret;
@@ -160,7 +134,6 @@ update_status GUI_Character::Update()
 			character[i]->Character_life = { 396, 0, (App->player->formation[i]->hp * 96) / App->player->formation[i]->max_hp, 12 };
 			character[i]->Character_mana = { 396, 12, (App->player->formation[i]->mp * 96) / App->player->formation[i]->max_mp, 12 };
 		}
-		SDL_Event Event;
 		bool running = true;
 		Retexture();
 		
@@ -168,11 +141,6 @@ update_status GUI_Character::Update()
 	return UPDATE_CONTINUE;
 }
 
-bool GUI_Character::CheckButton(const SDL_Rect* button, int x, int y) const
-{
-	return (x< button->x*SCREEN_SIZE + button->w*SCREEN_SIZE  && x >= button->x*SCREEN_SIZE &&
-		y < button->y*SCREEN_SIZE + button->h*SCREEN_SIZE  && y >= button->y*SCREEN_SIZE);
-}
 
 Character::Character(){
 
