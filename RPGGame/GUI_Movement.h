@@ -66,13 +66,6 @@ public:
 	SDL_Rect Key_e_dwn;
 	SDL_Rect Key_s_dwn;
 	SDL_Rect Key_d_dwn;
-
-	SDL_Rect Key_w_up;
-	SDL_Rect Key_q_up;
-	SDL_Rect Key_a_up;
-	SDL_Rect Key_e_up;
-	SDL_Rect Key_s_up;
-	SDL_Rect Key_d_up;
 	//place in screen
 	SDL_Rect Rect_Q;
 	SDL_Rect Rect_W;
