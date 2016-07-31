@@ -3,11 +3,15 @@
 #include "ModuleInput.h"
 #include "SDL/include/SDL.h"
 #include "ModulePlayer.h"
-
+#include "ModuleRender.h"
 ModuleInput::ModuleInput() : Module()
 {
-	for (uint i = 0; i < MAX_KEYS; ++i)
+	for (uint i = 0; i < MAX_KEYS; ++i){
 		keyboard[i] = KEY_IDLE;
+	}
+	memset(mouse_buttons, KEY_IDLE, sizeof(KEY_STATE) * MAX_MOUSE_BUTTONS);
+	dropped_file[0] = '\0';
+	file_was_dropped = false;
 }
 
 // Destructor
@@ -26,12 +30,16 @@ bool ModuleInput::Init()
 		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
+
+	else
+		SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
 	return ret;
 }
 
 // Called every draw update
 update_status ModuleInput::PreUpdate()
 {
+	//Keyboard Control
 	SDL_PumpEvents();
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
 
@@ -52,8 +60,63 @@ update_status ModuleInput::PreUpdate()
 				keyboard[i] = KEY_IDLE;
 		}
 	}
+	//Mouse Control
+	Uint32 buttons = SDL_GetMouseState(&mouse_x, &mouse_y);
 
-	if (keyboard[SDL_SCANCODE_ESCAPE])
+	mouse_x /= SCREEN_SIZE;
+	mouse_y /= SCREEN_SIZE;
+	mouse_z = 0;
+
+	for (int i = 0; i < MAX_MOUSE_BUTTONS; ++i)
+	{
+		if (buttons & SDL_BUTTON(i))
+		{
+			if (mouse_buttons[i] == KEY_IDLE)
+				mouse_buttons[i] = KEY_DOWN;
+			else
+				mouse_buttons[i] = KEY_REPEAT;
+		}
+		else
+		{
+			if (mouse_buttons[i] == KEY_REPEAT || mouse_buttons[i] == KEY_DOWN)
+				mouse_buttons[i] = KEY_UP;
+			else
+				mouse_buttons[i] = KEY_IDLE;
+		}
+	}
+	//
+	bool quit = false;
+	SDL_Event e;
+	while (SDL_PollEvent(&e))
+	{
+		switch (e.type)
+		{
+		case SDL_MOUSEWHEEL:
+			mouse_z = e.wheel.y;
+			break;
+
+		case SDL_DROPFILE:
+			strcpy_s(dropped_file, e.drop.file);
+			SDL_free(e.drop.file);
+			file_was_dropped = true;
+			break;
+
+		case SDL_QUIT:
+			quit = true;
+			break;
+
+		case SDL_WINDOWEVENT:
+		{
+			if (e.window.event == SDL_WINDOWEVENT_RESIZED)
+			{
+				App->render->camera.w = e.window.data1;
+				App->render->camera.h = e.window.data2;
+			}
+		}
+		}
+	}
+	//Quit Condition
+	if (quit == true || keyboard[SDL_SCANCODE_ESCAPE])
 	{
 
 		return update_status::UPDATE_STOP;

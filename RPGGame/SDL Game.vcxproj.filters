@@ -86,6 +86,9 @@
     <ClCompile Include="ModuleItems.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="GUI_Inventory.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -165,6 +168,9 @@
     </ClInclude>
     <ClInclude Include="ModuleItems.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI_Inventory.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

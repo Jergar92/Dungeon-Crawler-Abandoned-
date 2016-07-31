@@ -16,6 +16,7 @@
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="GUI.cpp" />
     <ClCompile Include="GUI_Characters.cpp" />
+    <ClCompile Include="GUI_Inventory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollider.cpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="GUI.h" />
     <ClInclude Include="GUI_Characters.h" />
+    <ClInclude Include="GUI_Inventory.h" />
     <ClInclude Include="MemoryLeaks.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />

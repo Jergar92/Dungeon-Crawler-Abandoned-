@@ -75,61 +75,48 @@ void GUI_Movement::Retexture(){
 }
 update_status GUI_Movement::Update()
 {
-
-
-	
-	SDL_Event Event;
-	bool running = true;
+ 	bool running = true;
 	Retexture();
-	while (SDL_PollEvent(&Event))
+	if (App->input->mouse_buttons[SDL_BUTTON_LEFT] == KEY_STATE::KEY_DOWN) // if the user clicked a mousebutton
 	{
-		switch (Event.type)
-		{
-		case SDL_QUIT:
-			running = false;
-			break;
-		}
-	}
-	if (Event.type == SDL_MOUSEBUTTONDOWN) // if the user clicked a mousebutton
-	{
-		if (App->gui_movement->CheckButton(&App->gui_movement->Rect_W, Event.button.x, Event.button.y)){
+		if (App->gui_movement->CheckButton(&App->gui_movement->Rect_W, App->input->mouse_x, App->input->mouse_y)){
 			myMovementState = PRES_W;
 			Retexture();
 		}
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_Q, Event.button.x, Event.button.y)){
+		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_Q, App->input->mouse_x, App->input->mouse_y)){
 			myMovementState = PRES_Q;
 			Retexture();
 		}
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_E, Event.button.x, Event.button.y)){
+		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_E, App->input->mouse_x, App->input->mouse_y)){
 			myMovementState = PRES_E;
 			Retexture();
 		}
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_A, Event.button.x, Event.button.y)){
+		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_A, App->input->mouse_x, App->input->mouse_y)){
 			myMovementState = PRES_A;
 			Retexture();
 		}
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_S, Event.button.x, Event.button.y)){
+		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_S, App->input->mouse_x, App->input->mouse_y)){
 			myMovementState = PRES_S;
 			Retexture();
 		}
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_D, Event.button.x, Event.button.y)){
+		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_D, App->input->mouse_x, App->input->mouse_y)){
 			myMovementState = PRES_D;}
 			Retexture();
 
 	}
-	else if (Event.type == SDL_MOUSEBUTTONUP) // if the user clicked a mousebutton
+	else if (App->input->mouse_buttons[SDL_BUTTON_LEFT] == KEY_STATE::KEY_UP) // if the user clicked a mousebutton
 	{
-		if (App->gui_movement->CheckButton(&App->gui_movement->Rect_W, Event.button.x, Event.button.y) && myMovementState == PRES_W)
+		if (App->gui_movement->CheckButton(&App->gui_movement->Rect_W, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_W)
 			click_W = true;
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_Q, Event.button.x, Event.button.y) && myMovementState == PRES_Q)
+		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_Q, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_Q)
 			click_Q = true;
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_E, Event.button.x, Event.button.y) && myMovementState == PRES_E)
+		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_E, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_E)
 			click_E = true;
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_A, Event.button.x, Event.button.y) && myMovementState == PRES_A)
+		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_A, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_A)
 			click_A = true;
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_S, Event.button.x, Event.button.y) && myMovementState == PRES_S)
+		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_S, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_S)
 			click_S = true;
-		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_D, Event.button.x, Event.button.y) && myMovementState == PRES_D)
+		else if (App->gui_movement->CheckButton(&App->gui_movement->Rect_D, App->input->mouse_x, App->input->mouse_y) && myMovementState == PRES_D)
 			click_D = true;
 
 		myMovementState = NONE;
