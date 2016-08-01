@@ -31,3 +31,13 @@ bool ModuleGui::CleanUp()
 	App->texture->Unload(graphics);
 	return true;
 }
+
+bool ModuleGui::CheckButton(const SDL_Rect* button, int x, int y) const
+{
+	return (x< button->x*SCREEN_SIZE + button->w*SCREEN_SIZE  && x >= button->x*SCREEN_SIZE &&
+		y < button->y*SCREEN_SIZE + button->h*SCREEN_SIZE  && y >= button->y*SCREEN_SIZE);
+}
+bool ModuleGui::CheckButtonCircle(const Circle* button, int x, int y) const
+{
+	return ((button->positionX - x)*(button->positionX - x) + (button->positionY - y)*(button->positionY - y)) < button->radius*button->radius;
+}

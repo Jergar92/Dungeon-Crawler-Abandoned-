@@ -1,4 +1,5 @@
 #include "SDL/include/SDL.h"
+#include "GUI.h"
 #include "GUI_Inventory.h"
 #include "ModuleCollider.h"
 #include "ModuleTexture.h"
@@ -16,7 +17,8 @@ GUI_Inventory::~GUI_Inventory()
 bool GUI_Inventory::Start()
 {
 	Inventory = App->texture->Load("Inventory.png");
-	InvectoryIs = OFF;
+	InventoryIs = OFF;
+	InventoryCharacter = NOCHARACTER;
 	Player1 = { 600, 0, 80, 80 };
 	Player2 = { 450, 0, 80, 80 };
 	Inventory_background = { 0, 0, 306, 401 };
@@ -34,8 +36,17 @@ bool GUI_Inventory::CleanUp()
 	return true;
 }
 void GUI_Inventory::Retexture(){
-	if (InvectoryIs != OFF){
+	if (InventoryIs != OFF){
 		App->render->Blit(Inventory, 490 * SCREEN_SIZE, 0 * SCREEN_SIZE, &Inventory_background);
+		switch (InventoryCharacter)
+		{
+		case CHARACTER_ONE:
+		case CHARACTER_TWO:
+		case CHARACTER_THREE:
+		case CHARACTER_FOUR:
+		default:
+			break;
+		}
 	}
 
 }
@@ -44,23 +55,21 @@ update_status GUI_Inventory::Update()
 	Retexture();
 	if (App->input->mouse_buttons[SDL_BUTTON_LEFT] == KEY_STATE::KEY_DOWN) // if the user clicked a mousebutton
 	{
-		if (CheckButton(&Player1, App->input->mouse_x, App->input->mouse_y) && InvectoryIs==OFF){
-			InvectoryIs = ON;
+		if (App->gui->CheckButton(&Player1, App->input->mouse_x, App->input->mouse_y) && InventoryIs == OFF){
+			InventoryIs = ON;
+			InventoryCharacter = CHARACTER_ONE;
 			Retexture();
 		}
-		if (CheckButton(&Player2, App->input->mouse_x, App->input->mouse_y) && InvectoryIs == ON){
-			InvectoryIs = OFF;
+		if (App->gui->CheckButton(&Player2, App->input->mouse_x, App->input->mouse_y) && InventoryIs == ON){
+			InventoryIs = OFF;
+			InventoryCharacter = NO_CHARACTER;
 			Retexture();
 		}
 	}
 		return UPDATE_CONTINUE;
 	
 }
-bool GUI_Inventory::CheckButton(const SDL_Rect* button, int x, int y) const
-{
-	return (x< button->x*SCREEN_SIZE + button->w*SCREEN_SIZE  && x >= button->x*SCREEN_SIZE &&
-		y < button->y*SCREEN_SIZE + button->h*SCREEN_SIZE  && y >= button->y*SCREEN_SIZE);
-}
+
 Character_Icon::Character_Icon(){
 
 }

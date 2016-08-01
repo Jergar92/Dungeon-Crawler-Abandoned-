@@ -5,7 +5,7 @@
 struct SDL_Texture;
 
 enum InventoryActive { ON, OFF };
-
+enum currentCharracter{ NO_CHARACTER, CHARACTER_ONE, CHARACTER_TWO, CHARACTER_THREE, CHARACTER_FOUR };
 struct Character_Icon{
 public:
 	Character_Icon();
@@ -33,7 +33,8 @@ class GUI_Inventory : public Module
 public:
 	GUI_Inventory();
 	~GUI_Inventory();
-	InventoryActive InvectoryIs;
+	InventoryActive InventoryIs;
+	currentCharracter InventoryCharacter;
 	SDL_Rect Player1;
 	SDL_Rect Player2;
 	SDL_Rect Player3;
@@ -43,9 +44,6 @@ public:
 	bool CleanUp();
 	void Retexture();
 public:
-
-	bool CheckButton(const SDL_Rect* button, int x, int y) const;
-
 	//sprites
 
 	SDL_Texture* Characters_sprites = nullptr;

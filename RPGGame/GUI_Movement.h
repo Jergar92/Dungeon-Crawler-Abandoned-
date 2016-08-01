@@ -79,7 +79,6 @@ public:
 	bool click_D = false;
 	bool movement = false;
 	//Button* button[MAX_BUTTON];
-	bool CheckButton(const SDL_Rect* button, int x, int y) const;
 
 };
 
