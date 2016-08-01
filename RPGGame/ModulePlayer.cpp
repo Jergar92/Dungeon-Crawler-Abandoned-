@@ -28,7 +28,7 @@ ModulePlayer::ModulePlayer()
 	Player* Rogue;
 	Player* Archer;
 	Player* Mage;
-	formation.PushBack(Warrior = new Player("Warrior", 2000, 2000, 250, 250, 150, 200));
+	formation.PushBack(Warrior = new Player("Warrior", 2100, 2100, 250, 250, 150, 200));
 	formation.PushBack(Rogue = new Player("Rogue", 1250, 1250, 500, 500, 200, 100));
 	formation.PushBack(Archer = new Player("Archer", 1100, 1100, 500, 500, 250, 50));
 	formation.PushBack(Mage = new Player("Mage", 1100, 1100, 1000, 1000, 250, 50));
