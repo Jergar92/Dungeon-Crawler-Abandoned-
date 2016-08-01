@@ -6,6 +6,8 @@
 #include "p2Point.h"
 #include "Vector.h"
 #include "String.h"
+#include"DoubleList.h"
+#include"ModuleItems.h"
 
 struct SDL_Texture;
 #define NUM_PLAYERS 4
@@ -31,7 +33,7 @@ enum rotation{
 
 class Player{
 public:
-	Player(String name, int max_hp, int hp, int max_mp, int mp, int attack, int defense) :name(name), max_hp(max_hp), hp(hp), max_mp(max_mp), mp(mp), attack(attack), defense(defense) {}
+	Player(String name, int max_hp, int hp, int max_mp, int mp, int attack, int defense) :name(name), max_hp(max_hp), hp(hp), max_mp(max_mp), mp(mp), attack(attack), defense(defense){}
 	~Player(){}
 	String name;
 	int max_hp, hp,max_mp, mp, attack, defense;
