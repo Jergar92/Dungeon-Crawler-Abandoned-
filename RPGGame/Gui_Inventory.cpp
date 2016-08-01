@@ -18,7 +18,7 @@ bool GUI_Inventory::Start()
 {
 	Inventory = App->texture->Load("Inventory.png");
 	InventoryIs = OFF;
-	InventoryCharacter = NOCHARACTER;
+	InventoryCharacter = NO_CHARACTER;
 	Player1 = { 600, 0, 80, 80 };
 	Player2 = { 450, 0, 80, 80 };
 	Inventory_background = { 0, 0, 306, 401 };
