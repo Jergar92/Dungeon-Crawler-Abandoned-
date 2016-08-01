@@ -38,6 +38,7 @@ public:
 	String name;
 	int max_hp, hp,max_mp, mp, attack, defense;
 	bool PlayerDead = false;
+	DoubleList<Item*> inventory;
 };
 
 class ModulePlayer : public Module

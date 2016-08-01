@@ -5,7 +5,9 @@
 #include "Globals.h"
 #include "String.h"
 #include "DoubleList.h"
+
 struct SDL_Texture;
+
 enum item_type{
 	WEAPON,
 	SHIELD,
@@ -25,7 +27,6 @@ public:
 	int value;
 	item_type type;
 	SDL_Rect sprite;
-
 };
 
 class ModuleItems : public Module{
@@ -38,9 +39,9 @@ public:
 	bool CleanUp();
 
 public:
-	DoubleList<Item*> inventory;
+	DoubleList<Item*> map_items;
 	Item* Key; //MagneticCard(?)
-	
+	Item* HPPotion;
 };
 
 #endif //__ModuleItems_H__

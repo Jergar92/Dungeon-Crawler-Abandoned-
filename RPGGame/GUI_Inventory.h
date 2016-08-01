@@ -1,8 +1,11 @@
 #include "Module.h"
 #include "Globals.h"
 #include "Application.h"
+
 struct SDL_Texture;
+
 enum InventoryActive { ON, OFF };
+
 struct Character_Icon{
 public:
 	Character_Icon();

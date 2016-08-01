@@ -41,6 +41,11 @@ ModulePlayer::~ModulePlayer()
 	if (App->player->formation[2]->PlayerDead == true)	{ LOG("ARCHER DEAD"); }
 	if (App->player->formation[3]->PlayerDead == true)	{ LOG("MAGE DEAD"); }
 	
+	formation[0]->inventory.clear();
+	formation[1]->inventory.clear();
+	formation[2]->inventory.clear();
+	formation[3]->inventory.clear();
+
 	for (int i = 0; i < NUM_PLAYERS; i++)
 	{
 		delete formation[i];
