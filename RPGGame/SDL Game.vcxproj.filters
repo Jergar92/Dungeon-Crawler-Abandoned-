@@ -89,6 +89,9 @@
     <ClCompile Include="GUI_Inventory.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="Blue_Enemy.cpp">
+      <Filter>Player &amp; IA</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -171,6 +174,9 @@
     </ClInclude>
     <ClInclude Include="GUI_Inventory.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Blue_Enemy.h">
+      <Filter>Player &amp; IA</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

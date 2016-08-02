@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Blue_Enemy.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="GUI.cpp" />
@@ -37,6 +38,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Blue_Enemy.h" />
     <ClInclude Include="DoubleList.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Globals.h" />

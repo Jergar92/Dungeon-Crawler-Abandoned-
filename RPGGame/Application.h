@@ -43,7 +43,6 @@ public:
 	GUI_Movement* gui_movement;
 	GUI_Inventory* gui_inventory;
 	ModuleGui* gui;
-
 	ModuleEnemies* enemies;
 	ModuleParticles* particles;
 	ModuleItems* items;

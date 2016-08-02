@@ -5,18 +5,11 @@
 
 #define MAX_ENEMIES 100
 
-// TODO 2: Add a new enemy: Brown Cookies!
-
-// TODO 3: Have the Brown Cookies describe a path in the screen
-
-// TODO 4: Create a new enemy type: the Mech
 
 enum ENEMY_TYPES
 {
 	NO_TYPE,
-	REDBIRD,
-	BROWN_COOKIE,
-	MECH
+	BLUE_ENEMY,
 };
 
 class Enemy;
@@ -40,8 +33,14 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
-
 	bool AddEnemy(ENEMY_TYPES type, int x, int y);
+
+	int enemy_map[10][10];
+
+	SDL_Rect lvl1_blue;
+	SDL_Rect lvl2_blue;
+	SDL_Rect lvl3_blue;
+	SDL_Rect lvl4_blue;
 
 private:
 
@@ -52,6 +51,8 @@ private:
 	EnemyInfo queue[MAX_ENEMIES];
 	Enemy* enemies[MAX_ENEMIES];
 	SDL_Texture* sprites;
+
+	
 };
 
 #endif // __ModuleEnemies_H__
