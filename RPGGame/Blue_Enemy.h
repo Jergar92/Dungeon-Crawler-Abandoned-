@@ -10,7 +10,7 @@ private:
 
 public:
 
-	Blue_Enemy(int x, int y);
+	Blue_Enemy(int x, int y,int hp, int attack,int defense);
 	SDL_Texture* front = nullptr;
 	void Move();
 };

@@ -2,25 +2,32 @@
 #include "Enemy.h"
 #include "ModuleCollider.h"
 #include "ModuleRender.h"
+#include "ModulePlayer.h"
 
-Enemy::Enemy(int x, int y) : position(x, y), collider(nullptr)
-{}
+Enemy::Enemy(int x, int y, int hp, int attack, int defense) :position(x, y),
+hp(hp), attack(attack), defense(defense), collider(nullptr){}
 
 Enemy::~Enemy()
 {
 	if (collider != nullptr)
+	{
 		App->collider->EraseCollider(collider);
+	}
 }
 
-const Collider* Enemy::GetCollider() const
+//const Collider* Enemy::GetCollider() const
+
+void Enemy::Draw_close(SDL_Texture* sprites)
 {
-	return collider;
+	App->render->Blit(sprites, 234, 232, &(animation->GetCurrentFrame()));
 }
 
-void Enemy::Draw(SDL_Texture* sprites)
+void Enemy::Draw_medium(SDL_Texture* sprites)
 {
-	if (collider != nullptr)
-		collider->SetPos(position.x, position.y);
+	App->render->Blit(sprites, 234, 232, &(animation->GetCurrentFrame()));
+}
 
-	App->render->Blit(sprites, position.x, position.y, &(animation->GetCurrentFrame()));
+void Enemy::Draw_far(SDL_Texture* sprites)
+{
+	App->render->Blit(sprites, 234, 232, &(animation->GetCurrentFrame()));
 }

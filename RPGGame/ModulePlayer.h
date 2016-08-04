@@ -6,8 +6,8 @@
 #include "p2Point.h"
 #include "Vector.h"
 #include "String.h"
-#include"DoubleList.h"
-#include"ModuleItems.h"
+#include "DoubleList.h"
+#include "ModuleItems.h"
 
 struct SDL_Texture;
 #define NUM_PLAYERS 4

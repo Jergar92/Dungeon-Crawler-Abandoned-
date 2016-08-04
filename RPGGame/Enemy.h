@@ -15,15 +15,19 @@ protected:
 
 public:
 	iPoint position;
+	int hp;
+	int attack;
+	int defense;
 
-public:
-	Enemy(int x, int y);
+	Enemy(int x, int y, int hp, int attack, int defense);
 	virtual ~Enemy();
 
-	const Collider* GetCollider() const;
+	//const Collider* GetCollider() const;
 
-	virtual void Move() {};
-	virtual void Draw(SDL_Texture* sprites);
+	virtual void Move(){};
+	virtual void Draw_close(SDL_Texture* sprites);
+	virtual void Draw_medium(SDL_Texture* sprites);
+	virtual void Draw_far(SDL_Texture* sprites);
 };
 
 #endif // __ENEMY_H__
