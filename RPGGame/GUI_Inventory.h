@@ -5,7 +5,7 @@
 struct SDL_Texture;
 
 enum InventoryActive { ON, OFF };
-enum currentCharracter{ NO_CHARACTER, CHARACTER_ONE, CHARACTER_TWO, CHARACTER_THREE, CHARACTER_FOUR };
+enum currentCharracter{ CHARACTER_ONE, CHARACTER_TWO, CHARACTER_THREE, CHARACTER_FOUR, NO_CHARACTER };
 struct Character_Icon{
 public:
 	Character_Icon();
@@ -16,17 +16,13 @@ public:
 	SDL_Rect Character_life;
 	SDL_Rect Character_mana;
 
-	enum CharacterState CurrentState;
 };
 struct Inventory{
 public:
 	Inventory();
 
-	SDL_Rect Arrow_right;
-	SDL_Rect Arrow_left;
-	SDL_Rect Exit;
 
-	enum CharacterState CurrentState;
+
 };
 class GUI_Inventory : public Module
 {
@@ -39,12 +35,16 @@ public:
 	SDL_Rect Player2;
 	SDL_Rect Player3;
 	SDL_Rect Player4;
+	SDL_Rect Arrow_right;
+	SDL_Rect Arrow_left;
+	SDL_Rect Exit;
 	bool Start();
 	update_status Update();
 	bool CleanUp();
 	void Retexture();
 public:
 	//sprites
+	Inventory* Inventory_character[4];
 
 	SDL_Texture* Characters_sprites = nullptr;
 	SDL_Texture* Inventory = nullptr;
