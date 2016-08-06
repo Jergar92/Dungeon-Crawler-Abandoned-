@@ -46,7 +46,6 @@ public:
 public:
 	//sprites
 	Inventory* Inventory_character[4];
-
 	SDL_Texture* Characters_sprites = nullptr;
 	SDL_Texture* Inventory = nullptr;
 	SDL_Rect Inventory_background;

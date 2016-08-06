@@ -59,6 +59,32 @@ void GUI_Inventory::Retexture(){
 			App->render->Blit(App->gui_character->Characters_sprites, 498 * SCREEN_SIZE, 97 * SCREEN_SIZE, &App->gui_character->character[CHARACTER_ONE]->Character_life);
 			App->render->Blit(App->gui_character->Characters_sprites, 498 * SCREEN_SIZE, 115 * SCREEN_SIZE, &App->gui_character->character[CHARACTER_ONE]->Character_mana);
 			//ITEMS
+			if (!App->player->formation[CHARACTER_ONE]->inventory.Empty()){
+				DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_ONE]->inventory.first_node;
+				for (; item != nullptr; item = item->next){
+					if (item->data->itemSlot > 9){
+						if (item->data->itemSlot == 9){
+							App->render->Blit(App->items->itemssprite, 739  * SCREEN_SIZE, 16 * SCREEN_SIZE, &item->data->sprite);
+						}
+						else if (item->data->itemSlot == 10){
+							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 82 * SCREEN_SIZE, &item->data->sprite);
+						}
+						else if (item->data->itemSlot == 11){
+							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 148 * SCREEN_SIZE, &item->data->sprite);
+						}
+					}
+					else{
+						for (int i = 0; i < MAX_COLUMNS; i++){
+							for (int j = 0; j < MAX_ROWS; j++){
+								if ((j*MAX_COLUMNS) + i == item->data->itemSlot){
+									App->render->Blit(App->items->itemssprite, 613 + (i * 58) * SCREEN_SIZE, 220+(j * 58) * SCREEN_SIZE, &item->data->sprite);
+								}
+							}
+						}
+					}
+				}
+				
+			}
 			break;
 
 		case CHARACTER_TWO:
@@ -73,6 +99,32 @@ void GUI_Inventory::Retexture(){
 			App->render->Blit(App->gui_character->Characters_sprites, 498 * SCREEN_SIZE, 97 * SCREEN_SIZE, &App->gui_character->character[CHARACTER_TWO]->Character_life);
 			App->render->Blit(App->gui_character->Characters_sprites, 498 * SCREEN_SIZE, 115 * SCREEN_SIZE, &App->gui_character->character[CHARACTER_TWO]->Character_mana);
 			//ITEMS
+			if (!App->player->formation[CHARACTER_TWO]->inventory.Empty()){
+				DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_TWO]->inventory.first_node;
+				for (; item != nullptr; item = item->next){
+					if (item->data->itemSlot > 9){
+						if (item->data->itemSlot == 9){
+							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &item->data->sprite);
+						}
+						else if (item->data->itemSlot == 10){
+							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 82 * SCREEN_SIZE, &item->data->sprite);
+						}
+						else if (item->data->itemSlot == 11){
+							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 148 * SCREEN_SIZE, &item->data->sprite);
+						}
+					}
+					else{
+						for (int i = 0; i < MAX_COLUMNS; i++){
+							for (int j = 0; j < MAX_ROWS; j++){
+								if ((j*MAX_COLUMNS) + i == item->data->itemSlot){
+									App->render->Blit(App->items->itemssprite, 617 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &item->data->sprite);
+								}
+							}
+						}
+					}
+				}
+
+			}
 			break;
 
 		case CHARACTER_THREE:
@@ -87,6 +139,32 @@ void GUI_Inventory::Retexture(){
 			App->render->Blit(App->gui_character->Characters_sprites, 498 * SCREEN_SIZE, 97 * SCREEN_SIZE, &App->gui_character->character[CHARACTER_THREE]->Character_life);
 			App->render->Blit(App->gui_character->Characters_sprites, 498 * SCREEN_SIZE, 115 * SCREEN_SIZE, &App->gui_character->character[CHARACTER_THREE]->Character_mana);
 			//ITEMS
+			if (!App->player->formation[CHARACTER_THREE]->inventory.Empty()){
+				DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_THREE]->inventory.first_node;
+				for (; item != nullptr; item = item->next){
+					if (item->data->itemSlot > 9){
+						if (item->data->itemSlot == 9){
+							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &item->data->sprite);
+						}
+						else if (item->data->itemSlot == 10){
+							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 82 * SCREEN_SIZE, &item->data->sprite);
+						}
+						else if (item->data->itemSlot == 11){
+							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 148 * SCREEN_SIZE, &item->data->sprite);
+						}
+					}
+					else{
+						for (int i = 0; i < MAX_COLUMNS; i++){
+							for (int j = 0; j < MAX_ROWS; j++){
+								if ((j*MAX_COLUMNS) + i == item->data->itemSlot){
+									App->render->Blit(App->items->itemssprite, 617 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &item->data->sprite);
+								}
+							}
+						}
+					}
+				}
+
+			}
 			break;
 
 		case CHARACTER_FOUR:
@@ -101,6 +179,32 @@ void GUI_Inventory::Retexture(){
 			App->render->Blit(App->gui_character->Characters_sprites, 498 * SCREEN_SIZE, 97 * SCREEN_SIZE, &App->gui_character->character[CHARACTER_FOUR]->Character_life);
 			App->render->Blit(App->gui_character->Characters_sprites, 498 * SCREEN_SIZE, 115 * SCREEN_SIZE, &App->gui_character->character[CHARACTER_FOUR]->Character_mana);
 			//ITEMS
+			if (!App->player->formation[CHARACTER_FOUR]->inventory.Empty()){
+				DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_FOUR]->inventory.first_node;
+				for (; item != nullptr; item = item->next){
+					if (item->data->itemSlot > 9){
+						if (item->data->itemSlot == 9){
+							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &item->data->sprite);
+						}
+						else if (item->data->itemSlot == 10){
+							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 82 * SCREEN_SIZE, &item->data->sprite);
+						}
+						else if (item->data->itemSlot == 11){
+							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 148 * SCREEN_SIZE, &item->data->sprite);
+						}
+					}
+					else{
+						for (int i = 0; i < MAX_COLUMNS; i++){
+							for (int j = 0; j < MAX_ROWS; j++){
+								if ((j*MAX_COLUMNS) + i == item->data->itemSlot){
+									App->render->Blit(App->items->itemssprite, 617 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &item->data->sprite);
+								}
+							}
+						}
+					}
+				}
+
+			}
 			break;
 
 		default:

@@ -909,7 +909,7 @@ void ModulePlayer::GetItem(Item* newItem, int player){
 		for (int counter = 0; counter < MAX_INVENTORY_SLOTS; counter++){
 			slotOcuped = false;
 			for (; item != nullptr; item = item->next){
-				if (item->data->value == counter){
+				if (item->data->itemSlot == counter){
 					slotOcuped = true;
 				}
 			}
@@ -918,7 +918,7 @@ void ModulePlayer::GetItem(Item* newItem, int player){
 			}
 
 		}
-		newItem->value = counter;
+		newItem->itemSlot = counter;
 		formation[player]->inventory.push_back(newItem);
 	}
 }

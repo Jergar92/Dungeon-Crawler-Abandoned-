@@ -7,7 +7,7 @@
 ModuleItems::ModuleItems()
 {
 	SDL_Rect key_sprite = { 0, 0, 52, 52 };
-	map_items.push_back(Key = new Item("Key", "opens doors", 0, KEYS, key_sprite));
+	map_items.push_back(Key = new Item("Key", "opens doors", 0,0, KEYS, key_sprite));
 }
 
 ModuleItems::~ModuleItems()
@@ -18,9 +18,9 @@ ModuleItems::~ModuleItems()
 
 bool ModuleItems::Start()
 {
-	itemssprite = App->texture->Load("KEY.png");
+	itemssprite = App->texture->Load("Items.png");
 	SDL_Rect hp_pot_sprite = { 0, 0, 52, 52 };
-	App->player->formation[0]->inventory.push_back(HPPotion = new Item("HP Potion", "heals hp", 500, CONSUMABLE, hp_pot_sprite));
+	App->player->formation[0]->inventory.push_back(HPPotion = new Item("HP Potion", "heals hp", 500,6, CONSUMABLE, hp_pot_sprite));
 	return true;
 }
 

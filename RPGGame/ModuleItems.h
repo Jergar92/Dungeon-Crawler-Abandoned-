@@ -20,11 +20,12 @@ enum item_type{
 
 class Item{
 public:
-	Item(String name, String description, int value, item_type type, SDL_Rect sprite) : name(name), description(description), value(value), type(type), sprite(sprite){}
+	Item(String name, String description, int value, int itemSlot, item_type type, SDL_Rect sprite) : name(name), description(description), value(value), itemSlot(itemSlot), type(type), sprite(sprite){}
 	~Item(){}
 	String name;
 	String description;
 	int value;
+	int itemSlot;
 	item_type type;
 	SDL_Rect sprite;
 };
