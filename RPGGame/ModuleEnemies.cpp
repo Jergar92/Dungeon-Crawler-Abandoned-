@@ -8,6 +8,7 @@
 #include "Blue_Enemy.h"
 #include "ModuleLevel1.h"
 #include "ModulePlayer.h"
+#include "Blue_Enemy.h"
 
 ModuleEnemies::ModuleEnemies()
 {
@@ -35,7 +36,7 @@ update_status ModuleEnemies::PreUpdate()
 		{
 			SpawnEnemy(queue[i]);
 			queue[i].type = ENEMY_TYPES::NO_TYPE;
-			LOG("Spawning enemy at [%i][%i]\n", App->level1->map[queue[i].y][queue[i].x]);
+			LOG("Spawning enemy at [%i][%i]\n", App->enemies->queue[i].y, App->enemies->queue[i].x);
 		}
 	}
 	return UPDATE_CONTINUE;
@@ -47,14 +48,14 @@ update_status ModuleEnemies::Update()
 	{
 		if (enemies[i] != nullptr)
 		{
-			//enemies[i]->Move();
+			enemies[i]->Move();
 		}
 	}
 	for (uint i = 0; i < MAX_ENEMIES; i++)
 	{
-		if (enemies[i] != nullptr)
+		if (App->player->position.y == queue[i].y && App->player->position.x == queue[i].x)
 		{
-			//enemies[i]->Draw(sprites);
+			enemies[i]->Draw_close(sprites);
 		}
 	}
 	return UPDATE_CONTINUE;
@@ -117,28 +118,18 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 {
 	uint i = 0;
 	for (; enemies[i] != nullptr && i < MAX_ENEMIES; i++);
-	/*
+	
 	if (i != MAX_ENEMIES)
 	{
 		switch (info.type)
 		{
 		case ENEMY_TYPES::BLUE:
 		{
-			enemies[i] = new Enemy_Blue(info.x, info.y, info.hp, info.attack, info.defense);
-			break;
-		}
-		case ENEMY_TYPES::RED:
-		{
-			enemies[i] = new Enemy_Red(info.x, info.y, info.hp, info.attack, info.defense);
-			break;
-		}
-		case ENEMY_TYPES::GREEN:
-		{
-			enemies[i] = new Enemy_Green(info.x, info.y, info.hp, info.attack, info.defense);
+			enemies[i] = new Blue_Enemy(info.x, info.y, info.hp, info.attack, info.defense);
 			break;
 		}
 		}
-	}*/
+	}
 }
 
 //void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)

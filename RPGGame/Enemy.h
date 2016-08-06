@@ -10,7 +10,9 @@ struct Collider;
 class Enemy
 {
 protected:
-	Animation* animation;
+	Animation* animation_close;
+	Animation* animation_medium;
+	Animation* animation_distant;
 	Collider* collider;
 
 public:
@@ -27,7 +29,7 @@ public:
 	virtual void Move(){};
 	virtual void Draw_close(SDL_Texture* sprites);
 	virtual void Draw_medium(SDL_Texture* sprites);
-	virtual void Draw_far(SDL_Texture* sprites);
+	virtual void Draw_distant(SDL_Texture* sprites);
 };
 
 #endif // __ENEMY_H__

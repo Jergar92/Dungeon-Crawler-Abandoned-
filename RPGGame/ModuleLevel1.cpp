@@ -6,6 +6,8 @@
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleCollider.h"
+#include "ModuleEnemies.h"
+#include "Blue_Enemy.h"
 
 ModuleLevel1::ModuleLevel1()
 {
@@ -51,9 +53,13 @@ ModuleLevel1::~ModuleLevel1()
 bool ModuleLevel1::Start()
 {
 	bool ret = true;
+
 	App->player->Enable();
+	App->enemies->Enable();
+
 	graphics = App->texture->Load("spritesheet.png");
 	test_graphics = App->texture->Load("door_test_spritesheet.png");
+
 	int tile[10][10] = {
 
 		//NOTICE: NEEDED THE FIRST && LAST LINE AND COLUMN TO BE 0 OR YOU CAN EXIT THE MAP
@@ -84,6 +90,11 @@ bool ModuleLevel1::Start()
 			map[i][j] = tile[i][j];
 		}
 	}
+
+	// Enemies ---
+	App->enemies->AddEnemy(ENEMY_TYPES::BLUE, 4, 4, 100, 10, 10);
+	App->enemies->AddEnemy(ENEMY_TYPES::BLUE, 4, 3, 100, 10, 10);
+	
 
 	LOG("Loading background assets");
 	return ret;

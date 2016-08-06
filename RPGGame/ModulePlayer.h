@@ -13,6 +13,7 @@ struct SDL_Texture;
 #define NUM_PLAYERS 4
 #define MAX_INVENTORY_SLOTS 9
 #define MAX_EQUIPED_SLOTS 3
+
 enum player_class{
 	WARRIOR,
 	ROGUE,

@@ -3,16 +3,20 @@
 
 #include "Enemy.h"
 
+
 class Blue_Enemy : public Enemy
 {
 private:
 	iPoint original_pos;
+	Animation close;
+	Animation medium;
+	Animation distant;
 
 public:
 
 	Blue_Enemy(int x, int y,int hp, int attack,int defense);
-	SDL_Texture* front = nullptr;
 	void Move();
+	
 };
 
 

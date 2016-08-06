@@ -19,15 +19,17 @@ Enemy::~Enemy()
 
 void Enemy::Draw_close(SDL_Texture* sprites)
 {
-	App->render->Blit(sprites, 234, 232, &(animation->GetCurrentFrame()));
+
+	App->render->Blit(sprites, 234, 232, &(animation_close->GetCurrentFrame()));
 }
 
 void Enemy::Draw_medium(SDL_Texture* sprites)
 {
-	App->render->Blit(sprites, 234, 232, &(animation->GetCurrentFrame()));
+	
+	App->render->Blit(sprites, 234, 232, &(animation_medium->GetCurrentFrame()));
 }
 
-void Enemy::Draw_far(SDL_Texture* sprites)
+void Enemy::Draw_distant(SDL_Texture* sprites)
 {
-	App->render->Blit(sprites, 234, 232, &(animation->GetCurrentFrame()));
+	App->render->Blit(sprites, 234, 232, &(animation_distant->GetCurrentFrame()));
 }
