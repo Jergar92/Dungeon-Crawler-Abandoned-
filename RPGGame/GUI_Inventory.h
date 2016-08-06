@@ -3,7 +3,8 @@
 #include "Application.h"
 
 struct SDL_Texture;
-
+#define MAX_ROWS 3
+#define MAX_COLUMNS 3
 enum InventoryActive { ON, OFF };
 enum currentCharracter{ CHARACTER_ONE, CHARACTER_TWO, CHARACTER_THREE, CHARACTER_FOUR, NO_CHARACTER };
 struct Character_Icon{

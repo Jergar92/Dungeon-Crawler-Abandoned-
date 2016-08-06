@@ -11,7 +11,8 @@
 
 struct SDL_Texture;
 #define NUM_PLAYERS 4
-
+#define MAX_INVENTORY_SLOTS 9
+#define MAX_EQUIPED_SLOTS 3
 enum player_class{
 	WARRIOR,
 	ROGUE,
@@ -80,6 +81,7 @@ public:
 	void PlayerRotation(int, rotation);
 	void ChangeTile(int);
 	void CompassPrint(int);
+	void GetItem(Item* item,int player);
 };
 
 #endif

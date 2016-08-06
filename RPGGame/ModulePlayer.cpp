@@ -899,4 +899,26 @@ void ModulePlayer::CompassPrint(int direction)
 	default: LOG("ERROR printing compass");
 		break;
 	}
+}	
+//this gives a position to object in the inventory
+void ModulePlayer::GetItem(Item* newItem, int player){
+	int counter = 0;
+	bool slotOcuped = false;
+	if (formation[player]->inventory.size() < MAX_INVENTORY_SLOTS){
+		DoubleList<Item*>::nodeD* item = formation[player]->inventory.first_node;
+		for (int counter = 0; counter < MAX_INVENTORY_SLOTS; counter++){
+			slotOcuped = false;
+			for (; item != nullptr; item = item->next){
+				if (item->data->value == counter){
+					slotOcuped = true;
+				}
+			}
+			if (slotOcuped == false){
+				break;
+			}
+
+		}
+		newItem->value = counter;
+		formation[player]->inventory.push_back(newItem);
+	}
 }
