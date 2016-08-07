@@ -53,9 +53,49 @@ update_status ModuleEnemies::Update()
 	}
 	for (uint i = 0; i < MAX_ENEMIES; i++)
 	{
-		if (App->player->position.y == queue[i].y && App->player->position.x == queue[i].x)
+		if (App->player->dir == NORTH)
+		{	
+			if (CheckMonster(App->player->position.x, App->player->position.y - 1, i))
+			{
+				enemies[i]->Draw_close(sprites);
+			}
+			if (CheckMonster(App->player->position.x, App->player->position.y - 2, i))
+			{
+				enemies[i]->Draw_medium(sprites);
+			}
+		}
+		else if (App->player->dir == EAST)
 		{
-			enemies[i]->Draw_close(sprites);
+			if (CheckMonster(App->player->position.x+1, App->player->position.y, i))
+			{
+				enemies[i]->Draw_close(sprites);
+			}
+			if (CheckMonster(App->player->position.x+2, App->player->position.y, i))
+			{
+				enemies[i]->Draw_medium(sprites);
+			}
+		}
+		else if (App->player->dir == SOUTH)
+		{
+			if (CheckMonster(App->player->position.x, App->player->position.y + 1, i))
+			{
+				enemies[i]->Draw_close(sprites);
+			}
+			if (CheckMonster(App->player->position.x, App->player->position.y + 2, i))
+			{
+				enemies[i]->Draw_medium(sprites);
+			}
+		}
+		else if (App->player->dir == WEST)
+		{
+			if (CheckMonster(App->player->position.x - 1, App->player->position.y, i))
+			{
+				enemies[i]->Draw_close(sprites);
+			}
+			if (CheckMonster(App->player->position.x - 2, App->player->position.y, i))
+			{
+				enemies[i]->Draw_medium(sprites);
+			}
 		}
 	}
 	return UPDATE_CONTINUE;
@@ -133,3 +173,14 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 }
 
 //void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
+
+bool ModuleEnemies::CheckMonster(int x, int y, int i)
+{
+	bool ret = false;
+
+	if (queue[i].x == x && queue[i].y == y)
+	{
+		ret = true;
+	}
+	return ret;
+}
