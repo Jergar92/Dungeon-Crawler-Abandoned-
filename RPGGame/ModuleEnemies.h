@@ -39,10 +39,11 @@ public:
 	bool CheckMonster(int x, int y, int i);
 	//void OnCollision(Collider* c1, Collider* c2);
 
+	EnemyInfo queue[MAX_ENEMIES];
+
 private:
 	void SpawnEnemy(const EnemyInfo& info);
 
-	EnemyInfo queue[MAX_ENEMIES];
 	Enemy* enemies[MAX_ENEMIES];
 	SDL_Texture* sprites;
 };

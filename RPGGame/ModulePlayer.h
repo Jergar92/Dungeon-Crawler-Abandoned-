@@ -78,6 +78,11 @@ public:
 	int room_tile[4];
 	bool cant_cross = false;
 
+	uint warrior_cd;
+	uint rogue_cd;
+	uint archer_cd;
+	uint mage_cd;
+
 	void PlayerInput();
 	void PlayerRotation(int, rotation);
 	void ChangeTile(int);
