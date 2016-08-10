@@ -17,23 +17,23 @@ ModuleLevel1::ModuleLevel1()
 	//Front walls sprites
 	lvl1_front_wall = { 0, 0, 600, 600 };
 	lvl2_front_wall = { 600, 0, 600, 600 };
-	lvl3_front_wall = { 720, 600, 360, 360 };
-	lvl4_front_wall = { 430, 960, 215, 215 };
+	lvl3_front_wall = { 285, 600, 285, 284 };
+	lvl4_front_wall = { 2000000, 20000, 215, 215 };
 
 	//Paralel walls sprites
 	lvl1_parallel_wall = { 0, 0, 600, 600 };
 	lvl2_parallel_wall = { 0, 600, 285, 285 };
-	lvl3_parallel_wall = { 0, 885, 215, 215 };
-	lvl4_parallel_wall = { 135, 1175, 135, 135 };
+	lvl3_parallel_wall = { 0, 885, 187, 184 };
+	//lvl4_parallel_wall = { 135, 1175, 135, 135 };
 
 	//Large front walls sprites
-	lvl2_large_front_wall = { 0, 600, 360, 360 };
-	lvl3_large_front_wall = { 0, 960, 215, 215 };
-	lvl4_large_front_wall = { 0, 1175, 135, 135 };
+	lvl2_large_front_wall = { 570, 600, 285, 285 };
+	lvl3_large_front_wall = { 373, 885, 188, 184 };
+	lvl4_large_front_wall = { 0, 1070, 138, 138 };
 	
 	//Doors sprites
 	lvl1_closed_door = { 0, 0, 600, 600 };
-	lvl2_closed_door = { 1940, 121, 360, 360 };
+	lvl2_closed_door = { 1940, 121, 285, 285 };
 	lvl3_closed_door = { 2006, 638, 215, 215 };
 	lvl4_closed_door = {2073, 912, 135, 135 };
 	
@@ -67,7 +67,7 @@ bool ModuleLevel1::Start()
 		/*0 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		/*1 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
 		/*2 */{ 0, 1, 1, 1, 2, 1, 0, 0, 0, 0 },
-		/*3 */{ 0, 0, 0, 0, 3, 0, 0, 0, 0, 0 },
+		/*3 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
 		/*4 */{ 0, 0, 0, 1, 2, 1, 0, 0, 0, 0 },
 		/*5 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
 		/*6 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -157,7 +157,7 @@ update_status ModuleLevel1::Update()
 			else App->render->Blit(test_graphics, 234, 234, &lvl4_left_opened_door);
 			break;
 		case 0:
-			App->render->Blit(graphics, 234, 234, &lvl4_large_front_wall);
+			App->render->Blit(graphics, 234, 232, &lvl4_large_front_wall);
 			break;
 		default:
 			LOG("ERROR printing image tile");
@@ -180,7 +180,7 @@ update_status ModuleLevel1::Update()
 			else App->render->Blit(test_graphics, 191, 192, &lvl3_left_opened_door);
 			break;
 		case 0:
-			App->render->Blit(graphics, 191, 192, &lvl3_large_front_wall);
+			App->render->Blit(graphics, 208, 209, &lvl3_large_front_wall);
 			break;
 		default:
 			LOG("ERROR printing image tile");
@@ -193,7 +193,7 @@ update_status ModuleLevel1::Update()
 			App->render->Blit(graphics, 157, 158, &lvl2_parallel_wall);
 			break;
 		case 2:
-			App->render->Blit(graphics, 121, 120, &lvl3_front_wall);
+			App->render->Blit(graphics, 157, 157, &lvl3_front_wall);
 			break;
 		case 3:
 			App->render->Blit(test_graphics, 121, 120, &lvl2_closed_door);
