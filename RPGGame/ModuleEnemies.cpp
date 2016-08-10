@@ -9,6 +9,8 @@
 #include "ModuleLevel1.h"
 #include "ModulePlayer.h"
 #include "Blue_Enemy.h"
+#include "Red_Enemy.h"
+#include "Green_Enemy.h"
 
 ModuleEnemies::ModuleEnemies()
 {
@@ -44,6 +46,14 @@ update_status ModuleEnemies::PreUpdate()
 
 update_status ModuleEnemies::Update()
 {
+	for (uint i = 0; i < MAX_ENEMIES; i++)
+	{
+		if (enemies[i] != nullptr)
+		{
+			enemies[i]->actual_time = GetTickCount();
+		}
+	}
+
 	for (uint i = 0; i < MAX_ENEMIES; i++)
 	{
 		if (enemies[i] != nullptr)
@@ -178,6 +188,16 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			enemies[i] = new Blue_Enemy(info.x, info.y, info.hp, info.attack, info.defense, info.at_delay, info.mov_delay);
 			break;
 		}
+		case ENEMY_TYPES::RED:
+		{
+			enemies[i] = new Red_Enemy(info.x, info.y, info.hp, info.attack, info.defense, info.at_delay, info.mov_delay);
+			break;
+		}
+		case ENEMY_TYPES::GREEN:
+		{
+			enemies[i] = new Green_Enemy(info.x, info.y, info.hp, info.attack, info.defense, info.at_delay, info.mov_delay);
+			break;
+		}
 		}
 	}
 }
@@ -187,10 +207,12 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 bool ModuleEnemies::CheckMonster(int x, int y, int i)
 {
 	bool ret = false;
-
-	if (queue[i].x == x && queue[i].y == y)
+	if (enemies[i] != nullptr)
 	{
-		ret = true;
+		if (enemies[i]->position.x == x && enemies[i]->position.y == y)
+		{
+			ret = true;
+		}
 	}
 	return ret;
 }

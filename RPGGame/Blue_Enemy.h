@@ -7,7 +7,6 @@
 class Blue_Enemy : public Enemy
 {
 private:
-	iPoint original_pos;
 	Animation close;
 	Animation medium;
 	Animation distant;

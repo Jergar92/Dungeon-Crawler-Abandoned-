@@ -20,12 +20,12 @@ Enemy::~Enemy()
 void Enemy::Draw_close(SDL_Texture* sprites)
 {
 
-	App->render->Blit(sprites, 200, 370, &(animation_close->GetCurrentFrame()));
+	App->render->Blit(sprites, 180, 370, &(animation_close->GetCurrentFrame()));
 }
 
 void Enemy::Draw_medium(SDL_Texture* sprites)
 {
-	App->render->Blit(sprites, 300, 350, &(animation_medium->GetCurrentFrame()));
+	App->render->Blit(sprites, 230, 360, &(animation_medium->GetCurrentFrame()));
 }
 
 void Enemy::Draw_distant(SDL_Texture* sprites)

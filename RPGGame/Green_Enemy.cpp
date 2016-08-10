@@ -1,18 +1,18 @@
 #include "Application.h"
-#include "Blue_Enemy.h"
+#include "Green_Enemy.h"
 #include "ModuleCollider.h"
 #include "ModuleRender.h"
 #include "stdlib.h"
 #include "ModuleLevel1.h"
 #include <time.h>
 
-Blue_Enemy::Blue_Enemy(int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay) :Enemy(x, y, hp, attack, defense, at_delay, mov_delay)
+Green_Enemy::Green_Enemy(int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay) :Enemy(x, y, hp, attack, defense, at_delay, mov_delay)
 {
 	position.x = x;
 	position.y = y;
 
-	close.PushBack({ 28, 31, 111, 103 });
-	medium.PushBack({ 25, 152, 59, 54 });
+	close.PushBack({ 1183, 27, 109, 109 });
+	medium.PushBack({ 646, 149, 57, 57 });
 
 	//To modify
 	distant.PushBack({ 16, 225, 77, 105 });
@@ -22,7 +22,7 @@ Blue_Enemy::Blue_Enemy(int x, int y, int hp, int attack, int defense, int at_del
 	animation_distant = &distant;
 }
 
-void Blue_Enemy::Move()
+void Green_Enemy::Move()
 {
 	if (actual_time >= timer + mov_delay)
 	{
@@ -33,7 +33,7 @@ void Blue_Enemy::Move()
 
 		switch (dir)
 		{
-		//NORTH
+			//NORTH
 		case 0:
 		{
 			if (App->level1->map[position.y - 1][position.x] != 0)
@@ -71,7 +71,7 @@ void Blue_Enemy::Move()
 				position.x -= 1;
 				LOG("Moved to WEST");
 			}
-				break;
+			break;
 		}
 		default:
 		{

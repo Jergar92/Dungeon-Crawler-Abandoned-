@@ -92,8 +92,9 @@ bool ModuleLevel1::Start()
 	}
 
 	// Enemies ---
-	App->enemies->AddEnemy(ENEMY_TYPES::BLUE, 4, 4, 100, 10, 10);
-	App->enemies->AddEnemy(ENEMY_TYPES::BLUE, 4, 3, 100, 10, 10);
+	App->enemies->AddEnemy(ENEMY_TYPES::BLUE, 4, 4, 100, 10, 10,1000,1000);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED, 4, 3, 100, 10, 10,1000,1000);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN, 4, 1, 100, 10, 10, 1000, 1000);
 	
 
 	LOG("Loading background assets");

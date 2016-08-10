@@ -92,6 +92,12 @@
     <ClCompile Include="Blue_Enemy.cpp">
       <Filter>Player &amp; IA</Filter>
     </ClCompile>
+    <ClCompile Include="Red_Enemy.cpp">
+      <Filter>Player &amp; IA</Filter>
+    </ClCompile>
+    <ClCompile Include="Green_Enemy.cpp">
+      <Filter>Player &amp; IA</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -176,6 +182,12 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Blue_Enemy.h">
+      <Filter>Player &amp; IA</Filter>
+    </ClInclude>
+    <ClInclude Include="Red_Enemy.h">
+      <Filter>Player &amp; IA</Filter>
+    </ClInclude>
+    <ClInclude Include="Green_Enemy.h">
       <Filter>Player &amp; IA</Filter>
     </ClInclude>
   </ItemGroup>

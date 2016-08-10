@@ -10,6 +10,8 @@ enum ENEMY_TYPES
 {
 	NO_TYPE,
 	BLUE,
+	RED,
+	GREEN
 };
 
 class Enemy;
