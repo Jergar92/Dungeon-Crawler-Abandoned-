@@ -12,7 +12,7 @@
 ModuleLevel1::ModuleLevel1()
 {
 	//Backgound sprites
-	background_wall = { 0, 0, 600, 600 };
+	background_wall = { 1200, 0, 600, 600 };
 	
 	//Front walls sprites
 	lvl1_front_wall = { 0, 0, 600, 600 };
@@ -21,9 +21,9 @@ ModuleLevel1::ModuleLevel1()
 	lvl4_front_wall = { 430, 960, 215, 215 };
 
 	//Paralel walls sprites
-	lvl1_parallel_wall = { 1200, 0, 600, 600 };
-	lvl2_parallel_wall = { 360, 600, 360, 360 };
-	lvl3_parallel_wall = { 215, 960, 215, 215 };
+	lvl1_parallel_wall = { 0, 0, 600, 600 };
+	lvl2_parallel_wall = { 0, 600, 285, 285 };
+	lvl3_parallel_wall = { 0, 885, 215, 215 };
 	lvl4_parallel_wall = { 135, 1175, 135, 135 };
 
 	//Large front walls sprites
@@ -57,7 +57,7 @@ bool ModuleLevel1::Start()
 	App->player->Enable();
 	App->enemies->Enable();
 
-	graphics = App->texture->Load("spritesheet.png");
+	graphics = App->texture->Load("levelspritesheet.png");
 	test_graphics = App->texture->Load("door_test_spritesheet.png");
 
 	int tile[10][10] = {
@@ -66,7 +66,7 @@ bool ModuleLevel1::Start()
 		/*      0  1  2  3  4  5  6  7  8  9
 		/*0 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		/*1 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
-		/*2 */{ 0, 1, 3, 1, 2, 1, 0, 0, 0, 0 },
+		/*2 */{ 0, 1, 1, 1, 2, 1, 0, 0, 0, 0 },
 		/*3 */{ 0, 0, 0, 0, 3, 0, 0, 0, 0, 0 },
 		/*4 */{ 0, 0, 0, 1, 2, 1, 0, 0, 0, 0 },
 		/*5 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
@@ -167,7 +167,7 @@ update_status ModuleLevel1::Update()
 		switch (App->player->room_tile[2])
 		{
 		case 1:
-			App->render->Blit(graphics, 191, 192, &lvl3_parallel_wall);
+			App->render->Blit(graphics, 209, 208, &lvl3_parallel_wall);
 			break;
 		case 2:
 			App->render->Blit(graphics, 191, 192, &lvl4_front_wall);
@@ -190,7 +190,7 @@ update_status ModuleLevel1::Update()
 		switch (App->player->room_tile[1])
 		{
 		case 1:
-			App->render->Blit(graphics, 121, 120, &lvl2_parallel_wall);
+			App->render->Blit(graphics, 157, 158, &lvl2_parallel_wall);
 			break;
 		case 2:
 			App->render->Blit(graphics, 121, 120, &lvl3_front_wall);
