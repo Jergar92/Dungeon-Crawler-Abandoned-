@@ -3,6 +3,7 @@
 
 #include "p2Point.h"
 #include "Animation.h"
+#include"windows.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -20,8 +21,14 @@ public:
 	int hp;
 	int attack;
 	int defense;
+	int at_delay;
+	int mov_delay;
 
-	Enemy(int x, int y, int hp, int attack, int defense);
+	//time counter
+	uint timer = GetTickCount();
+	uint actual_time;
+
+	Enemy(int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay);
 	virtual ~Enemy();
 
 	//const Collider* GetCollider() const;

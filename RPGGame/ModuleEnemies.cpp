@@ -24,7 +24,7 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	sprites = App->texture->Load("Enemies.png");
+	sprites = App->texture->Load("Enemies_FINAL.png");
 	return true;
 }
 
@@ -117,7 +117,7 @@ update_status ModuleEnemies::PostUpdate()
 		{
 			if (queue[i].hp <= 0)
 			{
-				LOG("Enemy died at[%i][%i]\n", App->level1->map[queue[i].y][queue[i].x]);
+				LOG("Enemy died at[%i][%i]\n", App->enemies->queue[i].y, App->enemies->queue[i].x);
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}
@@ -142,7 +142,7 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int hp, int attack, int defense)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay)
 {
 	bool ret = false;
 	for (uint i = 0; i < MAX_ENEMIES; i++)
@@ -155,6 +155,8 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int hp, int attack,
 			queue[i].hp = hp;
 			queue[i].attack = attack;
 			queue[i].defense = defense;
+			queue[i].at_delay = at_delay;
+			queue[i].mov_delay = mov_delay;
 			ret = true;
 			break;
 		}
@@ -173,7 +175,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		{
 		case ENEMY_TYPES::BLUE:
 		{
-			enemies[i] = new Blue_Enemy(info.x, info.y, info.hp, info.attack, info.defense);
+			enemies[i] = new Blue_Enemy(info.x, info.y, info.hp, info.attack, info.defense, info.at_delay, info.mov_delay);
 			break;
 		}
 		}
