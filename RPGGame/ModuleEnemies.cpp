@@ -57,21 +57,25 @@ update_status ModuleEnemies::Update()
 		{	
 			if (CheckMonster(App->player->position.x, App->player->position.y - 1, i))
 			{
-				enemies[i]->Draw_close(sprites);
+				if (CanSeePlayer(App->player->position.x, App->player->position.y - 1, i))
+					enemies[i]->Draw_close(sprites);
 			}
 			if (CheckMonster(App->player->position.x, App->player->position.y - 2, i))
 			{
-				enemies[i]->Draw_medium(sprites);
+				if (CanSeePlayer(App->player->position.x, App->player->position.y - 2, i))
+					enemies[i]->Draw_medium(sprites);
 			}
 		}
 		else if (App->player->dir == EAST)
 		{
 			if (CheckMonster(App->player->position.x+1, App->player->position.y, i))
 			{
+				if (CanSeePlayer(App->player->position.x + 1, App->player->position.y, i))
 				enemies[i]->Draw_close(sprites);
 			}
 			if (CheckMonster(App->player->position.x+2, App->player->position.y, i))
 			{
+				if (CanSeePlayer(App->player->position.x + 2, App->player->position.y, i))
 				enemies[i]->Draw_medium(sprites);
 			}
 		}
@@ -79,10 +83,12 @@ update_status ModuleEnemies::Update()
 		{
 			if (CheckMonster(App->player->position.x, App->player->position.y + 1, i))
 			{
+				if (CanSeePlayer(App->player->position.x, App->player->position.y + 1, i))
 				enemies[i]->Draw_close(sprites);
 			}
 			if (CheckMonster(App->player->position.x, App->player->position.y + 2, i))
 			{
+				if (CanSeePlayer(App->player->position.x, App->player->position.y + 2, i))
 				enemies[i]->Draw_medium(sprites);
 			}
 		}
@@ -90,10 +96,12 @@ update_status ModuleEnemies::Update()
 		{
 			if (CheckMonster(App->player->position.x - 1, App->player->position.y, i))
 			{
+				if (CanSeePlayer(App->player->position.x - 1, App->player->position.y, i))
 				enemies[i]->Draw_close(sprites);
 			}
 			if (CheckMonster(App->player->position.x - 2, App->player->position.y, i))
 			{
+				if (CanSeePlayer(App->player->position.x - 2, App->player->position.y, i))
 				enemies[i]->Draw_medium(sprites);
 			}
 		}
@@ -181,6 +189,31 @@ bool ModuleEnemies::CheckMonster(int x, int y, int i)
 	if (queue[i].x == x && queue[i].y == y)
 	{
 		ret = true;
+	}
+	return ret;
+}
+
+bool ModuleEnemies::CanSeePlayer(int x, int y, int i)
+{
+	int checkY = y, checkX = x;
+	bool ret = true;
+	if (queue[i].x == checkX && queue[i].y == checkY)
+		{
+			while ((App->player->position.y != checkY) || (App->player->position.x != checkX)){
+
+				if (App->level1->map[checkY][checkX] == 0 || App->level1->map[checkY][checkX] == 3){
+				ret = false;
+				return ret;
+			}
+			if (App->player->position.x < checkX)
+				checkX--;
+			else if (App->player->position.x > checkX)
+				checkX++;
+			if (App->player->position.y < checkY)
+				checkY--;
+			else if (App->player->position.y > checkY)
+				checkY++;
+		}
 	}
 	return ret;
 }

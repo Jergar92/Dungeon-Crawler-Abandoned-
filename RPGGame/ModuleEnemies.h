@@ -37,6 +37,7 @@ public:
 
 	bool AddEnemy(ENEMY_TYPES type, int x, int y, int hp, int attack, int defense);
 	bool CheckMonster(int x, int y, int i);
+	bool CanSeePlayer(int x, int y, int i);
 	//void OnCollision(Collider* c1, Collider* c2);
 
 	EnemyInfo queue[MAX_ENEMIES];
