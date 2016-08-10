@@ -1,4 +1,4 @@
-# Wololo
+﻿# Wololo
 
 ### Description
   Simple RPG game with a futuristic theme.
@@ -34,7 +34,8 @@ Joan Pareja: https://github.com/Yulna
 Jordi Oña: https://github.com/Jordior97  
 Marc Latorre: https://github.com/marclafr  
 Nico Babot: https://github.com/nicobabot  
-Ferran Martin: https://github.com/ferranmartinvila   
+Ferran Martin: https://github.com/ferranmartinvila 
+Francisco Ruiz: https://github.com/ValencianoFran  
 
 ###Changelog
 
