@@ -81,6 +81,22 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
+	for (int i = 0; i < NUM_PLAYERS; i++)
+	{
+		//NORMAL
+		if (GetTickCount() - App->player->formation[i]->cd_count >= 1000)
+		{
+			App->player->formation[i]->cd_count = GetTickCount();
+			App->player->formation[i]->MyAttack = READY;
+		}
+
+		//SPECIAL
+		if (GetTickCount() - App->player->formation[i]->spc_cd_count >= 7000)
+		{
+			App->player->formation[i]->spc_cd_count = GetTickCount();
+			App->player->formation[i]->MySpecialAttack = READY;
+		}
+	}
 	if (1)
 	{
 		PlayerInput();

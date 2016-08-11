@@ -133,22 +133,7 @@ update_status GUI_Character::Update()
 {
 
 	//Cooldown reset
-	for (int i = 0; i < MAX_CHARACTERS; i++)
-	{
-		//NORMAL
-		if (GetTickCount() - App->player->formation[i]->cd_count >= 1000)
-		{
-			App->player->formation[i]->cd_count = GetTickCount();
-			App->player->formation[i]->MyAttack = READY;
-		}
 
-		//SPECIAL
-		if (GetTickCount() - App->player->formation[i]->spc_cd_count >= 7000)
-		{
-			App->player->formation[i]->spc_cd_count = GetTickCount();
-			App->player->formation[i]->MySpecialAttack = READY;
-		}
-	}
 
 	if (App->player->IsEnabled()==true)
 	{
@@ -181,6 +166,7 @@ update_status GUI_Character::Update()
 					if (App->player->formation[i]->MyAttack == READY)
 					{
 						//Enemy ahead? function
+						App->player->formation[i]->cd_count = GetTickCount();
 						App->player->PlayerAttack(i, 0); //0 must be the enemy you can attack
 						Retexture();
 					}
@@ -190,6 +176,8 @@ update_status GUI_Character::Update()
 					if (App->player->formation[i]->MySpecialAttack == READY)
 					{
 						//Enemy ahead? function
+						App->player->formation[i]->spc_cd_count = GetTickCount();
+
 						App->player->PlayerSpecialAttack(i, 0); //0 must be the enemy you can attack
 						Retexture();
 					}
