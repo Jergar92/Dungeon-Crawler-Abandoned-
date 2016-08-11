@@ -39,12 +39,13 @@ enum rotation{
 
 class Player{
 public:
-	Player(String name, int max_hp, int hp, int max_mp, int mp, int attack, int defense) :name(name), max_hp(max_hp), hp(hp), max_mp(max_mp), mp(mp), attack(attack), defense(defense){}
+	Player(String name, int max_hp, int hp, int max_mp, int mp, int attack, int defense, uint cd_count, uint spc_cd_count) :name(name), max_hp(max_hp), hp(hp), max_mp(max_mp), mp(mp), attack(attack), defense(defense), cd_count(cd_count), spc_cd_count(spc_cd_count) {}
 	~Player(){}
 	String name;
 	Attack_State MyAttack = READY;
 	Attack_State MySpecialAttack = READY;
 	int max_hp, hp,max_mp, mp, attack, defense;
+	uint cd_count, spc_cd_count;
 	bool PlayerDead = false;
 	DoubleList<Item*> inventory;
 };
@@ -84,16 +85,13 @@ public:
 	int room_tile[4];
 	bool cant_cross = false;
 
-	uint warrior_cd;
-	uint rogue_cd;
-	uint archer_cd;
-	uint mage_cd;
-
 	void PlayerInput();
 	void PlayerRotation(int, rotation);
 	void ChangeTile(int);
 	void CompassPrint(int);
 	void GetItem(Item* item,int player);
+	void PlayerAttack(int, int);
+	void PlayerSpecialAttack(int, int);
 };
 
 #endif

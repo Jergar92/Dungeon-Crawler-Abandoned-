@@ -149,16 +149,38 @@ update_status GUI_Character::Update()
 		}
 		if (App->input->mouse_buttons[SDL_BUTTON_LEFT] == KEY_STATE::KEY_DOWN) // if the user clicked a mousebutton
 		{
-			for (int i = 0; i < MAX_CHARACTERS; i++){
-				if (App->gui->CheckButton(&character[i]->Button_Atack, App->input->mouse_x, App->input->mouse_y)){
-					//Attack Function
-					App->player->formation[i]->MyAttack = COOLDOWN;
-					Retexture();
+			for (int i = 0; i < MAX_CHARACTERS; i++)
+			{
+				//Cooldown reset NORMAL
+				if (GetTickCount() - App->player->formation[i]->cd_count >= 1000)
+				{
+					App->player->formation[i]->cd_count = GetTickCount();
+					App->player->formation[i]->MyAttack = READY;
 				}
-				else if (App->gui->CheckButton(&character[i]->Button_Special_Atack, App->input->mouse_x, App->input->mouse_y)){
-					//Attack Function
-					App->player->formation[i]->MySpecialAttack = COOLDOWN;
-					Retexture();
+				//Cooldown reset SPECIAL
+				if (GetTickCount() - App->player->formation[i]->spc_cd_count >= 7000)
+				{
+					App->player->formation[i]->spc_cd_count = GetTickCount();
+					App->player->formation[i]->MySpecialAttack = READY;
+				}
+
+				if (App->gui->CheckButton(&character[i]->Button_Atack, App->input->mouse_x, App->input->mouse_y))
+				{
+					if (App->player->formation[i]->MyAttack == READY)
+					{
+						//Enemy ahead? function
+						App->player->PlayerAttack(i, 0); //0 must be the enemy you can attack
+						Retexture();
+					}
+				}
+				else if (App->gui->CheckButton(&character[i]->Button_Special_Atack, App->input->mouse_x, App->input->mouse_y))
+				{
+					if (App->player->formation[i]->MySpecialAttack == READY)
+					{
+						//Enemy ahead? function
+						App->player->PlayerSpecialAttack(i, 0); //0 must be the enemy you can attack
+						Retexture();
+					}
 				}
 			}
 		}

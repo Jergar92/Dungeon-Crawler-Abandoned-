@@ -29,10 +29,10 @@ ModulePlayer::ModulePlayer()
 	Player* Rogue;
 	Player* Archer;
 	Player* Mage;
-	formation.PushBack(Warrior = new Player("Warrior", 2100, 2100, 250, 250, 150, 200));
-	formation.PushBack(Rogue = new Player("Rogue", 1250, 1250, 500, 500, 200, 100));
-	formation.PushBack(Archer = new Player("Archer", 1100, 1100, 500, 500, 250, 50));
-	formation.PushBack(Mage = new Player("Mage", 1100, 1100, 1000, 1000, 250, 50));
+	formation.PushBack(Warrior = new Player("Warrior", 2100, 2100, 250, 250, 150, 200, 0, 0));
+	formation.PushBack(Rogue = new Player("Rogue", 1250, 1250, 500, 500, 200, 100, 0, 0));
+	formation.PushBack(Archer = new Player("Archer", 1100, 1100, 500, 500, 250, 50, 0, 0));
+	formation.PushBack(Mage = new Player("Mage", 1100, 1100, 1000, 1000, 250, 50, 0, 0));
 }
 
 ModulePlayer::~ModulePlayer()
@@ -66,12 +66,6 @@ bool ModulePlayer::Start()
 	g_background1 = App->texture->Load("Prube_sprite_fondo.png");
 	g_exit = App->texture->Load("Prube_sprite_exit.png");
 	dir = EAST;
-
-	warrior_cd = GetTickCount();
-	rogue_cd = GetTickCount();
-	archer_cd = GetTickCount();
-	mage_cd = GetTickCount();
-
 
 	return ret;
 }
@@ -808,79 +802,6 @@ void ModulePlayer::PlayerInput()
 
 		App->window->ChangeWindowSize();
 	}
-
-	//ATTACK		//This should be with a collider but its not implemented yet, so ain't looking for the correct room or anything, you can hit wherever you are.
-	//WARRIOR
-	//NORMAL
-	if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_UP)
-	{
-		App->enemies->queue[0].hp -= formation[WARRIOR]->attack;
-	}
-
-	//SPECIAL
-	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_UP)
-	{
-		if (GetTickCount() - warrior_cd > 5000)
-		{
-			warrior_cd = GetTickCount();
-			App->enemies->queue[0].hp -= formation[WARRIOR]->attack * 2;
-			formation[WARRIOR]->mp -= 10;
-		}
-	}
-
-	//ROGUE
-	//NORMAL
-	if (App->input->keyboard[SDL_SCANCODE_3] == KEY_STATE::KEY_UP)
-	{
-		App->enemies->queue[0].hp -= formation[ROGUE]->attack;
-	}
-
-	//SPECIAL
-	if (App->input->keyboard[SDL_SCANCODE_4] == KEY_STATE::KEY_UP)
-	{
-		if (GetTickCount() - rogue_cd > 5000)
-		{
-			rogue_cd = GetTickCount();
-			App->enemies->queue[0].hp -= formation[ROGUE]->attack * 2;
-			formation[ROGUE]->mp -= 10;
-		}
-	}
-
-	//ARCHER
-	//NORMAL
-	if (App->input->keyboard[SDL_SCANCODE_5] == KEY_STATE::KEY_UP)
-	{
-		App->enemies->queue[0].hp -= formation[ARCHER]->attack;
-	}
-
-	//SPECIAL
-	if (App->input->keyboard[SDL_SCANCODE_6] == KEY_STATE::KEY_UP)
-	{
-		if (GetTickCount() - archer_cd > 5000)
-		{
-			archer_cd = GetTickCount();
-			App->enemies->queue[0].hp -= formation[ARCHER]->attack * 2;
-			formation[ARCHER]->mp -= 10;
-		}
-	}
-
-	//MAGE
-	//NORMAL
-	if (App->input->keyboard[SDL_SCANCODE_7] == KEY_STATE::KEY_UP)
-	{
-		App->enemies->queue[0].hp -= formation[MAGE]->attack;
-	}
-
-	//SPECIAL
-	if (App->input->keyboard[SDL_SCANCODE_8] == KEY_STATE::KEY_UP)
-	{
-		if (GetTickCount() - mage_cd > 5000)
-		{
-			mage_cd = GetTickCount();
-			App->enemies->queue[0].hp -= formation[MAGE]->attack * 2;
-			formation[MAGE]->mp -= 10;
-		}
-	}
 }
 
 void ModulePlayer::ChangeTile(int direction)
@@ -1001,4 +922,18 @@ void ModulePlayer::GetItem(Item* newItem, int player){
 		newItem->itemSlot = counter;
 		formation[player]->inventory.push_back(newItem);
 	}
+}
+
+void ModulePlayer::PlayerAttack(int player, int enemy)
+{
+	App->enemies->queue[enemy].hp -= formation[player]->attack - App->enemies->queue[enemy].defense;
+	formation[player]->MyAttack = COOLDOWN;
+}
+
+void ModulePlayer::PlayerSpecialAttack(int player, int enemy)
+{
+	//TODO:we should calibrate the damage/mp use
+	App->enemies->queue[enemy].hp -= (formation[player]->attack * 2) - App->enemies->queue[enemy].defense;
+	formation[player]->mp -= 50;
+	formation[player]->MySpecialAttack = COOLDOWN;
 }
