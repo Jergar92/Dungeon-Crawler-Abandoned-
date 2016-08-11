@@ -65,11 +65,11 @@ bool ModuleLevel1::Start()
 		//NOTICE: NEEDED THE FIRST && LAST LINE AND COLUMN TO BE 0 OR YOU CAN EXIT THE MAP
 		/*      0  1  2  3  4  5  6  7  8  9
 		/*0 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		/*1 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
+		/*1 */{ 0, 9, 9, 9, 1, 9, 0, 0, 0, 0 },
 		/*2 */{ 0, 1, 1, 3, 2, 1, 0, 0, 0, 0 },
-		/*3 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
+		/*3 */{ 0, 9, 9, 9, 1, 9, 0, 0, 0, 0 },
 		/*4 */{ 0, 0, 0, 1, 2, 1, 0, 0, 0, 0 },
-		/*5 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
+		/*5 */{ 0, 0, 0, 9, 1, 9, 0, 0, 0, 0 },
 		/*6 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		/*7 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		/*8 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -140,6 +140,11 @@ update_status ModuleLevel1::Update()
 		App->render->Blit(graphics, 0, 0, &lvl1_parallel_wall);
 		App->render->Blit(graphics, 158, 158, &lvl2_large_front_wall);
 	}
+	else if (App->player->room_tile[1] == 9){
+		App->render->Blit(graphics, 0, 0, &background_wall);
+		App->render->Blit(graphics, 0, 0, &lvl2_front_wall);
+		App->render->Blit(graphics, 158, 158, &lvl2_large_front_wall);
+	}
 	else{
 		App->render->Blit(graphics, 0, 0, &background_wall);
 
@@ -203,7 +208,7 @@ update_status ModuleLevel1::Update()
 		case 3:
 			App->render->Blit(graphics, 157, 158, &lvl2_parallel_wall);
 			App->render->Blit(test_graphics, 160, 163, &lvl2_right_opened_door);
-			App->render->Blit(test_graphics, 161, 165, &lvl2_closed_door);
+			App->render->Blit(test_graphics, 162, 165, &lvl2_closed_door);
 			break;
 		case 4:
 			App->render->Blit(graphics, 157, 158, &lvl2_parallel_wall);
