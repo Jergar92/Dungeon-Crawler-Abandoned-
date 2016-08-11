@@ -32,13 +32,13 @@ ModuleLevel1::ModuleLevel1()
 	lvl4_large_front_wall = { 0, 1070, 138, 138 };
 	
 	//Doors sprites
-	lvl1_closed_door = { 0, 0, 600, 600 };
-	lvl2_closed_door = { 1940, 121, 285, 285 };
+	lvl1_closed_door = { 285, 0, 285, 285 };
+	lvl2_closed_door = { 285, 0, 285, 282 };
 	lvl3_closed_door = { 2006, 638, 215, 215 };
 	lvl4_closed_door = {2073, 912, 135, 135 };
 	
-	lvl1_right_opened_door = { 1200, 0, 600, 600 };
-	lvl2_right_opened_door = { 360, 600, 360, 360 };
+	lvl1_right_opened_door = { 0, 0, 285, 285 };
+	lvl2_right_opened_door = { 0, 0, 285, 282 };
 	lvl3_right_opened_door = { 215, 960, 215, 215 };
 	lvl4_right_opened_door = { 135, 1175, 135, 135 };
 	
@@ -58,7 +58,7 @@ bool ModuleLevel1::Start()
 	App->enemies->Enable();
 
 	graphics = App->texture->Load("levelspritesheet.png");
-	test_graphics = App->texture->Load("door_test_spritesheet.png");
+	test_graphics = App->texture->Load("doorsspritesheet.png");
 
 	int tile[10][10] = {
 
@@ -137,6 +137,8 @@ update_status ModuleLevel1::Update()
 
 	if (App->player->room_tile[1] == 0){
 		App->render->Blit(graphics, 0, 0, &background_wall);
+		App->render->Blit(graphics, 0, 0, &lvl1_parallel_wall);
+		App->render->Blit(graphics, 158, 158, &lvl2_large_front_wall);
 	}
 	else{
 		App->render->Blit(graphics, 0, 0, &background_wall);
@@ -197,11 +199,12 @@ update_status ModuleLevel1::Update()
 			App->render->Blit(graphics, 157, 157, &lvl3_front_wall);
 			break;
 		case 3:
-			App->render->Blit(test_graphics, 121, 120, &lvl2_closed_door);
+			App->render->Blit(test_graphics, 157, 157, &lvl2_closed_door);
+			App->render->Blit(test_graphics, 160, 163, &lvl2_right_opened_door);
 			break;
 		case 4:
-			if (App->player->dir == NORTH || App->player->dir == EAST)App->render->Blit(test_graphics, 121, 120, &lvl2_right_opened_door);
-			else App->render->Blit(test_graphics, 121, 120, &lvl2_left_opened_door);
+			if (App->player->dir == NORTH || App->player->dir == EAST)App->render->Blit(test_graphics, 160, 163, &lvl2_right_opened_door);
+			else App->render->Blit(test_graphics, 160, 163, &lvl2_left_opened_door);
 			break;
 		case 0:
 			App->render->Blit(graphics, 121, 120, &lvl2_large_front_wall);
@@ -221,7 +224,7 @@ update_status ModuleLevel1::Update()
 			App->render->Blit(graphics, 0, 0, &lvl2_front_wall);
 			break;
 		case 3:
-			App->render->Blit(test_graphics, 0, 0, &lvl1_closed_door);
+			App->render->Blit(test_graphics, 157, 157, &lvl1_closed_door);
 			break;
 		case 4:
 			if (App->player->dir == NORTH || App->player->dir == EAST)App->render->Blit(test_graphics, 0, 0, &lvl1_right_opened_door);
