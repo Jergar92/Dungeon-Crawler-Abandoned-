@@ -131,39 +131,51 @@ void GUI_Character::Retexture(){
 }
 update_status GUI_Character::Update()
 {
-	if (App->player->IsEnabled()==true){
-		for (int i = 0; i < MAX_CHARACTERS; i++){
-			if (App->player->formation[i]->hp < (App->player->formation[i]->max_hp) / 2 && (App->player->formation[i]->hp > 0)){
+
+	//Cooldown reset
+	for (int i = 0; i < MAX_CHARACTERS; i++)
+	{
+		//NORMAL
+		if (GetTickCount() - App->player->formation[i]->cd_count >= 1000)
+		{
+			App->player->formation[i]->cd_count = GetTickCount();
+			App->player->formation[i]->MyAttack = READY;
+		}
+
+		//SPECIAL
+		if (GetTickCount() - App->player->formation[i]->spc_cd_count >= 7000)
+		{
+			App->player->formation[i]->spc_cd_count = GetTickCount();
+			App->player->formation[i]->MySpecialAttack = READY;
+		}
+	}
+
+	if (App->player->IsEnabled()==true)
+	{
+		for (int i = 0; i < MAX_CHARACTERS; i++)
+		{
+			if (App->player->formation[i]->hp < (App->player->formation[i]->max_hp) / 2 && (App->player->formation[i]->hp > 0))
+			{
 				character[i]->CurrentState = INJURED;
 			}
-			else if (App->player->formation[i]->hp <=0){
+			else if (App->player->formation[i]->hp <=0)
+			{
 				character[i]->CurrentState = DEAD;
 			}
-			else{
+			else
+			{
 				character[i]->CurrentState = ALIVE;
 			}
 		}
-		for (int i = 0; i < MAX_CHARACTERS; i++){
+		for (int i = 0; i < MAX_CHARACTERS; i++)
+		{
 			character[i]->Character_life = { 396, 0, (App->player->formation[i]->hp * 96) / App->player->formation[i]->max_hp, 12 };
 			character[i]->Character_mana = { 396, 12, (App->player->formation[i]->mp * 96) / App->player->formation[i]->max_mp, 12 };
 		}
 		if (App->input->mouse_buttons[SDL_BUTTON_LEFT] == KEY_STATE::KEY_DOWN) // if the user clicked a mousebutton
 		{
 			for (int i = 0; i < MAX_CHARACTERS; i++)
-			{
-				//Cooldown reset NORMAL
-				if (GetTickCount() - App->player->formation[i]->cd_count >= 1000)
-				{
-					App->player->formation[i]->cd_count = GetTickCount();
-					App->player->formation[i]->MyAttack = READY;
-				}
-				//Cooldown reset SPECIAL
-				if (GetTickCount() - App->player->formation[i]->spc_cd_count >= 7000)
-				{
-					App->player->formation[i]->spc_cd_count = GetTickCount();
-					App->player->formation[i]->MySpecialAttack = READY;
-				}
-
+			{				
 				if (App->gui->CheckButton(&character[i]->Button_Atack, App->input->mouse_x, App->input->mouse_y))
 				{
 					if (App->player->formation[i]->MyAttack == READY)
