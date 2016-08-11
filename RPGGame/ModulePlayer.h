@@ -20,6 +20,10 @@ enum player_class{
 	ARCHER,
 	MAGE
 };
+enum Attack_State{
+	READY,
+	COOLDOWN
+};
 
 enum direction{
 	NORTH,
@@ -38,6 +42,8 @@ public:
 	Player(String name, int max_hp, int hp, int max_mp, int mp, int attack, int defense) :name(name), max_hp(max_hp), hp(hp), max_mp(max_mp), mp(mp), attack(attack), defense(defense){}
 	~Player(){}
 	String name;
+	Attack_State MyAttack = READY;
+	Attack_State MySpecialAttack = READY;
 	int max_hp, hp,max_mp, mp, attack, defense;
 	bool PlayerDead = false;
 	DoubleList<Item*> inventory;

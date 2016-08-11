@@ -21,6 +21,8 @@ public:
 	SDL_Rect Character_life;
 	SDL_Rect Character_mana;
 
+	SDL_Rect Button_Atack;
+	SDL_Rect Button_Special_Atack;
 	enum CharacterState CurrentState;
 };
 class GUI_Character : public Module

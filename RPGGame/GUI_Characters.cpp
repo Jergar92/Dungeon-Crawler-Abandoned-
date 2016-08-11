@@ -3,8 +3,8 @@
 #include "ModuleTexture.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
-#include "ModuleCollider.h"
-
+#include "Gui.h"
+#include "ModuleInput.h"
 GUI_Character::GUI_Character()
 {
 	int i = 0;
@@ -19,6 +19,8 @@ GUI_Character::GUI_Character()
 	one->Atack_cooldown = { 300, 41, 48, 41 };
 	one->Special_Atack = { 349, 0, 47, 41 };
 	one->Special_Atack_cooldown = { 349, 41, 47, 41 };
+	one->Button_Atack = { 693, 47, 47, 41 };
+	one->Button_Special_Atack = { 742, 47, 47, 41 }; 
 	one->CurrentState = ALIVE;
 	character[i++] = one;
 
@@ -32,6 +34,8 @@ GUI_Character::GUI_Character()
 	two->Atack_cooldown = { 300, 141, 48, 41 };
 	two->Special_Atack = { 349, 100, 47, 41 };
 	two->Special_Atack_cooldown = { 349, 141, 47, 41 };
+	two->Button_Atack = { 693, 147, 47, 41 };
+	two->Button_Special_Atack = { 742, 147, 47, 41 };
 	two->CurrentState = ALIVE;
 	character[i++] = two;
 
@@ -45,6 +49,8 @@ GUI_Character::GUI_Character()
 	three->Atack_cooldown = { 300, 241, 48, 41 };
 	three->Special_Atack = { 349, 200, 47, 41 };
 	three->Special_Atack_cooldown = { 349, 241, 47, 41 };
+	three->Button_Atack = { 693, 247, 47, 41 };
+	three->Button_Special_Atack = { 742, 247, 47, 41 };
 	three->CurrentState = ALIVE;
 
 	character[i++] = three;
@@ -59,6 +65,8 @@ GUI_Character::GUI_Character()
 	four->Atack_cooldown = { 300, 341, 48, 41 };
 	four->Special_Atack = { 349, 300, 47, 41 };
 	four->Special_Atack_cooldown = { 349, 341, 47, 41 };
+	four->Button_Atack = { 693, 347, 47, 41 };
+	four->Button_Special_Atack = { 742, 347, 47, 41 };
 	four->CurrentState = ALIVE;
 
 	character[i++] = four;
@@ -104,14 +112,19 @@ void GUI_Character::Retexture(){
 			App->render->Blit(Characters_sprites, 600 * SCREEN_SIZE, (100 * i) * SCREEN_SIZE, &character[i]->Character_dead);
 		}
 		//Life/Mana Bar
-		 
 		App->render->Blit(Characters_sprites, 693 * SCREEN_SIZE, (10 + (100 * i)) * SCREEN_SIZE, &character[i]->Character_life);
 		App->render->Blit(Characters_sprites, 693 * SCREEN_SIZE, (28 + (100 * i)) * SCREEN_SIZE, &character[i]->Character_mana);
-		
-		//Atack//Special Atack
+		//Atack
+		if (App->player->formation[i]->MyAttack==READY)
+			App->render->Blit(Characters_sprites, 693 * SCREEN_SIZE, (47 + (100 * i)) * SCREEN_SIZE, &character[i]->Atack);
+		else
+			App->render->Blit(Characters_sprites, 693 * SCREEN_SIZE, (47 + (100 * i)) * SCREEN_SIZE, &character[i]->Atack_cooldown);
+		//Special Atack
+		if (App->player->formation[i]->MySpecialAttack == READY)
+			App->render->Blit(Characters_sprites, 742 * SCREEN_SIZE, (47 + (100 * i)) * SCREEN_SIZE, &character[i]->Special_Atack);
+		else
+			App->render->Blit(Characters_sprites, 742 * SCREEN_SIZE, (47 + (100 * i)) * SCREEN_SIZE, &character[i]->Special_Atack_cooldown);
 
-		App->render->Blit(Characters_sprites, 693 * SCREEN_SIZE, (47 + (100 * i)) * SCREEN_SIZE, &character[i]->Atack);
-		App->render->Blit(Characters_sprites, 742 * SCREEN_SIZE, (47 + (100 * i)) * SCREEN_SIZE, &character[i]->Special_Atack);
 	}
 
 
@@ -133,6 +146,21 @@ update_status GUI_Character::Update()
 		for (int i = 0; i < MAX_CHARACTERS; i++){
 			character[i]->Character_life = { 396, 0, (App->player->formation[i]->hp * 96) / App->player->formation[i]->max_hp, 12 };
 			character[i]->Character_mana = { 396, 12, (App->player->formation[i]->mp * 96) / App->player->formation[i]->max_mp, 12 };
+		}
+		if (App->input->mouse_buttons[SDL_BUTTON_LEFT] == KEY_STATE::KEY_DOWN) // if the user clicked a mousebutton
+		{
+			for (int i = 0; i < MAX_CHARACTERS; i++){
+				if (App->gui->CheckButton(&character[i]->Button_Atack, App->input->mouse_x, App->input->mouse_y)){
+					//Attack Function
+					App->player->formation[i]->MyAttack = COOLDOWN;
+					Retexture();
+				}
+				else if (App->gui->CheckButton(&character[i]->Button_Special_Atack, App->input->mouse_x, App->input->mouse_y)){
+					//Attack Function
+					App->player->formation[i]->MySpecialAttack = COOLDOWN;
+					Retexture();
+				}
+			}
 		}
 		bool running = true;
 		Retexture();
