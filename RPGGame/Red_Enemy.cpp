@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "ModulePlayer.h"
 #include "Red_Enemy.h"
 #include "ModuleCollider.h"
 #include "ModuleRender.h"
@@ -37,7 +38,7 @@ void Red_Enemy::Move()
 			//NORTH
 		case 0:
 		{
-			if (App->level1->map[position.y - 1][position.x] != 0)
+			if (EnemyCanPass(position.y - 1, position.x))
 			{
 				position.y -= 1;
 				LOG("Moved to NORTH");
@@ -47,7 +48,7 @@ void Red_Enemy::Move()
 		//EAST
 		case 1:
 		{
-			if (App->level1->map[position.y][position.x + 1] != 0)
+			if (EnemyCanPass(position.y, position.x + 1))
 			{
 				position.x += 1;
 				LOG("Moved to EAST");
@@ -57,7 +58,7 @@ void Red_Enemy::Move()
 		//SOUTH
 		case 2:
 		{
-			if (App->level1->map[position.y + 1][position.x] != 0)
+			if (EnemyCanPass(position.y + 1, position.x))
 			{
 				position.y += 1;
 				LOG("Moved to SOUTH");
@@ -67,7 +68,7 @@ void Red_Enemy::Move()
 		//WEST
 		case 3:
 		{
-			if (App->level1->map[position.y][position.x - 1] != 0)
+			if (EnemyCanPass(position.y, position.x - 1))
 			{
 				position.x -= 1;
 				LOG("Moved to WEST");
@@ -82,3 +83,14 @@ void Red_Enemy::Move()
 		}
 	}
 }
+bool Red_Enemy::EnemyCanPass(int posY, int posX){
+	bool ret = false;
+	if (App->level1->map[posY][posX] != 0 || App->level1->map[posY][posX] != 3)
+		{
+			if (App->player->position.x == position.x &&App->player->position.y == position.y)
+				ret = false;
+			else
+				ret = true;
+		}
+		return ret;
+	}

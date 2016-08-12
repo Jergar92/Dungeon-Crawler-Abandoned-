@@ -15,7 +15,7 @@ public:
 
 	Blue_Enemy(int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay);
 	void Move();
-	
+	bool EnemyCanPass(int, int);
 };
 
 
