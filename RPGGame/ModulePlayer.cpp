@@ -960,7 +960,7 @@ void ModulePlayer::PlayerSpecialAttack(int player, int enemy)
 bool ModulePlayer::PlayerCanPass(int posY, int posX)
 {
 	bool ret = false;
-	if (App->level1->map[posY][posX] != 0 && App->level1->map[posY][posX] != 3)
+	if (App->level1->map[posY][posX] != 0 && App->level1->map[posY][posX] != 3 && App->level1->map[posY][posX] != 9)
 	{
 		for (int i = 0; i < MAX_ENEMIES; i++){
 			if (App->enemies->enemies[i] != nullptr)

@@ -85,7 +85,7 @@ void Red_Enemy::Move()
 }
 bool Red_Enemy::EnemyCanPass(int posY, int posX){
 	bool ret = false;
-	if (App->level1->map[posY][posX] != 0 && App->level1->map[posY][posX] != 3)
+	if (App->level1->map[posY][posX] != 0 && App->level1->map[posY][posX] != 3 && App->level1->map[posY][posX] != 9)
 		{
 			if (App->player->position.x == position.x &&App->player->position.y == position.y)
 				ret = false;
