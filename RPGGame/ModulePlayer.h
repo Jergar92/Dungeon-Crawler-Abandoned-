@@ -84,7 +84,7 @@ public:
 	direction dir;
 	int room_tile[4];
 	bool cant_cross = false;
-
+	bool PlayerCanPass(int, int);
 	void PlayerInput();
 	void PlayerRotation(int, rotation);
 	void ChangeTile(int);

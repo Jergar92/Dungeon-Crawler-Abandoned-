@@ -84,17 +84,21 @@ update_status ModulePlayer::Update()
 	for (int i = 0; i < NUM_PLAYERS; i++)
 	{
 		//NORMAL
-		if (GetTickCount() - App->player->formation[i]->cd_count >= 1000)
-		{
-			App->player->formation[i]->cd_count = GetTickCount();
-			App->player->formation[i]->MyAttack = READY;
-		}
+		if (formation[i]->MyAttack == COOLDOWN){
 
+			if (GetTickCount() - App->player->formation[i]->cd_count >= 1000)
+			{
+				formation[i]->cd_count = GetTickCount();
+				formation[i]->MyAttack = READY;
+			}
+		}
 		//SPECIAL
-		if (GetTickCount() - App->player->formation[i]->spc_cd_count >= 7000)
-		{
-			App->player->formation[i]->spc_cd_count = GetTickCount();
-			App->player->formation[i]->MySpecialAttack = READY;
+		if (formation[i]->MySpecialAttack == COOLDOWN){
+			if (GetTickCount() - App->player->formation[i]->spc_cd_count >= 7000)
+			{
+				formation[i]->spc_cd_count = GetTickCount();
+				formation[i]->MySpecialAttack = READY;
+			}
 		}
 	}
 	if (1)
@@ -619,7 +623,7 @@ void ModulePlayer::PlayerInput()
 	{
 		if (dir == NORTH)
 		{
-			if (App->level1->map[position.y - 1][position.x] != 0 && App->level1->map[position.y - 1][position.x] != 3)
+			if (PlayerCanPass(position.y - 1, position.x))
 			{
 				ChangeTile(dir);
 			}
@@ -627,7 +631,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == SOUTH)
 		{
-			if (App->level1->map[position.y + 1][position.x] != 0 && App->level1->map[position.y + 1][position.x] != 3)
+			if (PlayerCanPass(position.y + 1, position.x))
 			{
 				ChangeTile(dir);
 			}
@@ -635,7 +639,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == EAST)
 		{
-			if (App->level1->map[position.y][position.x + 1] != 0 && App->level1->map[position.y][position.x + 1] != 3)
+			if (PlayerCanPass(position.y, position.x + 1))
 			{
 				ChangeTile(dir);
 			}
@@ -643,7 +647,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == WEST)
 		{
-			if (App->level1->map[position.y][position.x - 1] != 0 && App->level1->map[position.y][position.x - 1] != 3)
+			if (PlayerCanPass(position.y, position.x - 1))
 			{
 				ChangeTile(dir);
 			}
@@ -657,7 +661,7 @@ void ModulePlayer::PlayerInput()
 	{
 		if (dir == NORTH)
 		{
-			if (App->level1->map[position.y + 1][position.x] != 0 && App->level1->map[position.y + 1][position.x] != 3)
+			if (PlayerCanPass(position.y + 1, position.x))
 			{
 				dir = SOUTH;
 				ChangeTile(dir);
@@ -667,7 +671,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == SOUTH)
 		{
-			if (App->level1->map[position.y - 1][position.x] != 0 && App->level1->map[position.y - 1][position.x] != 3)
+			if (PlayerCanPass(position.y - 1, position.x))
 			{
 				dir = NORTH;
 				ChangeTile(dir);
@@ -677,7 +681,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == EAST)
 		{
-			if (App->level1->map[position.y][position.x - 1] != 0 && App->level1->map[position.y][position.x - 1] != 3)
+			if (PlayerCanPass(position.y, position.x - 1))
 			{
 				dir = WEST;
 				ChangeTile(dir);
@@ -687,7 +691,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == WEST)
 		{
-			if (App->level1->map[position.y][position.x + 1] != 0 && App->level1->map[position.y][position.x + 1] != 3)
+			if (PlayerCanPass(position.y, position.x + 1))
 			{
 				dir = EAST;
 				ChangeTile(dir);
@@ -703,7 +707,7 @@ void ModulePlayer::PlayerInput()
 	{
 		if (dir == NORTH)
 		{
-			if (App->level1->map[position.y][position.x + 1] != 0 && App->level1->map[position.y][position.x + 1] != 3)
+			if (PlayerCanPass(position.y, position.x + 1))
 			{
 				dir = EAST;
 				ChangeTile(dir);
@@ -713,7 +717,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == SOUTH)
 		{
-			if (App->level1->map[position.y][position.x - 1] != 0 && App->level1->map[position.y][position.x - 1] != 3)
+			if (PlayerCanPass(position.y, position.x - 1))
 			{
 				dir = WEST;
 				ChangeTile(dir);
@@ -723,7 +727,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == EAST)
 		{
-			if (App->level1->map[position.y + 1][position.x] != 0 && App->level1->map[position.y + 1][position.x] != 3)
+			if (PlayerCanPass(position.y + 1, position.x))
 			{
 				dir = SOUTH;
 				ChangeTile(dir);
@@ -733,7 +737,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == WEST)
 		{
-			if (App->level1->map[position.y - 1][position.x] != 0 && App->level1->map[position.y - 1][position.x] != 3)
+			if (PlayerCanPass(position.y - 1, position.x))
 			{
 				dir = NORTH;
 				ChangeTile(dir);
@@ -749,7 +753,7 @@ void ModulePlayer::PlayerInput()
 	{
 		if (dir == NORTH)
 		{
-			if (App->level1->map[position.y][position.x - 1] != 0 && App->level1->map[position.y][position.x - 1] != 3)
+			if (PlayerCanPass(position.y, position.x - 1))
 			{
 				dir = WEST;
 				ChangeTile(dir);
@@ -759,7 +763,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == SOUTH)
 		{
-			if (App->level1->map[position.y][position.x + 1] != 0 && App->level1->map[position.y][position.x + 1] != 3)
+			if (PlayerCanPass(position.y, position.x + 1))
 			{
 				dir = EAST;
 				ChangeTile(dir);
@@ -769,7 +773,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == EAST)
 		{
-			if (App->level1->map[position.y - 1][position.x] != 0 && App->level1->map[position.y - 1][position.x] != 3)
+			if (PlayerCanPass(position.y - 1, position.x))
 			{
 				dir = NORTH;
 				ChangeTile(dir);
@@ -779,7 +783,7 @@ void ModulePlayer::PlayerInput()
 		}
 		else if (dir == WEST)
 		{
-			if (App->level1->map[position.y + 1][position.x] != 0 && App->level1->map[position.y + 1][position.x] != 3)
+			if (PlayerCanPass(position.y + 1, position.x))
 			{
 				dir = SOUTH;
 				ChangeTile(dir);
@@ -952,4 +956,22 @@ void ModulePlayer::PlayerSpecialAttack(int player, int enemy)
 	App->enemies->queue[enemy].hp -= (formation[player]->attack * 2) - App->enemies->queue[enemy].defense;
 	formation[player]->mp -= 50;
 	formation[player]->MySpecialAttack = COOLDOWN;
+}
+bool ModulePlayer::PlayerCanPass(int posY, int posX)
+{
+	bool ret = false;
+	if (App->level1->map[posY][posX] != 0 && App->level1->map[posY][posX] != 3)
+	{
+		for (int i = 0; i < MAX_ENEMIES; i++){
+			if (App->enemies->enemies[i] != nullptr)
+			{
+				if (App->enemies->enemies[i]->position.x == posX && App->enemies->enemies[i]->position.y == posY)
+				{
+					return ret;
+				}
+			}
+		}
+		ret = true;
+	}
+	return ret;
 }
