@@ -152,7 +152,7 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay,direction direction)
 {
 	bool ret = false;
 	for (uint i = 0; i < MAX_ENEMIES; i++)
@@ -167,6 +167,8 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int hp, int attack,
 			queue[i].defense = defense;
 			queue[i].at_delay = at_delay;
 			queue[i].mov_delay = mov_delay;
+			queue[i].dir = direction;
+
 			ret = true;
 			break;
 		}
@@ -185,17 +187,17 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		{
 		case ENEMY_TYPES::BLUE:
 		{
-			enemies[i] = new Blue_Enemy(info.x, info.y, info.hp, info.attack, info.defense, info.at_delay, info.mov_delay);
+			enemies[i] = new Blue_Enemy(info.x, info.y, info.hp, info.attack, info.defense, info.at_delay, info.mov_delay,info.dir);
 			break;
 		}
 		case ENEMY_TYPES::RED:
 		{
-			enemies[i] = new Red_Enemy(info.x, info.y, info.hp, info.attack, info.defense, info.at_delay, info.mov_delay);
+			enemies[i] = new Red_Enemy(info.x, info.y, info.hp, info.attack, info.defense, info.at_delay, info.mov_delay, info.dir);
 			break;
 		}
 		case ENEMY_TYPES::GREEN:
 		{
-			enemies[i] = new Green_Enemy(info.x, info.y, info.hp, info.attack, info.defense, info.at_delay, info.mov_delay);
+			enemies[i] = new Green_Enemy(info.x, info.y, info.hp, info.attack, info.defense, info.at_delay, info.mov_delay, info.dir);
 			break;
 		}
 		}

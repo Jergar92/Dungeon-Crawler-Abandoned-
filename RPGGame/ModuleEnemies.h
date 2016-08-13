@@ -25,6 +25,7 @@ struct EnemyInfo
 	int defense;
 	int at_delay;
 	int mov_delay;
+	direction dir;
 };
 
 class ModuleEnemies : public Module
@@ -39,7 +40,7 @@ public:
 	update_status PostUpdate();
 	bool CleanUp();
 
-	bool AddEnemy(ENEMY_TYPES type, int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay);
+	bool AddEnemy(ENEMY_TYPES type, int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay,direction direction);
 	bool CheckMonster(int x, int y, int i);
 	bool CanSeePlayer(int x, int y, int i);
 	//void OnCollision(Collider* c1, Collider* c2);

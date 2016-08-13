@@ -4,8 +4,8 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 
-Enemy::Enemy(int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay) :position(x, y),
-hp(hp), attack(attack), defense(defense), at_delay(at_delay), mov_delay(mov_delay), collider(nullptr){}
+Enemy::Enemy(int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay, direction direction) :position(x, y),
+hp(hp), attack(attack), defense(defense), at_delay(at_delay), mov_delay(mov_delay), collider(nullptr), dir(direction){}
 
 Enemy::~Enemy()
 {

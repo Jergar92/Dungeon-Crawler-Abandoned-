@@ -3,11 +3,12 @@
 
 #include "p2Point.h"
 #include "Animation.h"
+#include "ModulePlayer.h"
 #include "windows.h"
 
 struct SDL_Texture;
 struct Collider;
-
+//enum EnemyState{PATROL,FOLLOWING,ATTACKING};
 class Enemy
 {
 protected:
@@ -23,18 +24,21 @@ public:
 	int defense;
 	int at_delay;
 	int mov_delay;
-
+	direction dir;
+	rotation rot;
 	//time counter
 	uint timer = GetTickCount();
 	uint actual_time;
 
-	Enemy(int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay);
+	Enemy(int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay, direction direction);
 	virtual ~Enemy();
 
 	//const Collider* GetCollider() const;
 
 	virtual void Move(){};
-	virtual bool EnemyCanPass(int, int)=0;
+	virtual void Rotation(int, rotation){};
+	virtual bool EnemyCanPass(int posY, int posX) = 0;
+	virtual bool EnemyCanGoTo(int posY, int posX) = 0;
 	virtual void Draw_close(SDL_Texture* sprites);
 	virtual void Draw_medium(SDL_Texture* sprites);
 	virtual void Draw_distant(SDL_Texture* sprites);

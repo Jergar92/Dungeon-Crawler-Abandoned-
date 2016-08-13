@@ -8,7 +8,7 @@
 #include <time.h>
 
 
-Red_Enemy::Red_Enemy(int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay) :Enemy(x, y, hp, attack, defense, at_delay, mov_delay)
+Red_Enemy::Red_Enemy(int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay, direction direction) :Enemy(x, y, hp, attack, defense, at_delay, mov_delay, direction)
 {
 	position.x = x;
 	position.y = y;
@@ -87,10 +87,46 @@ bool Red_Enemy::EnemyCanPass(int posY, int posX){
 	bool ret = false;
 	if (App->level1->map[posY][posX] != 0 && App->level1->map[posY][posX] != 3 && App->level1->map[posY][posX] != 9)
 		{
-			if (App->player->position.x == position.x &&App->player->position.y == position.y)
+			if (App->player->position.x == posX &&App->player->position.y == posY)
 				ret = false;
 			else
 				ret = true;
 		}
 		return ret;
 	}
+bool Red_Enemy::EnemyCanGoTo(int posY, int posX){
+	bool ret = false;
+	switch (dir)
+	{
+	case NORTH:
+
+		if (App->level1->map[position.y - 1][position.x] != 0 && App->level1->map[position.y - 1][position.x] != 3 && App->level1->map[position.y - 1][position.x] != 9)
+		{
+			ret = true;
+		}
+		break;
+	case SOUTH:
+		if (App->level1->map[position.y + 1][position.x] != 0 && App->level1->map[position.y + 1][position.x] != 3 && App->level1->map[position.y + 1][position.x] != 9)
+		{
+			ret = true;
+		}
+		break;
+
+	case EAST:
+
+		if (App->level1->map[position.y][position.x + 1] != 0 && App->level1->map[position.y][position.x + 1] != 3 && App->level1->map[position.y][position.x + 1] != 9)
+		{
+			ret = true;
+		}
+		break;
+	case WEST:
+		if (App->level1->map[position.y][position.x - 1] != 0 && App->level1->map[position.y][position.x - 1] != 3 && App->level1->map[position.y][position.x - 1] != 9)
+		{
+			ret = true;
+		}
+		break;
+	default:
+		break;
+	}
+	return ret;
+}
