@@ -69,56 +69,75 @@ update_status ModuleEnemies::Update()
 	}
 	for (uint i = 0; i < MAX_ENEMIES; i++)
 	{
-		if (App->player->dir == NORTH)
-		{	
-			if (CheckMonster(App->player->position.x, App->player->position.y - 1, i))
-			{
-				if (CanSeePlayer(App->player->position.x, App->player->position.y - 1, i))
-					enemies[i]->Draw_close(sprites);
-			}
-			if (CheckMonster(App->player->position.x, App->player->position.y - 2, i))
-			{
-				if (CanSeePlayer(App->player->position.x, App->player->position.y - 2, i))
-					enemies[i]->Draw_medium(sprites);
-			}
-		}
-		else if (App->player->dir == EAST)
+		if (enemies[i] != nullptr)
 		{
-			if (CheckMonster(App->player->position.x+1, App->player->position.y, i))
+			if (App->player->dir == NORTH)
 			{
-				if (CanSeePlayer(App->player->position.x + 1, App->player->position.y, i))
-				enemies[i]->Draw_close(sprites);
+				if (checkMonster(App->player->position.x, App->player->position.y - 1, i))
+				{
+					if (canSeePlayer(App->player->position.x, App->player->position.y - 1, i)){
+						formationOrder(i);
+						enemies[i]->Draw_close(sprites);
+					}
+				}
+				if (checkMonster(App->player->position.x, App->player->position.y - 2, i))
+				{
+					if (canSeePlayer(App->player->position.x, App->player->position.y - 2, i)){
+						formationOrder(i);
+						enemies[i]->Draw_medium(sprites);
+					}
+				}
 			}
-			if (CheckMonster(App->player->position.x+2, App->player->position.y, i))
+			else if (App->player->dir == EAST)
 			{
-				if (CanSeePlayer(App->player->position.x + 2, App->player->position.y, i))
-				enemies[i]->Draw_medium(sprites);
+				if (checkMonster(App->player->position.x + 1, App->player->position.y, i))
+				{
+					if (canSeePlayer(App->player->position.x + 1, App->player->position.y, i)){
+						formationOrder(i);
+						enemies[i]->Draw_close(sprites);
+					}
+				}
+				if (checkMonster(App->player->position.x + 2, App->player->position.y, i))
+				{
+					if (canSeePlayer(App->player->position.x + 2, App->player->position.y, i)){
+						formationOrder(i);
+						enemies[i]->Draw_medium(sprites);
+					}
+				}
 			}
-		}
-		else if (App->player->dir == SOUTH)
-		{
-			if (CheckMonster(App->player->position.x, App->player->position.y + 1, i))
+			else if (App->player->dir == SOUTH)
 			{
-				if (CanSeePlayer(App->player->position.x, App->player->position.y + 1, i))
-				enemies[i]->Draw_close(sprites);
+				if (checkMonster(App->player->position.x, App->player->position.y + 1, i))
+				{
+					if (canSeePlayer(App->player->position.x, App->player->position.y + 1, i)){
+						formationOrder(i);
+						enemies[i]->Draw_close(sprites);
+					}
+				}
+				if (checkMonster(App->player->position.x, App->player->position.y + 2, i))
+				{
+					if (canSeePlayer(App->player->position.x, App->player->position.y + 2, i)){
+						formationOrder(i);
+						enemies[i]->Draw_medium(sprites);
+					}
+				}
 			}
-			if (CheckMonster(App->player->position.x, App->player->position.y + 2, i))
+			else if (App->player->dir == WEST)
 			{
-				if (CanSeePlayer(App->player->position.x, App->player->position.y + 2, i))
-				enemies[i]->Draw_medium(sprites);
-			}
-		}
-		else if (App->player->dir == WEST)
-		{
-			if (CheckMonster(App->player->position.x - 1, App->player->position.y, i))
-			{
-				if (CanSeePlayer(App->player->position.x - 1, App->player->position.y, i))
-				enemies[i]->Draw_close(sprites);
-			}
-			if (CheckMonster(App->player->position.x - 2, App->player->position.y, i))
-			{
-				if (CanSeePlayer(App->player->position.x - 2, App->player->position.y, i))
-				enemies[i]->Draw_medium(sprites);
+				if (checkMonster(App->player->position.x - 1, App->player->position.y, i))
+				{
+					if (canSeePlayer(App->player->position.x - 1, App->player->position.y, i)){
+						formationOrder(i);
+						enemies[i]->Draw_close(sprites);
+					}
+				}
+				if (checkMonster(App->player->position.x - 2, App->player->position.y, i))
+				{
+					if (canSeePlayer(App->player->position.x - 2, App->player->position.y, i)){
+						formationOrder(i);
+						enemies[i]->Draw_medium(sprites);
+					}
+				}
 			}
 		}
 	}
@@ -212,7 +231,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 
 //void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 
-bool ModuleEnemies::CheckMonster(int x, int y, int i)
+bool ModuleEnemies::checkMonster(int x, int y, int i)
 {
 	bool ret = false;
 	if (enemies[i] != nullptr)
@@ -225,7 +244,7 @@ bool ModuleEnemies::CheckMonster(int x, int y, int i)
 	return ret;
 }
 
-bool ModuleEnemies::CanSeePlayer(int x, int y, int i)
+bool ModuleEnemies::canSeePlayer(int x, int y, int i)
 {
 	int checkY = y, checkX = x;
 	bool ret = true;
@@ -248,4 +267,21 @@ bool ModuleEnemies::CanSeePlayer(int x, int y, int i)
 		}
 	}
 	return ret;
+}
+void ModuleEnemies::formationOrder(int enemyNumber){
+	for (int i = 0; i < MAX_ENEMIES; i++){
+		if (enemies[i] != nullptr && i != enemyNumber){
+			if (enemies[enemyNumber]->position.x == enemies[i]->position.x&&enemies[enemyNumber]->position.y == enemies[i]->position.y){
+				if (enemies[enemyNumber]->formation == enemies[i]->formation){
+					changeOrder(i);
+				}
+			}
+		}
+	}
+}
+void ModuleEnemies::changeOrder(int enemyNumber){
+	if (enemies[enemyNumber]->formation == ONLEFT)
+		enemies[enemyNumber]->formation = ONRIGHT;
+	else
+		enemies[enemyNumber]->formation = ONLEFT;
 }

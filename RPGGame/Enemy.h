@@ -8,7 +8,8 @@
 
 struct SDL_Texture;
 struct Collider;
-//enum EnemyState{PATROL,FOLLOWING,ATTACKING};
+//enum EnemyState{PATROL,FOLLOWING,ATTACKING}
+enum EnemyFormation{ONLEFT,ONRIGHT};
 class Enemy
 {
 protected:
@@ -26,6 +27,7 @@ public:
 	int mov_delay;
 	direction dir;
 	rotation rot;
+	EnemyFormation formation;
 	//time counter
 	uint timer = GetTickCount();
 	uint actual_time;

@@ -41,8 +41,10 @@ public:
 	bool CleanUp();
 
 	bool AddEnemy(ENEMY_TYPES type, int x, int y, int hp, int attack, int defense, int at_delay, int mov_delay,direction direction);
-	bool CheckMonster(int x, int y, int i);
-	bool CanSeePlayer(int x, int y, int i);
+	bool checkMonster(int x, int y, int i);
+	bool canSeePlayer(int x, int y, int i);
+	void formationOrder(int i);
+	void changeOrder(int i);
 	//void OnCollision(Collider* c1, Collider* c2);
 
 	EnemyInfo queue[MAX_ENEMIES];

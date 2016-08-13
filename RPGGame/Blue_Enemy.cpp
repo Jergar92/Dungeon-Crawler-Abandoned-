@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "ModulePlayer.h"
+#include "ModuleEnemies.h"
 #include "Blue_Enemy.h"
 #include "ModuleCollider.h"
 #include "ModuleRender.h"
@@ -11,7 +12,7 @@ Blue_Enemy::Blue_Enemy(int x, int y, int hp, int attack, int defense, int at_del
 {
 	position.x = x;
 	position.y = y;
-
+	formation = ONLEFT;
 	close.PushBack({ 28, 31, 111, 103 });
 	medium.PushBack({ 25, 152, 59, 54 });
 
@@ -138,18 +139,41 @@ void Blue_Enemy::Rotation()
 }
 bool Blue_Enemy::EnemyCanGoTo(){
 	bool ret = false;
+	int counter = 0;
 	switch (dir)
 	{
 	case NORTH:
 	
 		if (App->level1->map[position.y - 1][position.x] != 0 && App->level1->map[position.y - 1][position.x] != 3 && App->level1->map[position.y - 1][position.x] != 9)
 		{
+			for (int i = 0; i < MAX_ENEMIES; i++){
+				if (App->enemies->enemies[i] != nullptr){
+					if (App->enemies->enemies[i]->position.x == position.x &&App->enemies->enemies[i]->position.y == position.y - 1){
+						counter++;
+					}
+				}
+				if (counter == 2){
+					return ret;
+				}
+
+			}
 			ret = true;
 		}
 		break;
 	case SOUTH:
 		if (App->level1->map[position.y + 1][position.x] != 0 && App->level1->map[position.y + 1][position.x] != 3 && App->level1->map[position.y + 1][position.x] != 9)
 		{
+			for (int i = 0; i < MAX_ENEMIES; i++){
+				if (App->enemies->enemies[i] != nullptr){
+					if (App->enemies->enemies[i]->position.x == position.x &&App->enemies->enemies[i]->position.y == position.y + 1){
+						counter++;
+					}
+				}
+				if (counter == 2){
+					return ret;
+				}
+
+			}
 			ret = true;
 		}
 		break;
@@ -158,12 +182,34 @@ bool Blue_Enemy::EnemyCanGoTo(){
 		
 		if (App->level1->map[position.y][position.x + 1] != 0 && App->level1->map[position.y][position.x + 1] != 3 && App->level1->map[position.y][position.x + 1] != 9)
 		{
+			for (int i = 0; i < MAX_ENEMIES; i++){
+				if (App->enemies->enemies[i] != nullptr){
+					if (App->enemies->enemies[i]->position.x + 1 == position.x &&App->enemies->enemies[i]->position.y == position.y ){
+						counter++;
+					}
+				}
+				if (counter == 2){
+					return ret;
+				}
+
+			}
 			ret = true;
 		}
 		break;
 	case WEST:
 		if (App->level1->map[position.y][position.x - 1] != 0 && App->level1->map[position.y][position.x - 1] != 3 && App->level1->map[position.y][position.x - 1] != 9)
 		{
+			for (int i = 0; i < MAX_ENEMIES; i++){
+				if (App->enemies->enemies[i] != nullptr){
+					if (App->enemies->enemies[i]->position.x == position.x - 1 && App->enemies->enemies[i]->position.y == position.y){
+						counter++;
+					}
+				}
+				if (counter == 2){
+					return ret;
+				}
+
+			}
 			ret = true;
 		}
 		break;

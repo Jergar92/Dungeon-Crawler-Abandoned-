@@ -19,16 +19,25 @@ Enemy::~Enemy()
 
 void Enemy::Draw_close(SDL_Texture* sprites)
 {
-
+	if (formation==ONLEFT)
 	App->render->Blit(sprites, 180, 370, &(animation_close->GetCurrentFrame()));
+	else
+	App->render->Blit(sprites, 350, 370, &(animation_close->GetCurrentFrame()));
+
 }
 
 void Enemy::Draw_medium(SDL_Texture* sprites)
 {
-	App->render->Blit(sprites, 230, 360, &(animation_medium->GetCurrentFrame()));
+	if (formation==ONLEFT)
+		App->render->Blit(sprites, 230, 360, &(animation_medium->GetCurrentFrame()));
+	else
+		App->render->Blit(sprites, 350, 370, &(animation_close->GetCurrentFrame()));
 }
 
 void Enemy::Draw_distant(SDL_Texture* sprites)
 {
-	App->render->Blit(sprites, 300, 300, &(animation_distant->GetCurrentFrame()));
+	if (formation == ONLEFT)
+		App->render->Blit(sprites, 300, 300, &(animation_distant->GetCurrentFrame()));
+	else
+		App->render->Blit(sprites, 350, 300, &(animation_close->GetCurrentFrame()));
 }
