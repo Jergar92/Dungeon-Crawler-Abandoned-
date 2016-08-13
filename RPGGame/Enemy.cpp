@@ -19,19 +19,280 @@ Enemy::~Enemy()
 
 void Enemy::Draw_close(SDL_Texture* sprites)
 {
-	if (formation==ONLEFT)
-	App->render->Blit(sprites, 180, 370, &(animation_close->GetCurrentFrame()));
-	else
-	App->render->Blit(sprites, 350, 370, &(animation_close->GetCurrentFrame()));
+	switch (dir)
+	{
+	case NORTH:
+		switch (App->player->dir)
+		{
+		case NORTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Back);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Back);
+			break;
+		case SOUTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Front);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Front);
+			break;
+		case EAST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Right);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Right);
+			break;
+		case WEST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Left);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Left);
+			break;
+		default:
+			LOG("ERROR");
+			break;
+		}
+		break;
+	case SOUTH:
+		switch (App->player->dir)
+		{
+		case NORTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Front);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Front);
+			break;
+		case SOUTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Back);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Back);
+			break;
+		case EAST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Left);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Left);
+			break;
+		case WEST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Right);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Right);
+			break;
+		default:
+			LOG("ERROR");
+			break;
+		}
+		break;
+	case EAST:
+		switch (App->player->dir)
+		{
+		case NORTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Right);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Right);
+			break;
+		case SOUTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Left);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Left);
+			break;
+		case EAST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Back);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Back);
+			break;
+		case WEST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Front);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Front);
+			break;
+		default:
+			LOG("ERROR");
+			break;
+		}
+		break;
+	case WEST:
+		switch (App->player->dir)
+		{
+		case NORTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Left);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Left);
+			break;
+		case SOUTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Right);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Right);
+			break;
+		case EAST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Front);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Front);
+			break;
+		case WEST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &close_Back);
+			else
+				App->render->Blit(sprites, 350, 370, &close_Back);
+			break;
+		default:
+			LOG("ERROR");
+			break;
+		}
+		break;
+	default:
+		LOG("ERROR");
+		break;
+	}
+	
 
 }
 
 void Enemy::Draw_medium(SDL_Texture* sprites)
 {
-	if (formation==ONLEFT)
-		App->render->Blit(sprites, 230, 360, &(animation_medium->GetCurrentFrame()));
-	else
-		App->render->Blit(sprites, 350, 370, &(animation_close->GetCurrentFrame()));
+	switch (dir)
+	{
+	case NORTH:
+		switch (App->player->dir)
+		{
+		case NORTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Back);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Back);
+			break;
+		case SOUTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Front);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Front);
+			break;
+		case EAST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Right);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Right);
+			break;
+		case WEST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Left);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Left);
+			break;
+		default:
+			LOG("ERROR");
+			break;
+		}
+		break;
+	case SOUTH:
+		switch (App->player->dir)
+		{
+		case NORTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Front);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Front);
+			break;
+		case SOUTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Back);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Back);
+			break;
+		case EAST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Left);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Left);
+			break;
+		case WEST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Right);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Right);
+			break;
+		default:
+			LOG("ERROR");
+			break;
+		}
+		break;
+	case EAST:
+		switch (App->player->dir)
+		{
+		case NORTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Right);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Right);
+			break;
+		case SOUTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Left);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Left);
+			break;
+		case EAST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Back);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Back);
+			break;
+		case WEST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Front);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Front);
+			break;
+		default:
+			LOG("ERROR");
+			break;
+		}
+		break;
+	case WEST:
+		switch (App->player->dir)
+		{
+		case NORTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Left);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Left);
+			break;
+		case SOUTH:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Right);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Right);
+			break;
+		case EAST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Front);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Front);
+			break;
+		case WEST:
+			if (formation == ONLEFT)
+				App->render->Blit(sprites, 180, 370, &medium_Back);
+			else
+				App->render->Blit(sprites, 350, 370, &medium_Back);
+			break;
+		default:
+			LOG("ERROR");
+			break;
+		}
+		break;
+	default:
+		LOG("ERROR");
+		break;
+	}
 }
 
 void Enemy::Draw_distant(SDL_Texture* sprites)

@@ -7,6 +7,7 @@
 class Blue_Enemy : public Enemy
 {
 private:
+	//Animation??
 	Animation close;
 	Animation medium;
 	Animation distant;

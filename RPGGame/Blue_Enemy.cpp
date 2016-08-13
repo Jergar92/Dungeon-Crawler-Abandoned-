@@ -13,6 +13,16 @@ Blue_Enemy::Blue_Enemy(int x, int y, int hp, int attack, int defense, int at_del
 	position.x = x;
 	position.y = y;
 	formation = ONLEFT;
+	close_Front = { 28, 31, 111, 103 };
+	close_Back = { 172, 26, 111, 103 };//33
+	close_Left = { 316, 26, 111, 103 };
+	close_Right = { 460, 26, 111, 103 };
+
+	medium_Front = { 25, 152, 59, 54 };//17
+	medium_Back = { 101, 152, 59, 54 };
+	medium_Left = { 177, 152, 59, 54 };
+	medium_Right = { 253, 152, 59, 54 };
+
 	close.PushBack({ 28, 31, 111, 103 });
 	medium.PushBack({ 25, 152, 59, 54 });
 

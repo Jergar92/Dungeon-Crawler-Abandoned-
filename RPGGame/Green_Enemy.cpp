@@ -13,6 +13,15 @@ Green_Enemy::Green_Enemy(int x, int y, int hp, int attack, int defense, int at_d
 	position.x = x;
 	position.y = y;
 	formation = ONLEFT;
+	close_Front = { 1183, 26, 109, 109 };//35
+	close_Back = { 1327, 26, 109, 109 };//144
+	close_Left = { 1471, 26, 109, 109 };
+	close_Right = { 1615, 26, 109, 109 };
+
+	medium_Front = { 646, 149, 57, 57 };//76
+	medium_Back = { 722, 149, 57, 57 };
+	medium_Left = { 798, 149, 57, 57 };
+	medium_Right = { 874, 149, 57, 57 };
 
 	close.PushBack({ 1183, 27, 109, 109 });
 	medium.PushBack({ 646, 149, 57, 57 });

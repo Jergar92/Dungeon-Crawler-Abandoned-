@@ -15,6 +15,16 @@ Red_Enemy::Red_Enemy(int x, int y, int hp, int attack, int defense, int at_delay
 	position.y = y;
 	formation = ONRIGHT;
 
+	close_Front = { 610, 27, 98, 107 };//1183
+	close_Back = { 756, 27, 98, 107 };
+	close_Left = { 902, 27, 98, 107 };
+	close_Right = { 1048, 27, 98, 107 };
+
+	medium_Front = { 337, 149, 52, 57 };//25
+	medium_Back = { 414, 149, 52, 57 };
+	medium_Left = { 491, 149, 52, 57 };
+	medium_Right = { 568, 149, 52, 57 };
+
 	close.PushBack({ 600, 27, 150, 107 });
 	medium.PushBack({ 337, 150, 52, 56 });
 

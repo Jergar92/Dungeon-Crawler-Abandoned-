@@ -17,7 +17,6 @@ protected:
 	Animation* animation_medium;
 	Animation* animation_distant;
 	Collider* collider;
-
 public:
 	iPoint position;
 	int hp;
@@ -44,6 +43,22 @@ public:
 	virtual void Draw_close(SDL_Texture* sprites);
 	virtual void Draw_medium(SDL_Texture* sprites);
 	virtual void Draw_distant(SDL_Texture* sprites);
+
+	SDL_Rect close_Front;
+	SDL_Rect close_Right;
+	SDL_Rect close_Left;
+	SDL_Rect close_Back;
+
+	SDL_Rect medium_Front;
+	SDL_Rect medium_Right;
+	SDL_Rect medium_Left;
+	SDL_Rect medium_Back;
+	/* ///No implemented///
+	SDL_Rect distant_Front;
+	SDL_Rect distant_Right;
+	SDL_Rect distant_Left;
+	SDL_Rect distant_Back;
+	*/
 };
 
 #endif // __ENEMY_H__
