@@ -197,6 +197,7 @@ void GUI_Inventory::Retexture(){
 						for (int i = 0; i < MAX_COLUMNS; i++){
 							for (int j = 0; j < MAX_ROWS; j++){
 								if ((j*MAX_COLUMNS) + i == item->data->itemSlot){
+									
 									App->render->Blit(App->items->itemssprite, 617 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &item->data->sprite);
 								}
 							}
@@ -225,10 +226,10 @@ update_status GUI_Inventory::Update()
 				Retexture();
 			}
 			else if (App->gui->CheckButton(&Player2, App->input->mouse_x, App->input->mouse_y) && InventoryIs == OFF){
-					InventoryIs = ON;
-					InventoryCharacter = CHARACTER_TWO;
-					Retexture();
-				}
+				InventoryIs = ON;
+				InventoryCharacter = CHARACTER_TWO;
+				Retexture();
+			}
 			else if (App->gui->CheckButton(&Player3, App->input->mouse_x, App->input->mouse_y) && InventoryIs == OFF){
 				InventoryIs = ON;
 				InventoryCharacter = CHARACTER_THREE;
@@ -240,7 +241,6 @@ update_status GUI_Inventory::Update()
 				Retexture();
 			}
 		}
-	
 		else{
 			if (App->gui->CheckButton(&Exit, App->input->mouse_x, App->input->mouse_y) && InventoryIs == ON){
 				InventoryIs = OFF;
@@ -269,14 +269,170 @@ update_status GUI_Inventory::Update()
 					InventoryCharacter = CHARACTER_ONE;
 				Retexture();
 			}
+			else {
+				switch (InventoryCharacter)
+				{
+				case CHARACTER_ONE:
+					if (itemSelected(CHARACTER_ONE)){
+						DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_ONE]->inventory.first_node;
+						for (int i = 0; i < MAX_SLOTS; i++){
+							if (App->gui->CheckButton(&slots.Sloot[i], App->input->mouse_x, App->input->mouse_y) && InventoryIs == ON){
+								for (; item != nullptr; item = item->next){
+									if (item->data->isSelected == true){
+										if (!isOcuped(CHARACTER_ONE, i)){
+											item->data->itemSlot = i;
+										}
+									}
+								}
+							}
+						}
+					}
+					else{
+						DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_ONE]->inventory.first_node;
+						for (int i = 0; i < MAX_SLOTS; i++){
+							if (App->gui->CheckButton(&slots.Sloot[i], App->input->mouse_x, App->input->mouse_y) && InventoryIs == ON){
+								for (; item != nullptr; item = item->next){
+									if (item->data->itemSlot == i){
+										item->data->isSelected = true;
+									}
+								}
+							}
+						}
+					}
+					break;
+				case CHARACTER_TWO:
+					if (itemSelected(CHARACTER_TWO)){
+						DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_TWO]->inventory.first_node;
+						for (int i = 0; i < MAX_SLOTS; i++){
+							if (App->gui->CheckButton(&slots.Sloot[i], App->input->mouse_x, App->input->mouse_y) && InventoryIs == ON){
+								for (; item != nullptr; item = item->next){
+									if (item->data->isSelected == true){
+										if (!isOcuped(CHARACTER_TWO, i)){
+											item->data->itemSlot = i;
+										}
+									}
+								}
+							}
+						}
+					}
+					else{
+						DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_TWO]->inventory.first_node;
+						for (int i = 0; i < MAX_SLOTS; i++){
+							if (App->gui->CheckButton(&slots.Sloot[i], App->input->mouse_x, App->input->mouse_y) && InventoryIs == ON){
+								for (; item != nullptr; item = item->next){
+									if (item->data->itemSlot == i){
+										item->data->isSelected = true;
+									}
+								}
+							}
+						}
+					}
+					break;
+				case CHARACTER_THREE:
+					if (itemSelected(CHARACTER_THREE)){
+						DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_THREE]->inventory.first_node;
+						for (int i = 0; i < MAX_SLOTS; i++){
+							if (App->gui->CheckButton(&slots.Sloot[i], App->input->mouse_x, App->input->mouse_y) && InventoryIs == ON){
+								for (; item != nullptr; item = item->next){
+									if (item->data->isSelected == true){
+										if (!isOcuped(CHARACTER_THREE, i)){
+											item->data->itemSlot = i;
+										}
+									}
+								}
+							}
+						}
+					}
+					else{
+						DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_THREE]->inventory.first_node;
+						for (int i = 0; i < MAX_SLOTS; i++){
+							if (App->gui->CheckButton(&slots.Sloot[i], App->input->mouse_x, App->input->mouse_y) && InventoryIs == ON){
+								for (; item != nullptr; item = item->next){
+									if (item->data->itemSlot == i){
+										item->data->isSelected = true;
+									}
+								}
+							}
+						}
+					}
+					break;
+				case CHARACTER_FOUR:
+					if (itemSelected(CHARACTER_FOUR)){
+						DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_FOUR]->inventory.first_node;
+						for (int i = 0; i < MAX_SLOTS; i++){
+							if (App->gui->CheckButton(&slots.Sloot[i], App->input->mouse_x, App->input->mouse_y) && InventoryIs == ON){
+								for (; item != nullptr; item = item->next){
+									if (item->data->isSelected == true){
+										if (!isOcuped(CHARACTER_FOUR, i)){
+											item->data->itemSlot = i;
+										}
+									}
+								}
+							}
+						}
+					}
+					else{
+						DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_FOUR]->inventory.first_node;
+						for (int i = 0; i < MAX_SLOTS; i++){
+							if (App->gui->CheckButton(&slots.Sloot[i], App->input->mouse_x, App->input->mouse_y) && InventoryIs == ON){
+								for (; item != nullptr; item = item->next){
+									if (item->data->itemSlot == i){
+										item->data->isSelected = true;
+									}
+								}
+							}
+						}
+					}
+					break;
+				case NO_CHARACTER:
+					break;
+				default:
+					break;
+				}
+
+			}
 		}
 	}
-	
 		return UPDATE_CONTINUE;
+
 	
 }
-
+bool GUI_Inventory::itemSelected(currentCharracter characterNumber){
+	bool ret = false;
+	DoubleList<Item*>::nodeD* item = App->player->formation[characterNumber]->inventory.first_node;
+	for (; item != nullptr; item = item->next){
+		if (item->data->isSelected == true){
+			ret = true;
+			return ret;
+		}
+	}
+	return ret;
+}
+bool GUI_Inventory::isOcuped(currentCharracter characterNumber,int slot){
+	bool ret = false;
+	DoubleList<Item*>::nodeD* item = App->player->formation[characterNumber]->inventory.first_node;
+	for (; item != nullptr; item = item->next){
+		if (item->data->itemSlot == slot){
+			ret = true;
+			return ret;
+		}
+	}
+	return ret;
+}
 Character_Icon::Character_Icon(){
+	int i = 0;
+	Sloot[i++] = { 617, 220, 52, 52 };
+	Sloot[i++] = { 675, 220, 52, 52 };
+	Sloot[i++] = { 733, 220, 52, 52 };
+	Sloot[i++] = { 617, 278, 52, 52 };
+	Sloot[i++] = { 675, 278, 52, 52 };
+	Sloot[i++] = { 733, 278, 52, 52 };
+	Sloot[i++] = { 617, 336, 52, 52 };
+	Sloot[i++] = { 675, 336, 52, 52 };
+	Sloot[i++] = { 733, 336, 52, 52 };
+	Sloot[i++] = { 739, 16, 52, 52 };
+	Sloot[i++] = { 739, 82, 52, 52 };
+	Sloot[i++] = { 739, 148, 52, 52 };
 
 }
 Inventory::Inventory(){

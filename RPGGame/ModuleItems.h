@@ -26,6 +26,7 @@ public:
 	String description;
 	int value;
 	int itemSlot;
+	bool isSelected=false;
 	item_type type;
 	SDL_Rect sprite;
 };
