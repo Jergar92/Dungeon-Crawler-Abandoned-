@@ -29,14 +29,10 @@ void Red_Enemy::Move()
 	if (actual_time >= timer + mov_delay)
 	{
 		timer = actual_time;
-		srand(time(NULL));
-
-		int dir = rand() % 4;
-
 		switch (dir)
 		{
 			//NORTH
-		case 0:
+		case NORTH:
 		{
 			if (EnemyCanPass(position.y - 1, position.x))
 			{
@@ -46,7 +42,7 @@ void Red_Enemy::Move()
 			break;
 		}
 		//EAST
-		case 1:
+		case EAST:
 		{
 			if (EnemyCanPass(position.y, position.x + 1))
 			{
@@ -56,7 +52,7 @@ void Red_Enemy::Move()
 			break;
 		}
 		//SOUTH
-		case 2:
+		case SOUTH:
 		{
 			if (EnemyCanPass(position.y + 1, position.x))
 			{
@@ -66,7 +62,7 @@ void Red_Enemy::Move()
 			break;
 		}
 		//WEST
-		case 3:
+		case WEST:
 		{
 			if (EnemyCanPass(position.y, position.x - 1))
 			{
@@ -86,15 +82,62 @@ void Red_Enemy::Move()
 bool Red_Enemy::EnemyCanPass(int posY, int posX){
 	bool ret = false;
 	if (App->level1->map[posY][posX] != 0 && App->level1->map[posY][posX] != 3 && App->level1->map[posY][posX] != 9)
-		{
-			if (App->player->position.x == posX &&App->player->position.y == posY)
-				ret = false;
-			else
-				ret = true;
-		}
-		return ret;
+	{
+		if (App->player->position.x == posX &&App->player->position.y == posY)
+			ret = false;
+		else
+			ret = true;
 	}
-bool Red_Enemy::EnemyCanGoTo(int posY, int posX){
+	return ret;
+}
+void Red_Enemy::Rotation()
+{
+	rotation rot = static_cast<rotation>(rand() % 2);
+
+	if (rot == RIGHT)
+	{
+		switch (dir)
+		{
+		case NORTH:
+			dir = EAST;
+			break;
+		case SOUTH:
+			dir = WEST;
+			break;
+		case EAST:
+			dir = SOUTH;
+			break;
+		case WEST:
+			dir = NORTH;
+			break;
+		default:
+			LOG("ERROR rotating player");
+			break;
+		}
+	}
+	else if (rot == LEFT)
+	{
+		switch (dir)
+		{
+		case NORTH:
+			dir = WEST;
+			break;
+		case SOUTH:
+			dir = EAST;
+			break;
+		case EAST:
+			dir = NORTH;
+			break;
+		case WEST:
+			dir = SOUTH;
+			break;
+		default:
+			LOG("ERROR rotating player");
+			break;
+		}
+	}
+}
+bool Red_Enemy::EnemyCanGoTo(){
 	bool ret = false;
 	switch (dir)
 	{

@@ -36,9 +36,9 @@ public:
 	//const Collider* GetCollider() const;
 
 	virtual void Move(){};
-	virtual void Rotation(int, rotation){};
+	virtual void Rotation(){};
 	virtual bool EnemyCanPass(int posY, int posX) = 0;
-	virtual bool EnemyCanGoTo(int posY, int posX) = 0;
+	virtual bool EnemyCanGoTo() = 0;
 	virtual void Draw_close(SDL_Texture* sprites);
 	virtual void Draw_medium(SDL_Texture* sprites);
 	virtual void Draw_distant(SDL_Texture* sprites);

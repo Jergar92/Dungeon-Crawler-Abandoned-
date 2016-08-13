@@ -27,16 +27,11 @@ void Blue_Enemy::Move()
 {
 	if (actual_time >= timer + mov_delay)
 	{
-		
 		timer = actual_time;
-		srand(time(NULL));
-
-		int dir = rand() % 4;
-
 		switch (dir)
 		{
 		//NORTH
-		case 0:
+		case NORTH:
 		{
 			if (EnemyCanPass(position.y - 1,position.x))
 			{
@@ -46,7 +41,7 @@ void Blue_Enemy::Move()
 			break;
 		}
 		//EAST
-		case 1:
+		case EAST:
 		{
 			if (EnemyCanPass(position.y,position.x + 1))
 			{
@@ -56,7 +51,7 @@ void Blue_Enemy::Move()
 			break;
 		}
 		//SOUTH
-		case 2:
+	 case SOUTH:
 		{
 			if (EnemyCanPass(position.y + 1,position.x))
 			{
@@ -66,7 +61,7 @@ void Blue_Enemy::Move()
 			break;
 		}
 		//WEST
-		case 3:
+		case WEST:
 		{
 			if (EnemyCanPass(position.y,position.x - 1))
 			{
@@ -94,11 +89,13 @@ bool Blue_Enemy::EnemyCanPass(int posY, int posX){
 	}
 	return ret;
 }
-void Blue_Enemy::Rotation(int direction, rotation rot)
+void Blue_Enemy::Rotation()
 {
+	rotation rot = static_cast<rotation>(rand() % 2);
+
 	if (rot == RIGHT)
 	{
-		switch (direction)
+		switch (dir)
 		{
 		case NORTH:
 			dir = EAST;
@@ -119,7 +116,7 @@ void Blue_Enemy::Rotation(int direction, rotation rot)
 	}
 	else if (rot == LEFT)
 	{
-		switch (direction)
+		switch (dir)
 		{
 		case NORTH:
 			dir = WEST;
@@ -139,7 +136,7 @@ void Blue_Enemy::Rotation(int direction, rotation rot)
 		}
 	}
 }
-bool Blue_Enemy::EnemyCanGoTo(int posY, int posX){
+bool Blue_Enemy::EnemyCanGoTo(){
 	bool ret = false;
 	switch (dir)
 	{

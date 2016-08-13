@@ -57,8 +57,14 @@ update_status ModuleEnemies::Update()
 	for (uint i = 0; i < MAX_ENEMIES; i++)
 	{
 		if (enemies[i] != nullptr)
-		{
-			enemies[i]->Move();
+		{			
+			if (enemies[i]->EnemyCanGoTo()){
+				enemies[i]->Move();
+			}
+			else{
+				enemies[i]->Rotation();
+			}
+			
 		}
 	}
 	for (uint i = 0; i < MAX_ENEMIES; i++)
