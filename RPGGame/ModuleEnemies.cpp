@@ -150,7 +150,7 @@ update_status ModuleEnemies::PostUpdate()
 	{
 		if (enemies[i] != nullptr)
 		{
-			if (queue[i].hp <= 0)
+			if (enemies[i]->hp <= 0)
 			{
 				LOG("Enemy died at[%i][%i]\n", App->enemies->queue[i].y, App->enemies->queue[i].x);
 				delete enemies[i];

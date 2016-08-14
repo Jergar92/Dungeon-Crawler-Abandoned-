@@ -946,8 +946,69 @@ void ModulePlayer::GetItem(Item* newItem, int player){
 
 void ModulePlayer::PlayerAttack(int player, int enemy)
 {
-	App->enemies->queue[enemy].hp -= formation[player]->attack - App->enemies->queue[enemy].defense;
-	formation[player]->MyAttack = COOLDOWN;
+	switch (dir){
+	case NORTH:
+		for (int i = 0; i < MAX_ENEMIES; i++){
+			if (App->enemies->enemies[i] != nullptr){
+				if (App->enemies->enemies[i]->position.y - 1 == position.y && App->enemies->enemies[i]->position.x == position.x){
+					App->enemies->enemies[i]->hp -= formation[player]->attack - App->enemies->enemies[i]->defense;
+					formation[player]->MyAttack = COOLDOWN;
+					return;
+				}
+				else{
+					//attack failed
+				}
+			}
+		}
+		break;
+	case EAST:
+		for (int i = 0; i < MAX_ENEMIES; i++){
+			if (App->enemies->enemies[i] != nullptr){
+				if (App->enemies->enemies[i]->position.y == position.y && App->enemies->enemies[i]->position.x-1 == position.x){
+					App->enemies->enemies[i]->hp -= formation[player]->attack - App->enemies->enemies[i]->defense;
+					formation[player]->MyAttack = COOLDOWN;
+					return;
+				}
+				else{
+					//attack failed
+				}
+			}
+		}
+		break;
+	case WEST:
+		for (int i = 0; i < MAX_ENEMIES; i++){
+			if (App->enemies->enemies[i] != nullptr){
+				if (App->enemies->enemies[i]->position.y == position.y && App->enemies->enemies[i]->position.x + 1 == position.x){
+					App->enemies->enemies[i]->hp -= formation[player]->attack - App->enemies->enemies[i]->defense;
+					formation[player]->MyAttack = COOLDOWN;
+					return;
+				}
+				else{
+					//attack failed
+				}
+			}
+		}
+		break;
+
+	case SOUTH:
+		for (int i = 0; i < MAX_ENEMIES; i++){
+			if (App->enemies->enemies[i] != nullptr){
+				if (App->enemies->enemies[i]->position.y+1 == position.y && App->enemies->enemies[i]->position.x == position.x){
+					App->enemies->enemies[i]->hp -= formation[player]->attack - App->enemies->enemies[i]->defense;
+					formation[player]->MyAttack = COOLDOWN;
+					return;
+				}
+				else{
+					//attack failed
+				}
+			}
+		}
+		break;
+
+	default:LOG("Player attack error");
+		break;
+	}
+
 }
 
 void ModulePlayer::PlayerSpecialAttack(int player, int enemy)
