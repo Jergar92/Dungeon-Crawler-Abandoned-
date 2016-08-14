@@ -35,6 +35,8 @@ class ModuleItems : public Module{
 public:
 	ModuleItems();
 	~ModuleItems();
+	SDL_Rect spriteSelected;
+
 	SDL_Texture* itemssprite = nullptr;
 	bool Start();
 	update_status Update();

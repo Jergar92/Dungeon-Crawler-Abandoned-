@@ -6,6 +6,8 @@
 
 ModuleItems::ModuleItems()
 {
+	spriteSelected = { 468, 0, 52, 52 };
+
 	SDL_Rect key_sprite = { 0, 0, 52, 52 };
 	map_items.push_back(Key = new Item("Key", "opens doors", 0,0, KEYS, key_sprite));
 }

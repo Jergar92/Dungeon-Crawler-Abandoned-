@@ -48,4 +48,5 @@ public:
 	bool itemSelected(currentCharracter InventoryCharacter);
 	bool isOcuped(currentCharracter InventoryCharacter,int slot);
 	void changeSlotValues();
+	void swapItems(currentCharracter characterNumber,int location, int destiny);
 };

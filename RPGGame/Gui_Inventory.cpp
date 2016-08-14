@@ -65,12 +65,19 @@ void GUI_Inventory::Retexture(){
 					if (item->data->itemSlot > 9){
 						if (item->data->itemSlot == 9){
 							App->render->Blit(App->items->itemssprite, 739  * SCREEN_SIZE, 16 * SCREEN_SIZE, &item->data->sprite);
+							if (item->data->isSelected == true)
+								App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &App->items->spriteSelected);
+							
 						}
 						else if (item->data->itemSlot == 10){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 82 * SCREEN_SIZE, &item->data->sprite);
+							if (item->data->isSelected == true)
+								App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 82 * SCREEN_SIZE, &App->items->spriteSelected);
 						}
 						else if (item->data->itemSlot == 11){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 148 * SCREEN_SIZE, &item->data->sprite);
+							if (item->data->isSelected == true)
+								App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 148 * SCREEN_SIZE, &App->items->spriteSelected);
 						}
 					}
 					else{
@@ -78,7 +85,11 @@ void GUI_Inventory::Retexture(){
 							for (int j = 0; j < MAX_ROWS; j++){
 								if ((j*MAX_COLUMNS) + i == item->data->itemSlot){
 									App->render->Blit(App->items->itemssprite, 613 + (i * 58) * SCREEN_SIZE, 220+(j * 58) * SCREEN_SIZE, &item->data->sprite);
+									if (item->data->isSelected == true){
+										App->render->Blit(App->items->itemssprite, 613 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &App->items->spriteSelected);
+									}
 								}
+
 							}
 						}
 					}
@@ -105,19 +116,31 @@ void GUI_Inventory::Retexture(){
 					if (item->data->itemSlot > 9){
 						if (item->data->itemSlot == 9){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &item->data->sprite);
+							if (item->data->isSelected == true)
+								App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &App->items->spriteSelected);
+
 						}
 						else if (item->data->itemSlot == 10){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 82 * SCREEN_SIZE, &item->data->sprite);
+							if (item->data->isSelected == true)
+								App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 82 * SCREEN_SIZE, &App->items->spriteSelected);
 						}
 						else if (item->data->itemSlot == 11){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 148 * SCREEN_SIZE, &item->data->sprite);
+							if (item->data->isSelected == true)
+								App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 148 * SCREEN_SIZE, &App->items->spriteSelected);
 						}
 					}
 					else{
 						for (int i = 0; i < MAX_COLUMNS; i++){
 							for (int j = 0; j < MAX_ROWS; j++){
 								if ((j*MAX_COLUMNS) + i == item->data->itemSlot){
-									App->render->Blit(App->items->itemssprite, 617 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &item->data->sprite);
+
+									App->render->Blit(App->items->itemssprite, 613 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &item->data->sprite);
+									if (item->data->isSelected == true){
+										App->render->Blit(App->items->itemssprite, 613 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &App->items->spriteSelected);
+
+									}
 								}
 							}
 						}
@@ -145,20 +168,32 @@ void GUI_Inventory::Retexture(){
 					if (item->data->itemSlot > 9){
 						if (item->data->itemSlot == 9){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &item->data->sprite);
+							if (item->data->isSelected == true)
+								App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &App->items->spriteSelected);
+
 						}
 						else if (item->data->itemSlot == 10){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 82 * SCREEN_SIZE, &item->data->sprite);
+							if (item->data->isSelected == true)
+								App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 82 * SCREEN_SIZE, &App->items->spriteSelected);
 						}
 						else if (item->data->itemSlot == 11){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 148 * SCREEN_SIZE, &item->data->sprite);
+							if (item->data->isSelected == true)
+								App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 148 * SCREEN_SIZE, &App->items->spriteSelected);
 						}
 					}
 					else{
 						for (int i = 0; i < MAX_COLUMNS; i++){
 							for (int j = 0; j < MAX_ROWS; j++){
 								if ((j*MAX_COLUMNS) + i == item->data->itemSlot){
-									App->render->Blit(App->items->itemssprite, 617 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &item->data->sprite);
+									App->render->Blit(App->items->itemssprite, 613 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &item->data->sprite);
+									if (item->data->isSelected == true){
+										App->render->Blit(App->items->itemssprite, 613 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &App->items->spriteSelected);
+
+									}
 								}
+								
 							}
 						}
 					}
@@ -185,21 +220,31 @@ void GUI_Inventory::Retexture(){
 					if (item->data->itemSlot > 9){
 						if (item->data->itemSlot == 9){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &item->data->sprite);
+							if (item->data->isSelected == true)
+								App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &App->items->spriteSelected);
+
 						}
 						else if (item->data->itemSlot == 10){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 82 * SCREEN_SIZE, &item->data->sprite);
+							if (item->data->isSelected == true)
+								App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 82 * SCREEN_SIZE, &App->items->spriteSelected);
 						}
 						else if (item->data->itemSlot == 11){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 148 * SCREEN_SIZE, &item->data->sprite);
+							if (item->data->isSelected == true)
+								App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 148 * SCREEN_SIZE, &App->items->spriteSelected);
 						}
 					}
 					else{
 						for (int i = 0; i < MAX_COLUMNS; i++){
 							for (int j = 0; j < MAX_ROWS; j++){
 								if ((j*MAX_COLUMNS) + i == item->data->itemSlot){
-									
-									App->render->Blit(App->items->itemssprite, 617 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &item->data->sprite);
+									App->render->Blit(App->items->itemssprite, 613 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &item->data->sprite);
+									if (item->data->isSelected == true){
+										App->render->Blit(App->items->itemssprite, 613 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &App->items->spriteSelected);
+									}
 								}
+								
 							}
 						}
 					}
@@ -281,6 +326,10 @@ update_status GUI_Inventory::Update()
 									if (item->data->isSelected == true){
 										if (!isOcuped(CHARACTER_ONE, i)){
 											item->data->itemSlot = i;
+											item->data->isSelected = false;
+										}
+										else{
+											swapItems(CHARACTER_ONE, item->data->itemSlot, i);
 										}
 									}
 								}
@@ -294,6 +343,7 @@ update_status GUI_Inventory::Update()
 								for (; item != nullptr; item = item->next){
 									if (item->data->itemSlot == i){
 										item->data->isSelected = true;
+
 									}
 								}
 							}
@@ -309,6 +359,10 @@ update_status GUI_Inventory::Update()
 									if (item->data->isSelected == true){
 										if (!isOcuped(CHARACTER_TWO, i)){
 											item->data->itemSlot = i;
+											item->data->isSelected = false;
+										}
+										else{
+											swapItems(CHARACTER_TWO, item->data->itemSlot, i);
 										}
 									}
 								}
@@ -337,6 +391,10 @@ update_status GUI_Inventory::Update()
 									if (item->data->isSelected == true){
 										if (!isOcuped(CHARACTER_THREE, i)){
 											item->data->itemSlot = i;
+											item->data->isSelected = false;
+										}
+										else{
+											swapItems(CHARACTER_THREE, item->data->itemSlot, i);
 										}
 									}
 								}
@@ -365,6 +423,10 @@ update_status GUI_Inventory::Update()
 									if (item->data->isSelected == true){
 										if (!isOcuped(CHARACTER_FOUR, i)){
 											item->data->itemSlot = i;
+											item->data->isSelected = false;
+										}
+										else{
+											swapItems(CHARACTER_FOUR, item->data->itemSlot, i);
 										}
 									}
 								}
@@ -418,6 +480,18 @@ bool GUI_Inventory::isOcuped(currentCharracter characterNumber,int slot){
 		}
 	}
 	return ret;
+}
+void GUI_Inventory::swapItems(currentCharracter characterNumber,int location, int destiny){
+	DoubleList<Item*>::nodeD* item = App->player->formation[characterNumber]->inventory.first_node;
+	for (; item != nullptr; item = item->next){
+		if (item->data->itemSlot == destiny){
+			item->data->itemSlot = location;
+		}
+		if (item->data->isSelected == true){
+			item->data->itemSlot = destiny;
+			item->data->isSelected = false;
+		}
+	}
 }
 Character_Icon::Character_Icon(){
 	int i = 0;
