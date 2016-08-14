@@ -65,11 +65,11 @@ bool ModuleLevel1::Start()
 		//NOTICE: NEEDED THE FIRST && LAST LINE AND COLUMN TO BE 0 OR YOU CAN EXIT THE MAP
 		/*      0  1  2  3  4  5  6  7  8  9
 		/*0 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		/*1 */{ 0, 9, 9, 9, 1, 9, 0, 0, 0, 0 },
-		/*2 */{ 0, 1, 1, 3, 2, 1, 0, 0, 0, 0 },
-		/*3 */{ 0, 9, 9, 9, 1, 9, 0, 0, 0, 0 },
+		/*1 */{ 0, 0, 1, 0, 1, 0, 1, 0, 0, 0 },
+		/*2 */{ 0, 1, 2, 3, 2, 1, 2, 0, 0, 0 },
+		/*3 */{ 0, 0, 1, 0, 1, 0, 1, 0, 0, 0 },
 		/*4 */{ 0, 0, 0, 1, 2, 1, 0, 0, 0, 0 },
-		/*5 */{ 0, 0, 0, 9, 1, 9, 0, 0, 0, 0 },
+		/*5 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
 		/*6 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		/*7 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		/*8 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -112,39 +112,56 @@ update_status ModuleLevel1::Update()
 	App->player->room_tile[0] = App->level1->map[App->player->position.y][App->player->position.x];
 	if (App->player->dir == NORTH)
 	{
+		App->player->back_room_tile = App->level1->map[App->player->position.y + 1][App->player->position.x];
 		App->player->room_tile[1] = App->level1->map[App->player->position.y - 1][App->player->position.x];
 		App->player->room_tile[2] = App->level1->map[App->player->position.y - 2][App->player->position.x];
 		App->player->room_tile[3] = App->level1->map[App->player->position.y - 3][App->player->position.x];
 	}
 	else if (App->player->dir == EAST)
 	{
+		App->player->back_room_tile = App->level1->map[App->player->position.y][App->player->position.x - 1];
 		App->player->room_tile[1] = App->level1->map[App->player->position.y][App->player->position.x + 1];
 		App->player->room_tile[2] = App->level1->map[App->player->position.y][App->player->position.x + 2];
 		App->player->room_tile[3] = App->level1->map[App->player->position.y][App->player->position.x + 3];
 	}
 	else if(App->player->dir == SOUTH)
 	{
+		App->player->back_room_tile = App->level1->map[App->player->position.y + 1][App->player->position.x];
 		App->player->room_tile[1] = App->level1->map[App->player->position.y + 1][App->player->position.x];
 		App->player->room_tile[2] = App->level1->map[App->player->position.y + 2][App->player->position.x];
 		App->player->room_tile[3] = App->level1->map[App->player->position.y + 3][App->player->position.x];
 	}
 	else if(App->player->dir == WEST)
 	{
+		App->player->back_room_tile = App->level1->map[App->player->position.y][App->player->position.x + 1];
 		App->player->room_tile[1] = App->level1->map[App->player->position.y][App->player->position.x - 1];
 		App->player->room_tile[2] = App->level1->map[App->player->position.y][App->player->position.x - 2];
 		App->player->room_tile[3] = App->level1->map[App->player->position.y][App->player->position.x - 3];
 	}
 
-	if (App->player->room_tile[1] == 0){
-		App->render->Blit(graphics, 0, 0, &background_wall);
-		App->render->Blit(graphics, 0, 0, &lvl1_parallel_wall);
-		App->render->Blit(graphics, 158, 158, &lvl2_large_front_wall);
+	if (App->player->room_tile[1] == 0 && App->player->room_tile[0] != 2)
+	{
+		if (App->player->back_room_tile == 0)
+		{
+			App->render->Blit(graphics, 0, 0, &background_wall);
+			App->render->Blit(graphics, 0, 0, &lvl2_front_wall);
+			App->render->Blit(graphics, 158, 158, &lvl2_large_front_wall);
+		}
+		else
+		{
+			App->render->Blit(graphics, 0, 0, &background_wall);
+			App->render->Blit(graphics, 0, 0, &lvl1_parallel_wall);
+			App->render->Blit(graphics, 158, 158, &lvl2_large_front_wall);
+		}
 	}
-	else if (App->player->room_tile[1] == 9){
+	else if (App->player->room_tile[1] == 0 && App->player->room_tile[0] == 2)
+	{
 		App->render->Blit(graphics, 0, 0, &background_wall);
+		App->render->Blit(graphics, 158, 158, &lvl2_large_front_wall);
 		App->render->Blit(graphics, 0, 0, &lvl2_front_wall);
-		App->render->Blit(graphics, 158, 158, &lvl2_large_front_wall);
 	}
+
+
 	else{
 		App->render->Blit(graphics, 0, 0, &background_wall);
 
