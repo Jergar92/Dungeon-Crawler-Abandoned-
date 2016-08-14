@@ -62,7 +62,7 @@ void GUI_Inventory::Retexture(){
 			if (!App->player->formation[CHARACTER_ONE]->inventory.Empty()){
 				DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_ONE]->inventory.first_node;
 				for (; item != nullptr; item = item->next){
-					if (item->data->itemSlot > 9){
+					if (item->data->itemSlot > 8){
 						if (item->data->itemSlot == 9){
 							App->render->Blit(App->items->itemssprite, 739  * SCREEN_SIZE, 16 * SCREEN_SIZE, &item->data->sprite);
 							if (item->data->isSelected == true)
@@ -89,7 +89,6 @@ void GUI_Inventory::Retexture(){
 										App->render->Blit(App->items->itemssprite, 613 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &App->items->spriteSelected);
 									}
 								}
-
 							}
 						}
 					}
@@ -113,7 +112,7 @@ void GUI_Inventory::Retexture(){
 			if (!App->player->formation[CHARACTER_TWO]->inventory.Empty()){
 				DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_TWO]->inventory.first_node;
 				for (; item != nullptr; item = item->next){
-					if (item->data->itemSlot > 9){
+					if (item->data->itemSlot > 8){
 						if (item->data->itemSlot == 9){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &item->data->sprite);
 							if (item->data->isSelected == true)
@@ -135,11 +134,9 @@ void GUI_Inventory::Retexture(){
 						for (int i = 0; i < MAX_COLUMNS; i++){
 							for (int j = 0; j < MAX_ROWS; j++){
 								if ((j*MAX_COLUMNS) + i == item->data->itemSlot){
-
 									App->render->Blit(App->items->itemssprite, 613 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &item->data->sprite);
 									if (item->data->isSelected == true){
 										App->render->Blit(App->items->itemssprite, 613 + (i * 58) * SCREEN_SIZE, 220 + (j * 58) * SCREEN_SIZE, &App->items->spriteSelected);
-
 									}
 								}
 							}
@@ -165,7 +162,7 @@ void GUI_Inventory::Retexture(){
 			if (!App->player->formation[CHARACTER_THREE]->inventory.Empty()){
 				DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_THREE]->inventory.first_node;
 				for (; item != nullptr; item = item->next){
-					if (item->data->itemSlot > 9){
+					if (item->data->itemSlot > 8){
 						if (item->data->itemSlot == 9){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &item->data->sprite);
 							if (item->data->isSelected == true)
@@ -217,7 +214,7 @@ void GUI_Inventory::Retexture(){
 			if (!App->player->formation[CHARACTER_FOUR]->inventory.Empty()){
 				DoubleList<Item*>::nodeD* item = App->player->formation[CHARACTER_FOUR]->inventory.first_node;
 				for (; item != nullptr; item = item->next){
-					if (item->data->itemSlot > 9){
+					if (item->data->itemSlot > 8){
 						if (item->data->itemSlot == 9){
 							App->render->Blit(App->items->itemssprite, 739 * SCREEN_SIZE, 16 * SCREEN_SIZE, &item->data->sprite);
 							if (item->data->isSelected == true)

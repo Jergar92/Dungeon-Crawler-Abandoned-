@@ -1,5 +1,6 @@
 #include "SDL/include/SDL.h"
 #include "GUI_Characters.h"
+#include "GUI_Inventory.h"
 #include "ModuleTexture.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
@@ -157,7 +158,7 @@ update_status GUI_Character::Update()
 			character[i]->Character_life = { 396, 0, (App->player->formation[i]->hp * 96) / App->player->formation[i]->max_hp, 12 };
 			character[i]->Character_mana = { 396, 12, (App->player->formation[i]->mp * 96) / App->player->formation[i]->max_mp, 12 };
 		}
-		if (App->input->mouse_buttons[SDL_BUTTON_LEFT] == KEY_STATE::KEY_DOWN) // if the user clicked a mousebutton
+		if (App->input->mouse_buttons[SDL_BUTTON_LEFT] == KEY_STATE::KEY_DOWN&&App->gui_inventory->InventoryIs==OFF) // if the user clicked a mousebutton
 		{
 			for (int i = 0; i < MAX_CHARACTERS; i++)
 			{				
