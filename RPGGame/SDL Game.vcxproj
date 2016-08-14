@@ -27,6 +27,7 @@
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleItems.cpp" />
     <ClCompile Include="ModuleLevel1.cpp" />
+    <ClCompile Include="ModuleMinigames.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
@@ -57,6 +58,7 @@
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleItems.h" />
     <ClInclude Include="ModuleLevel1.h" />
+    <ClInclude Include="ModuleMinigames.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModulePlayer.h" />
     <ClInclude Include="ModuleRender.h" />

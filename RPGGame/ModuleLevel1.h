@@ -19,6 +19,7 @@ public:
 	void open_close_door();
 
 public:
+
 	int map[10][10];
 
 	SDL_Texture* graphics = nullptr;

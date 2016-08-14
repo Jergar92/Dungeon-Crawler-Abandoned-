@@ -16,6 +16,7 @@
 #include "ModuleEnemies.h"
 #include "ModulePArticles.h"
 #include "ModuleItems.h"
+#include "ModuleMinigames.h"
 
 Application::Application()
 {
@@ -37,6 +38,8 @@ Application::Application()
 	modules[i++] = collider = new ModuleCollider();
 	modules[i++] = fade = new ModuleFadeToBlack();
 	modules[i++] = items = new ModuleItems();
+	modules[i++] = minigames = new ModuleMinigames();
+
 }
 
 Application::~Application()

@@ -98,6 +98,9 @@
     <ClCompile Include="Green_Enemy.cpp">
       <Filter>Player &amp; IA</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleMinigames.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -189,6 +192,9 @@
     </ClInclude>
     <ClInclude Include="Green_Enemy.h">
       <Filter>Player &amp; IA</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleMinigames.h">
+      <Filter>Levels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

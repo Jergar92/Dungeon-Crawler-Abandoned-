@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 17
+#define NUM_MODULES 18
 
 class Module;
 class ModuleWindow;
@@ -23,6 +23,7 @@ class GUI_Inventory;
 class ModuleEnemies;
 class ModuleParticles;
 class ModuleItems;
+class ModuleMinigames;
 
 class Application
 {
@@ -46,6 +47,7 @@ public:
 	ModuleEnemies* enemies;
 	ModuleParticles* particles;
 	ModuleItems* items;
+	ModuleMinigames* minigames;
 
 public:
 
