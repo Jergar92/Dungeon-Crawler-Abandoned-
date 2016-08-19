@@ -27,6 +27,7 @@ Application::Application()
 	modules[i++] = texture = new ModuleTextures();
 	modules[i++] = audio = new ModuleAudio();
 	modules[i++] = level1 = new ModuleLevel1();
+	modules[i++] = minigames = new ModuleMinigames();
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = particles = new ModuleParticles();
@@ -38,7 +39,7 @@ Application::Application()
 	modules[i++] = collider = new ModuleCollider();
 	modules[i++] = fade = new ModuleFadeToBlack();
 	modules[i++] = items = new ModuleItems();
-	modules[i++] = minigames = new ModuleMinigames();
+
 
 }
 
@@ -56,6 +57,7 @@ bool Application::Init()
 	player->Disable();
 	level1->Disable();
 	enemies->Disable();
+	minigames->Disable();
 	// ----------------------------
 
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)

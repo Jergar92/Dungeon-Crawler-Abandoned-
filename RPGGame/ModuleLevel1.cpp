@@ -7,6 +7,7 @@
 #include "ModuleInput.h"
 #include "ModuleCollider.h"
 #include "ModuleEnemies.h"
+#include "ModuleMinigames.h"
 #include "Blue_Enemy.h"
 
 ModuleLevel1::ModuleLevel1()
@@ -63,17 +64,18 @@ bool ModuleLevel1::Start()
 	int tile[10][10] = {
 
 		//NOTICE: NEEDED THE FIRST && LAST LINE AND COLUMN TO BE 0 OR YOU CAN EXIT THE MAP
-		/*      0  1  2  3  4  5  6  7  8  9
+		/*      0  1  2  3  4  5  6  7  8  9    X
 		/*0 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		/*1 */{ 0, 0, 1, 0, 1, 0, 1, 0, 0, 0 },
-		/*2 */{ 0, 1, 2, 3, 2, 1, 2, 0, 0, 0 },
+		/*2 */{ 0, 1, 2, 3, 2, 1, 2, 1, 0, 0 },
 		/*3 */{ 0, 0, 1, 0, 1, 0, 1, 0, 0, 0 },
 		/*4 */{ 0, 0, 0, 1, 2, 1, 0, 0, 0, 0 },
 		/*5 */{ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 },
 		/*6 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 		/*7 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-		/*8 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+		/*8 */{ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 },
 		/*9 */{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+		//Y
 	};
 	/*
 	1-Pasillo recto
@@ -109,6 +111,12 @@ bool ModuleLevel1::CleanUp()
 
 update_status ModuleLevel1::Update()
 {
+	if (App->player->position.y == 2 && App->player->position.x == 7)
+	{
+		App->player->position.x = 8;
+		App->player->position.y = 8;
+		App->minigames->Enable();
+	}
 	App->player->room_tile[0] = App->level1->map[App->player->position.y][App->player->position.x];
 	if (App->player->dir == NORTH)
 	{

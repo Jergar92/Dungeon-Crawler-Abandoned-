@@ -46,8 +46,9 @@ public:
 	ModuleGui* gui;
 	ModuleEnemies* enemies;
 	ModuleParticles* particles;
-	ModuleItems* items;
 	ModuleMinigames* minigames;
+	ModuleItems* items;
+
 
 public:
 
