@@ -31,7 +31,7 @@ bool ModuleMinigames::Start()
 	graphics_info = App->texture->Load("Puzzle_lvl1_pi_info.png");
 	g_numbers = App->texture->Load("Numbers.png");
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		num[i] = 0;
 	}
