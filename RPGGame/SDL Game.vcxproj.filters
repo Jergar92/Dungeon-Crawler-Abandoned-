@@ -101,9 +101,6 @@
     <ClCompile Include="ModuleMinigames.cpp">
       <Filter>Levels</Filter>
     </ClCompile>
-    <ClCompile Include="3_in_line.cpp">
-      <Filter>Levels</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">

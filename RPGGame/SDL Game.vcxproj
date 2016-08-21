@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="3_in_line.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Blue_Enemy.cpp" />
     <ClCompile Include="Enemy.cpp" />

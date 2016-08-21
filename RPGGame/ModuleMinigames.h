@@ -79,12 +79,13 @@ public:
 	void three_line_game();
 	void simon_game();
 
-	/*char mat[3][3];
+	char mat[3][3];
 	void Iniciar_tablero(char mat[3][3]);
 	void Tablero(const char mat[3][3]);
 	void Yo_tirada(char mat[3][3]);
 	void Pc_tirada(char mat[3][3]);
-	void funciones(char mat[3][3]);*/
+	//void funciones(char mat[3][3]);
+	int Ganador(const char mat[3][3]);
 
 	//Textures
 };
