@@ -8,9 +8,13 @@
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "GUI.h"
+#include <stdlib.h>
+#include <time.h>
 
 ModuleMinigames::ModuleMinigames()
 {
+
+	//Game 1
 	puzzle_lvl1_interact = { 0, 0, 600, 600 };
 	puzzle_lvl1_info = { 0, 0, 600, 600 };
 	numbers = { 0, 0, 53, 70 };
@@ -20,6 +24,23 @@ ModuleMinigames::ModuleMinigames()
 	Botton_4 = { 403, 206, 29, 29 };
 	Botton_5 = { 517, 206, 29, 29 };
 
+	//Game 2
+	puzzle_lvl2_info = { 0, 0, 600, 600 };
+	puzzle_lvl2_interact = { 0, 0, 600, 350 };
+	yellow_color = { 21, 297, 100, 100 };
+	green_color = { 141, 296, 100, 100 };
+	red_color = { 254, 297, 100, 100 };
+	pink_color = { 368, 296, 100, 100 };
+	blue_color = { 481, 296, 100, 100 };
+	mark = { 135, 434, 114, 114 };
+
+	mark_time = 1000;
+	round = 0;
+	player_round = 0;
+	last_round = 0;
+	new_wave = false;
+
+	//Game 3
 	puzzle_1 = { 0, 0, 133, 133 };
 	puzzle_2 = { 133, 0, 133, 133 };
 	puzzle_3 = { 266, 0, 133, 133 };
@@ -41,7 +62,7 @@ bool ModuleMinigames::Start()
 	graphics_info = App->texture->Load("Puzzle_lvl1_pi_info.png");
 	g_numbers = App->texture->Load("Numbers.png");
 	Puzzle = App->texture->Load("Sprite_lvl3.png");
-
+	graphics_simon = App->texture->Load("Puzzle_lvl2_simon.png");
 	for (int i = 0; i < 5; i++)
 	{
 		num[i] = 0;
@@ -80,10 +101,10 @@ update_status ModuleMinigames::Update()
 		{
 			numbers_game();
 		}
-		/*else if (puzzles_complets[1] == false)
+		else if (puzzles_complets[1] == false)
 		{
-			puzzles_complets[1] = true;
-		}*/
+			simon_game();
+		}
 		else if (puzzles_complets[2] == false)
 		{
 			puzzle_game();
@@ -218,11 +239,141 @@ void ModuleMinigames::numbers_game()
 
 void ModuleMinigames::simon_game()
 {
+	srand(time(NULL));
+	current_simon_time = GetTickCount();
+	if (App->player->dir == NORTH)
+	{
+		//Wall case
+	}
+	else if (App->player->dir == EAST)
+	{
 
+		uint x, y = 285;
+		if (new_wave)last_simon_time = current_simon_time;
+		//Game case
+		if (round < last_round){
+			new_wave = false;
+			//Print base bg game
+			App->render->Blit(graphics_simon, 0, 0, &puzzle_lvl1_interact);
+			//Pre-sequence print 
+			uint color = sequence[round];
+			switch (color){
+			case 1://yellow
+				x = 12;
+				break;
+			case 2://green
+				x = 130;
+				break;
+			case 3://red
+				x = 248;
+				break;
+			case 4://pink
+				x = 366;
+				break;
+			case 5://blue
+				x = 484;
+				break;
+			}
+			if (current_simon_time - mark_time > last_simon_time){
+				last_simon_time = current_simon_time;
+				round++;
+			}
+			App->render->Blit(graphics_simon, x, y, &mark);
+		}
+		//Player turn
+		else if (last_round == round && sequence[last_round - 1] != 0 && last_round != 0){
+			new_wave = false;
+			uint player_shoot = 0;
+			//Focus player box 
+			App->render->Blit(graphics_simon, 0, 0, &puzzle_lvl1_interact);
+			if (App->input->mouse_buttons[SDL_BUTTON_LEFT] == KEY_STATE::KEY_DOWN) // if the user clicked a mousebutton
+			{
+				if (App->gui->CheckButton(&yellow_color, App->input->mouse_x, App->input->mouse_y))player_shoot = 1;
+				else if (App->gui->CheckButton(&green_color, App->input->mouse_x, App->input->mouse_y))player_shoot = 2;
+				else if (App->gui->CheckButton(&red_color, App->input->mouse_x, App->input->mouse_y))player_shoot = 3;
+				else if (App->gui->CheckButton(&pink_color, App->input->mouse_x, App->input->mouse_y))player_shoot = 4;
+				else if (App->gui->CheckButton(&blue_color, App->input->mouse_x, App->input->mouse_y))player_shoot = 5;
 
+				if (player_shoot != NULL){
+					switch (player_shoot){
+					case 1://yellow
+						x = 12;
+						break;
+					case 2://green
+						x = 130;
+						break;
+					case 3://red
+						x = 248;
+						break;
+					case 4://pink
+						x = 366;
+						break;
+					case 5://blue
+						x = 484;
+						break;
+					}
+					App->render->Blit(graphics_simon, x, y, &mark);
+					player_sequence[player_round] = player_shoot;
 
+					if (player_sequence[player_round] == sequence[player_round]){
+						player_sequence[player_round] = sequence[player_round];
+						player_round++;
+					}
+					else {
+						round = player_round = 0;
+						for (int k = 0; k < last_round; k++){
+							player_sequence[k] = 0;
+						}
+					}
+				}
+			}
+		}
+		//New round generation
+		if (sequence[last_round - 1] == player_sequence[last_round - 1] || sequence[0] == 0){
 
+			//Pro win case
+			if (last_round >= 4)puzzles_complets[1] = true;
+			else{
+				uint random_color = (rand() % 4) + 1;
+				switch (random_color){
+				case 1://yellow
+					x = 12;
+					break;
+				case 2://green
+					x = 130;
+					break;
+				case 3://red
+					x = 248;
+					break;
+				case 4://pink
+					x = 366;
+					break;
+				case 5://blue
+					x = 484;
+					break;
+				}
+				sequence[last_round] = random_color;
+				last_round++;
+				round = player_round = 0;
+				for (int k = 0; k < last_round; k++){
+					player_sequence[k] = 0;
+				}
+				new_wave = true;
+			}
+		}
+	}
+	else if (App->player->dir == SOUTH)
+	{
+		//Info case
+		App->render->Blit(graphics_info, 0, 0, &puzzle_lvl2_info);
+	}
+	else if (App->player->dir == WEST)
+	{
+		//Door case
+		//App->render->Blit(App->level1->test_graphics, 234, 234, &App->level1->lvl4_closed_door);
+	}
 }
+
 
 void ModuleMinigames::puzzle_game()
 {

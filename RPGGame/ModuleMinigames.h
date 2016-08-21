@@ -22,6 +22,7 @@ public:
 	SDL_Texture* g_numbers = nullptr;
 	SDL_Texture* graphics_info = nullptr;
 	SDL_Texture* Puzzle = nullptr;
+	SDL_Texture* graphics_simon = nullptr;
 
 	//numbers
 
@@ -37,6 +38,25 @@ public:
 	bool puzzles_complets[4];
 	int num[5];
 	void numbers_game();
+
+	//Level 2 simon
+	SDL_Rect puzzle_lvl2_info;
+	SDL_Rect puzzle_lvl2_interact;
+	SDL_Rect yellow_color;
+	SDL_Rect green_color;
+	SDL_Rect red_color;
+	SDL_Rect pink_color;
+	SDL_Rect blue_color;
+	SDL_Rect mark;
+	uint round;
+	uint player_round;
+	uint last_round;
+	uint mark_time;
+	uint last_simon_time;
+	uint current_simon_time;
+	bool new_wave;
+	uint sequence[25];
+	uint player_sequence[25];
 
 
 	//Level 3 Puzzle
